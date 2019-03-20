@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>OnCo</title>
+    <link rel="stylesheet" type="text/css" href="index.css" />
+    <link rel="stylesheet" type="text/css" href="settings.css" />
+</head>
+
+<body>
+    <header>
+        <div class="left">
+            <h2> OnCo </h2> 
+            <h1> Contacts </h1>
+        </div>
+
+        <div class="center">
+            <div class="search">
+                <form class="search-form">
+                    <input type="text" name="search" placeholder="Search for anything...">
+                </form>
+            </div>
+        </div>
+
+        <div class="right">
+            <img src="https://www.w3schools.com/howto/img_avatar.png" alt="Avatar" class="avatar">
+            <div class="username">
+                Username
+            </div>
+            <div class="logout">
+                <a href="E:/InfoSem2/TW2019/OnCo/OnCo/Add.html" class="add">
+                    <img src="https://img.icons8.com/bubbles/50/000000/exit.png" alt="LogOut">
+                </a>
+            </div>
+        </div>
+    </header>
+
+    <div class="row">
+        <nav>
+            <a href="Index.html" class="contact">
+                Contacts
+            </a>
+            <a href="Add.html" class="add">
+                Add Contacts
+            </a>
+        
+            <a href="Settings.html" class="setting">
+                Settings
+            </a>
+        </nav>
+
+        <main>
+            <div class="card">
+            <h1>Account settings</h1>
+            <form action="/register" method="POST">
+                <div>
+                    <label for="registerName">Change Username</label>
+                    <input type="text" required id="registerName" placeholder="Type your new username"/>
+                </div>
+                    <div>
+                        <label for="registerEmail">Change e-mail</label>
+                        <input type="email" required id="registerEmail" placeholder="Type your new email"/>
+                    </div>
+                    <div>
+                        <label for="registerPassword">Change Password</label>
+                        <input type="password" name="oldpassword" required id="oldPassword" placeholder="Type your old password"/>
+                        <input type="password" name="newpassword" required id="newPassword" placeholder="Type your new password"/>
+                        <input type="password" name="confirmpassword" required id="confirmPassword" placeholder="Confirm password"/>
+                    </div>
+                    <div>
+                        <label for="registerNumber">Phone Number</label>
+                        <input type="text" id="registerNumber" placeholder="Add your phone number"/>
+                    </div>
+                <button type="update">Update</button>
+            </form>
+    </div>
+
+        </main>
+
+    </div>
+
+</body>
+</html>
