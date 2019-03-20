@@ -1,0 +1,503 @@
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin:0;
+    padding:0;
+    line-height: 1.5em;
+}
+
+header {
+    width: 100%;
+    height: 5.5vw;
+    display: flex;
+    overflow: hidden;
+    position: fixed;
+    font-family: Helvetica, Arial, sans-serif;
+    background-color: rgb(44, 44, 44);
+    background-image: linear-gradient(rgb(4, 6, 39), rgb(10, 10, 15));
+}
+
+main {
+    width: 92%; 
+    height: 100%;
+    margin-left: 8%; 
+    margin-top: 5.5vw;
+    padding: 0;
+    overflow: hidden;
+    display: inline-block;
+    background-color: white;
+}
+
+nav {
+    position: fixed;
+    top: 5.5vw;
+    left: 0;
+    width: 8%;
+    height: 100%;
+    overflow: hidden;
+    background-color: rgb(10, 10, 15); 
+    z-index: 1;
+}
+
+header .left
+{
+    width: 20%;
+    float: left;
+    font-family: Impact, Charcoal, sans-serif;
+}
+
+header .left h1
+{
+    font-size: 3vw;
+    margin: 11% 0 3% 10%;
+    text-align: left;
+    color: rgb(13, 29, 97);
+    text-shadow: 1px 1px #4682b4, 2px 2px #4682b4, 1px 1px #4682b4;
+}
+  
+header .left h1:hover
+ {
+    position: relative;
+    top: -3px; 
+    left: -3px; 
+    text-shadow: 1px 1px #4682b4, 2px 2px #4682b4, 3px 3px #4682b4, 4px 4px #4682b4, 5px 5px #4682b4, 6px 6px #4682b4;
+}
+
+header .left h2
+{
+    position: absolute;
+    left: 4.5%;
+    bottom: 35%;
+    font-size: 2vw;
+    color: rgb(13, 29, 97);
+
+    text-shadow: 1px 1px #4682b4, 2px 2px #4682b4, 1px 1px #4682b4;
+    -webkit-transition: all 0.5s ease-out;
+    -moz-transition: all 0.5s ease-out;
+    -o-transition: all 0.5s ease-out;
+}
+
+header .center 
+{
+    width: 50%;
+    float: left;
+    padding-top: 1vw;
+    padding-right: 2vw;
+    padding-bottom: 1vw;
+}
+
+header .center .search
+{
+    float:center;
+    overflow: auto;
+    -o-border-radius: 10px;
+	-moz-border-radius: 10px;
+	-webkit-border-radius: 10px;
+}
+
+header .center .search input
+{
+	border: 0px;
+    width: 35%;
+    padding: 12px 20px 12px 40px;
+
+    box-sizing: border-box;
+    border: 1px solid rgb(0, 0, 0);
+    border-radius: 10px; 
+    font-size: 1.2vw;
+    font-family: Helvetica, Arial, sans-serif;
+    background-color: #4682b4;
+    background-image: url('https://img.icons8.com/ios/50/000000/search.png');
+    background-position: 10px 10px; 
+    background-size: 1.8vw;
+    background-repeat: no-repeat;
+    
+    -webkit-transition: width 0.4s ease-in-out;
+    -moz-transition: width 0.4s ease-in-out;
+    -o-transition: width 0.4s ease-in-out;
+    transition: width 0.4s ease-in-out;
+  }
+
+header .center .search input::placeholder
+{
+    color: rgb(13, 29, 97);
+}
+
+header .center .search input:focus
+{
+    outline: 0;
+    width: 100%;
+}
+
+header .right
+{
+    width: 30%;
+}
+
+header .right .avatar
+ {
+    position: absolute;
+    left: 81.5%;
+    top: 0.6vw;
+    width: 4vw;
+    height: 4vw;
+    border-radius: 50%;
+}
+
+header .right .username
+{
+    position:absolute;
+    left: 86%;
+    top: 1.7vw;
+    color: #4682b4;
+    font-size: 1.6vw;
+}
+
+header .right .logout
+{
+    position: absolute;
+    left:94%;
+    top:0.8vw;
+    margin: 0;
+}
+
+.row 
+{ 
+    display: flex;
+    flex-wrap: wrap;
+    width: 100%;
+}
+
+nav a, .dropdown-content a
+{ 
+    display: block; 
+    padding: 1.2vw;
+
+    color: #4682b4;
+    text-align: left; 
+    text-decoration: none;
+    font-family: Helvetica, Arial, sans-serif;
+    font-size: 1.4vw;
+}
+
+nav a.active 
+{
+    background-color: rgb(10, 10, 15);
+    color: #4682b4;
+}
+  
+nav a:hover 
+{
+    background-color:  rgb(198, 206, 253);
+}
+
+#content .title .text
+{
+    float: left;
+    width:30%;
+}
+
+#content .title
+{
+    margin: 0;
+    padding: 5px 0 0 2%;
+    height: 90px;
+    background-color: rgb(198, 206, 253);
+    text-align: left;
+    display: flex;
+    flex-wrap: nowrap;
+}
+
+#content .title a
+{
+    text-decoration: none;
+    color: black;
+}
+
+#content .title p
+{
+    font-size: 2vw;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+#content .title h1 
+{
+    margin: -28% 0 60% 45%;
+    left: 16%;
+    top: 13.5%;
+    font-family: fantasy;
+}
+
+#content .title .addfilter
+{
+    margin-left: 65%;
+    width: 5vw;
+}
+
+#content .title .addfilter img, .dropdown img
+{
+    margin-top:15%;
+    width: 4vw;
+    height: 4vw;
+}
+
+#content .title .dropdown img
+{
+    margin-top:8%;
+    width: 4vw;
+    height: 4vw;
+}
+
+#content .title .dropdown 
+{
+    width:30%;
+    float: right;
+    overflow: hidden;
+  }
+
+  #content .title .dropdown .dropdown-btn 
+  {
+    border: none;
+    outline: none;
+    margin: 0;
+    padding: 20px 20px 20px 20px;
+  }
+
+  #content .title .dropdown-content 
+  {
+    display: none;
+    border: 2px solid black;
+    border-radius: 40px;
+    position: absolute;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 1.5vw;
+    color: rgb(10, 10, 15);
+    background-color:  #4682b4;
+    min-width: 10vw;
+    text-align: left;
+    padding-left: 10px; 
+    box-shadow: 8px 8px 16px 0px rgba(0,0,0,0.2);
+    z-index: 1;
+  }
+
+  #content .title .dropdown-content input[type="submit"]
+  {
+    background-color: rgb(10, 10, 15);
+    color: #4682b4;
+    padding: 9px 12px;
+    margin-right: 30%; 
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    float: right;
+  }
+  
+  #content .title .dropdown:hover .dropdown-content {
+    display: block;
+  }
+
+
+main .alphabet{
+    height: 25px;
+    width: 100%;
+    padding: 0;
+    background: rgb(10, 10, 15);
+    list-style-type: none;
+    margin: auto 0;
+    cursor: pointer;
+    text-align:center;
+}
+
+main .alphabet li {
+    float:left;
+    margin:0;
+    padding:0;
+    font-size: 13px;
+    color: white;
+    width:3.703%;
+}
+
+main .alphabet li:hover {
+    color:black;
+    font-weight: bold;
+    background-color: rgb(198, 206, 253) ;
+}
+
+
+#content .listcontact {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+#content .listcontact > div{
+    width: 25%;
+    height: 100px;
+    margin: 4%;
+    border: 1px solid gray;
+    border-radius: 10px;
+}
+
+#content .listcontact > div p{
+    z-index: 1;
+    margin-left: 10%;
+    margin-top:0;
+    color: #4682b4;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+#content .listcontact .contactname .button1{
+    margin-left: 90%;
+    font-size: 2vw;
+}
+
+#content .listcontact .contactname .button2{
+    margin-top: -7%;
+    margin-right: 80%;
+    font-size: 1.5vw;
+}
+
+#content .listcontact .contactname .button3{
+    margin: -7% 0 0 90%;
+    font-size: 2vw;
+}
+
+#content .listcontact .contactname .button1 a{
+    text-decoration: none;
+    color: red;
+} 
+#content .listcontact .contactname .button2 a, .contactname .button3 a{
+    text-decoration: none;
+    color: black;
+}
+
+
+#content .listcontact .addcontact input[type=text], .addcontact textarea {
+    width: 100%;
+    padding: 12px;
+    border: 2px solid #ccc;
+    border-radius: 6px;
+    resize: vertical;
+  }
+  
+ .addcontact label {
+    padding: 12px 12px 12px 0;
+    display: inline-block;
+  }
+  
+  .addcontact input[type=submit] {
+    background-color: #4682b4;
+    color: rgb(10, 10, 15);
+    padding: 12px 20px;
+    margin-right: 5%;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    float: right;
+  }
+  
+  .addcontact input[type=submit]:hover {
+    background-color: #4682b4;
+  }
+  
+  .addcontact {
+    background-color: #f2f2f2;
+    padding: 20px;
+    font-family: Arial, Helvetica, sans-serif;
+    color: #4682b4;
+  }
+  
+  .col25 {
+    float: left;
+    width: 20%;
+    margin-top: 6px;
+  }
+  
+  .col75 {
+    float: left;
+    width: 75%;
+    margin-top: 6px;
+  }
+  
+  .rowform:after {
+    content: "";
+    display: table;
+    clear: both;
+  }
+  
+
+@media screen and (max-width: 700px) {
+    .row { 
+      flex-direction: column;
+    }
+    header {
+        flex-direction: column;
+    }
+    nav {
+        width: 100%;
+        height: auto;
+        position: relative;
+      }
+    nav a {float: left;}
+}
+
+@media screen and (max-width: 600px) {
+    .col25, .col75, .addcontact input[type=submit] {
+      width: 100%;
+      margin-top: 0;
+    }
+  }
+  
+@media screen and (max-width: 700px) {
+    nav{
+
+    }
+    nav a {
+      text-align: center;
+      float: none;
+    }
+    main{
+        
+        width: 100%;
+        margin: 0;
+        padding-top:5%;
+    }
+    main #content .title {
+        display: none;
+    }
+    
+  }
+
+  @media screen and (max-width: 900px){
+    nav{
+        margin-top: 5%;
+    }
+    header{
+        height: 15%;
+    }
+    header .right .logout{
+        left: 80%;
+    }
+    header .right .logout img{
+        height: 10vw;
+        width : 10vw;
+    }
+    header .right .username{
+        font-size: 3vw;
+        left: 65%;
+    }
+    main #content .listcontact .contactname{
+        width: 70%;
+        margin-left:15%;
+    }
+
+    header .left, header .right .avatar{
+        display: none;
+    }
+    header .center .search input{
+        width: 50%;
+    }
+
+
+  }
