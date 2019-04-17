@@ -1,5 +1,4 @@
-# Arhitectura aplicatiei
-# Online Contacts
+# Arhitectura aplicatiei Online Contacts
 
 **1.Functionalitati:**  
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Proiectul consta intr-o aplicatie Web care sa reprezinte un manager de contacte personale.  
