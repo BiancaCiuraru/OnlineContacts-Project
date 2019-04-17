@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Online Contacts</title>
+    <link rel="stylesheet" href="../css/register.css">
+</head>
+<body>
+    <div class="card">
+        <h2>Create account</h2>
+        <form class="form" action="/register" method="POST">
+            <input type="text" required id="registerName" placeholder="Type your username"/>
+            <input type="email" required id="registerEmail" placeholder="Type your email"/>
+            <input type="password" name="password" required minlength="4" id="registerPassword" placeholder="Type your password"/>
+            <input type="password" name="repeatPassword" required minlength="4" id="registerRepeatPassword" placeholder="Repeat password"/>
+            <input type="number" min="1" max="100" id="registerAge" placeholder="Type your age"/>
+            <input type="text" required id="registerGender" placeholder="Type your gender"/>
+            <!--<button type="submit">Create an account</button>-->
+        </form>
+        <a href="Index.html">Create an account</a>
+    </div>
+</body>
+</html>
