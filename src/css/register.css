@@ -9,7 +9,7 @@ body, html {
 	font-family: Arial;
 }
 body{
-    background:url('sign-up-page-background-images-2.jpg');
+    background:url('../images/sign-up.jpg');
     background-size: cover;
     background-repeat: no-repeat;
 }
