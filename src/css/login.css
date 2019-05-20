@@ -1,187 +1,195 @@
-*{
-    margin: 0px; 
-	padding: 0px;
+* {
+    margin: 0px;
+    padding: 0px;
     box-sizing: border-box;
 }
-body{
-    background:url('../images/login.jpg');
-    background-size: cover;
-    background-repeat: no-repeat;
-}
-body, html {
-	height: 100%;
-	font-family: Poppins-Regular, sans-serif;
+
+*:focus {
+    outline: none;
 }
 
-header{
-    width: 100%;
-    height: 20%;
-    margin: 0;
-    padding: 0;
-    display: flex;
-    flex-direction: column;
-}
-
-.card{
-    display: flex;
-    width: 100%;
-}
-.card .left{
-    margin-top: 6%;
-    margin-left: 2%;
-    text-align: center;
-    width: 40%;
+body,
+html,
+.card {
     height: 100%;
+    font-family: Poppins-Regular, sans-serif;
 }
-.card .right{
-    margin: 3vw 8vw;
+
+.card {
+    width: 100%;
+    margin: 0 auto;
+}
+
+.container {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: stretch;
+}
+
+.container .left {
     width: 60%;
-    height: 100%;
-}
-
-header .formL .l1{
-    height: 50px;
-}
-
-header .formL .l2{
-    height: 50px;
-}
-
-header .formL .l1 label{
     position: relative;
-    left: 60%;
-    color:black;
-    font-size: 120%;
-    font-weight: bold;
-    top: 40%;
-    box-shadow: 7px 7px 7px;
-}
-header .formL .l1 label[for="loginEmail"]{
-    margin-right: 7.5%;
-}
-header .formL .l2 input{
-    position: relative;
-    left: 60%;
-    top: 8%;
-    width: 11%;
-    height: 60%;
-    border-radius:5px;
-
+    background: url('../images/login.jpg');
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
 }
 
-header .formL .l2 input[type="email"]{
-    margin-right: 10px;
+.left img {
+    width: 15%;
+    position: absolute;
+    top: 30px;
+    left: 30px;
 }
 
-header .formL .l2 button{
-    position: relative;
-    left: 60%;
-    top: 8%;
-    width: 4%;
-    height: 55%;
-    border-radius: 1vw solid black;
-    background-color: rgb(165, 165, 245);
-    font-weight: bold;
+.container .right {
+    margin: auto;
 }
 
-.card .right .ref p{
-    padding-top: 5vw;
-    padding-left: 1vw;
-    color:black;
-    font-size: 3vw;
-    font-weight: bold;
-    margin-bottom: 1vw;
-}
-.card .right .ref a{
-    padding-left: 10vw;
-    color:black;
-    font-weight: bold;
-    font-size: 1.5vw;
-    text-decoration: none;
-}
-
-.card .left h1{
-    margin: 0 5vw 0.5vw;
-    font-size: 5vw;
-    /*text-shadow: 3px 3px rgb(45, 45, 92);*/
-}
-.card .left .titlu{
+.header {
+    padding: 2rem;
     text-align: center;
-    font-weight: bold;
-    font-size: 5vw;
-    color:black;
-    margin-bottom: 3vw;
+    position: relative;
 }
-.card .left .titlu:hover{
-    transform: scale(1.5);
-    text-shadow: 3px 3px rgb(58, 58, 92);
+
+.header .over-title {
+    color: rgb(13, 29, 97);
+    font-size: 2vw;
+    font-weight: bolder;
+    text-transform: uppercase;
 }
-.card .left p{
+
+.header .title {
+    color: rgb(13, 29, 97);
     font-size: 3vw;
+    font-weight: bolder;
+}
+
+.form-element {
+    margin-bottom: 30px;
+}
+
+.right form label {
+    font-size: 1.5vw;
+    color: #333333;
+    line-height: 1.5;
+}
+
+.right form input {
+    font-size: 1.2vw;
+    color: #333333;
+    display: block;
+    width: 100%;
+    height: 30px;
+    background: transparent;
+    border: none;
+    border-bottom: 1px solid;
+    padding: 0 7px 0 0px;
+}
+
+.right .forgotPass {
+    text-align: left;
+    margin-top: -15px;
+    padding-bottom: 15px;
+}
+
+.right .container-btn {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+.button {
+    display: inline-block;
+    font-size: 1.5vw;
+    font-weight: bold;
+    color: #4682b4;
+    text-decoration: none;
+    padding: 10px 30px 10px 30px;
+    border-radius: 23px;
+    background-color: rgb(6, 8, 61);
+    background-image: linear-gradient(rgb(6, 8, 61), rgb(10, 10, 15));
+}
+
+.button:hover {
+    background-color: rgb(13, 29, 97);
+    background-image: linear-gradient(rgb(13, 29, 97), rgb(6, 8, 61));
+}
+
+.right .link {
+    text-decoration: none;
+    font-size: 1.4vw;
+    color: #333333;
+}
+
+.right .link:hover {
+    color: #4682b4;
     font-weight: bold;
 }
-/*.card .left p:hover{
-    transform: translate3d(1vw,1vw,1vw);
-}*/
 
-@media screen and (max-width: 1100px) and (min-width: 700px){
-    header .formL .l1 label, header .formL .l2 input, header .formL .l2 button{
-        left:50%;
+.right .registerDiv {
+    text-align: center;
+    margin-top: 20px;
+}
+
+.right .registerDiv p {
+    color: #333333;
+    font-size: 1.4vw;
+}
+
+@media screen and (max-width: 1100px) and (min-width: 700px) {
+    .right .header h6,
+    .right .header h2 {
+        font-size: 3vw;
     }
-    header .formL .l1 label{
-        font-size: 100%;
-    }
-    header .formL .l1 label[for="loginEmail"]{
-        margin-right: 7%;
-    }
-    header .formL .l2 button{
-        width: 6%;
+    .right .loginForm label,
+    .right .loginForm input,
+    .right .loginForm .button,
+    .right .loginForm .link,
+    .right .registerDiv p {
+        font-size: 2vw;
     }
 }
 
-@media screen and (max-width: 700px){
-    header .formL .l1 label, header .formL .l2 input, header .formL .l2 button{
-        left: 30%;
-    }
-    header .formL .l1 label{
-        font-size: 100%;
-    }
-    header .formL .l2 input{
-        width: 17%;
-    }
-    header .formL .l2 button{
-        width: 12%;
-    }
-}
-
-@media screen and (max-width: 600px){
-
-    header .formL .l1 label{
-        font-size: 120%;
-    }
-    .card .left, .card .right{
-        text-align: center;
+@media screen and (max-width: 700px) {
+    .card .left,
+    .card .right {
         width: 100%;
     }
-
-    .card .right .ref a{
-        margin-left: -15vw;
+    .left {
+        height: 25%;
+    }
+    .right {
+        padding: 14% 20%;
+    }
+    .right .header h6,
+    .right .header h2 {
         font-size: 4vw;
     }
-    .card .left h1, .card .left .titlu{
-        font-size: 10vw;
+    .right .loginForm label,
+    .right .loginForm input,
+    .right .loginForm .button,
+    .right .loginForm .link,
+    .right .registerDiv p {
+        font-size: 3vw;
     }
-    .card .left p{
-        font-size: 6vw;
-    }
-
-    .card .right .ref p{
-        font-size: 5.5vw;
-    }
-    .card{
+    .card {
         flex-direction: column;
     }
 }
 
-
-
+@media screen and (max-width: 455px) {
+    .right .header h6,
+    .right .header h2 {
+        font-size: 5.5vw;
+    }
+    .right .loginForm label,
+    .right .loginForm input,
+    .right .loginForm .button,
+    .right .loginForm .link,
+    .right .registerDiv p {
+        font-size: 4vw;
+    }
+}

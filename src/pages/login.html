@@ -1,42 +1,61 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>OnCo</title>
     <link rel="stylesheet" href="../css/login.css">
+    <link rel="stylesheet" href="../css/register.css">
+
 
 </head>
+
 <body>
-    <header>
-        <div class="formL">
-            <form action="/login" method="POST">
-                <div class="l1">
-                    <label for="loginEmail">Email*</label>
-                    <label for="loginPassword">Password*</label>
-                </div>
-                <div class="l2">
-                    <input type="email" required id="loginEmail" placeholder="Type your email"/>
-                    <input type="password" required id="loginPassword" placeholder="Type your password"/>
-                    <!--<button type="submit">Login</button>-->
-                    <a href="../Index.html">Login</a>
-                </div>
-            </form>
-        </div>
-    </header>
     <div class="card">
-        <div class="left">
-            <h1>Welcome!</h1>
-            <p class="titlu"> OnCo </p>
-            <p>Free. Unlimited. Online.</p>
-        </div>
-        <div class="right">
-            <div class="ref">
-                <p>You don't have an account yet?</p> 
-                <a href="register.html">Create your personal account!</a>
+        <div class="container">
+            <div class="left">
+                <img src="../images/logo.png" />
+            </div>
+
+            <div class="right">
+                <div class="loginForm">
+                    <div class="header">
+                        <h6 class="over-title">Welcome back!</h6>
+                        <h2 class="title">Log In</h2>
+                    </div>
+                    <form class="form">
+                        <div class="form-element">
+                            <label for="email">Email adress</label>
+                            <input type="email" class="form-control" id="email" placeholder="👤 Enter your email" required />
+                        </div>
+                        <div class="form-element">
+                            <label for="password">Password</label>
+                            <input type="password" class="form-control" id="password" placeholder="⚿ Enter your password" required />
+                        </div>
+
+                        <div class="forgotPass">
+                            <a class="link" href="#">
+                                Forgot password?
+                            </a>
+                        </div>
+
+                        <div class="container-btn">
+                            <a class="button" href="../Index.html">Login</a>
+                        </div>
+                    </form>
+
+                    <div class="registerDiv">
+                        <p>You don't have an account yet?</p>
+                        <a class="link" href="#openModal">Create your personal account!</a>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
+
+
 </body>
+
 </html>
