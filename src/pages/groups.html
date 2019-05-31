@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>OnCo - Home</title>
+    <link rel="stylesheet" type="text/css" href="../css/main.css" />
+</head>
+
+<body>
+    <header>
+        <div class="left">
+            <img src="../images/logo.png">
+        </div>
+
+        <div class="center">
+            <div class="search">
+                <input type="text" name="search" placeholder="Search for anything...">
+            </div>
+        </div>
+
+        <div class="right">
+            <img src="https://www.w3schools.com/howto/img_avatar.png" alt="Avatar" class="avatar">
+            <div class="username">
+                Username
+            </div>
+            <div class="edit-profile">
+                <a class="link" href="#openModal">Edit Profile</a>
+            </div>
+            <div class="add-group">
+                <a class="link" href="#groupModal">Add group</a>
+            </div>
+            <div class="logout">
+                <a href="./pages/login.html" class="add">
+                    <img src="https://img.icons8.com/bubbles/50/000000/exit.png" alt="LogOut">
+                </a>
+            </div>
+            
+        </div>
+        <div id="openModal" class="modalDialog">
+                <div class="right">
+                    <a href="#close" title="Close" class="close">X</a>
+                    <div class="editProfileForm">
+                        <div class="header">
+                            <h2 class="over-title">Edit your profile</h2>
+                        </div>
+                        <form class="form">
+                            <div class="form-element">
+                                <label for="photo">Change your photo</label>
+                                <!-- <input type="image" id="photo" name="photo" class="form-control" src="#" alt="Photo"> -->
+                                <img src="./images/login.jpg" />
+                            </div>
+                            <div class="form-element">
+                                <label for="email">Email adress</label>
+                                <input type="email" class="form-control" id="email" placeholder="Enter your new email" required />
+                            </div>
+                            <div class="form-element">
+                                <label for="password">Password</label>
+                                <input type="password" class="form-control" id="password" placeholder="Enter your new password" required />
+                            </div>
+                            <div class="form-element">
+                                <label for="password2">Confirm Password</label>
+                                <input type="password" class="form-control" id="password2" placeholder="Enter your new password again" required />
+                            </div>
+            
+                            <div class="container-btn">
+                                <button type="button">Edit</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+            <div id="groupModal" class="groupDialog">
+                <div class="right">
+                    <a href="#close" title="Close" class="close">X</a>
+                    <div class="addGroupForm">
+                        <div class="header">
+                            <h2 class="over-title">Add group</h2>
+                        </div>
+                        <form class="form">
+                            <div class="form-element">
+                                <label for="email" >Group name</label>
+                                <input type="email" class="form-control" id="email" placeholder="Enter group name" required />
+                            </div>
+                            <div class="form-element">
+                                <label for="description">Description</label>
+                                <textarea type="description" id="description" placeholder="Enter description" rows="4" required ></textarea>
+                            </div>
+                            <div class="container-btn">
+                                <button type="button">Add group</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+    
+    </header>
+
+    <div class="row">
+        <nav>
+            <a href="Index.html" class="contact">
+                Contacts
+            </a>
+            <a href="./pages/groups.html" class="group">
+                Groups
+            </a>
+            <a href="./pages/add-contacts.html" class="add">
+                Add Contacts
+            </a>
+            <a href="./pages/Settings.html" class="setting">
+                Settings
+            </a>
+        </nav>
+
+        <main>
+            <div
+             id="content">
+                <div class="title">
+                    <div class="text">
+                        <p>Home/</p>
+                        <h1>Groups</h1>
+                    </div>
+                    <div class="addfilter">
+                        <a href="#">
+                            <img src="https://img.icons8.com/ios/50/000000/filter-and-sort-filled.png" alt="AddFilter">
+                        </a>
+                    </div>
+                    <div class="dropdown">
+                        <a href="#" class="dropdown-btn">
+                            <img src="https://img.icons8.com/material-rounded/50/000000/open-resume.png" alt="Export">
+                        </a>
+                        <div class="dropdown-content">
+                            <form action="/action_page.php">
+                                <div class="export">
+                                    <input type="radio" name="format" value="vCard"> vCard<br>
+                                    <input type="radio" name="format" value="CSV"> CSV<br>
+                                    <input type="radio" name="format" value="Atom"> Atom<br>
+                                    <input type="submit" value="Export">
+                                </div>
+
+                            </form>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="alphabet">
+                    <ul class="alphabet">
+                        <li>All</li>
+                        <li>A</li>
+                        <li>B</li>
+                        <li>C</li>
+                        <li>D</li>
+                        <li>E</li>
+                        <li>F</li>
+                        <li>G</li>
+                        <li>H</li>
+                        <li>I</li>
+                        <li>J</li>
+                        <li>K</li>
+                        <li>L</li>
+                        <li>M</li>
+                        <li>N</li>
+                        <li>O</li>
+                        <li>P</li>
+                        <li>Q</li>
+                        <li>R</li>
+                        <li>S</li>
+                        <li>T</li>
+                        <li>U</li>
+                        <li>V</li>
+                        <li>W</li>
+                        <li>X</li>
+                        <li>Y</li>
+                        <li>Z</li>
+                    </ul>
+                </div>
+
+                <div class="listgroup">
+                    <div class="groupname">
+                        <img class = "nimic"src="../images/logo.png" />
+                        <p style="margin-top:-6.5vw; margin-left: 9vw; font-size: 25px; font-weight: bold;"> Informatica </p>
+                        <p style="margin-top: -1.7vw;margin-left: 9vw;">Created by: Bianca Ciuraru</p>
+                        <p style="margin-top: -1.7vw;margin-left: 9vw;">Created on: March 16, 2019</p>
+                    </div>
+                    <div class="groupname">
+                        <div><img src="../images/logo.png" /></div>
+                        <p style="margin-top:-6.5vw; margin-left: 9vw; font-size: 25px; font-weight: bold;"> Feea </p>
+                        <p style="margin-top: -1.7vw;margin-left: 9vw; ">Created by: Bianca Ciuraru</p>
+                        <p style="margin-top: -1.7vw;margin-left: 9vw; ">Created on: Mai 16, 2019</p>
+                    </div>
+
+                </div>
+
+            </div>
+
+        </main>
+
+    </div>
+    
+</body>
+
+</html>
