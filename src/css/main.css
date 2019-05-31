@@ -264,26 +264,37 @@ main .alphabet li:hover {
     background-color: rgb(198, 206, 253);
 }
 
-#content .listcontact {
+#content .listcontact, #content .listgroup {
     display: flex;
     flex-wrap: wrap;
 }
 
-#content .listcontact>div {
-    width: 25%;
-    height: 100px;
+#content .listcontact>div, #content .listgroup>div {
+    width: 28%;
+    height: 120px;
     margin: 4%;
     border: 1px solid gray;
     border-radius: 10px;
 }
 
-#content .listcontact>div p {
+#content .listcontact>div p, #content .listgroup>div p {
     z-index: 1;
     margin-left: 10%;
     margin-top: 0;
     color: #4682b4;
     font-family: Arial, Helvetica, sans-serif;
 }
+
+.groupname img{
+    margin-left: 1.5vw;
+    margin-top: 1vw;
+    height: 7vw;
+    width: 7vw;
+}
+ /*.listgroup .groupname p{
+    margin-top:-8vw; 
+    margin-left: 12vw;
+} */
 
 #content .listcontact .contactname .button1 {
     margin-left: 90%;
@@ -435,5 +446,245 @@ main .alphabet li:hover {
     }
     header .center .search input {
         width: 50%;
+    }
+}
+
+
+/* edit-profile modal */
+.modalDialog {
+    position: fixed;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    background: rgba(145, 145, 145, 0.8);
+    z-index: 99999;
+    opacity: 0;
+    pointer-events: none;
+}
+
+.modalDialog:target {
+    opacity: 1;
+    pointer-events: auto;
+}
+
+.modalDialog>div {
+    overflow-x: hidden;
+    position: relative;
+    margin: 5% auto;
+    padding: 3% 5%;
+    background: #fff;
+}
+
+::-webkit-scrollbar {
+    display: none;
+}
+
+.header{
+    text-align: center;
+}
+
+.form-element{
+    display: grid;
+}
+
+input{
+    width: 20vw;
+    height: 3vw;
+    border: none;
+    border-bottom: 1px solid;
+    margin-top: -0.3em;
+}
+label{
+    margin-top: 0.5em;
+    font-size: 1.2em;
+}
+
+img{
+    width: 5vw;
+    height: 7vw;
+}
+
+button {
+    font-size: 1.5vw;
+    font-weight: bold;
+    color: #4682b4;
+    text-decoration: none;
+    padding: 10px 30px 10px 30px;
+    border-radius: 23px;
+    background-color: rgb(6, 8, 61);
+    background-image: linear-gradient(rgb(6, 8, 61), rgb(10, 10, 15));
+    margin-left: 6vw;
+    margin-top: 0.5em;
+}
+
+.close {
+    background: #333333;
+    color: #FFFFFF;
+    line-height: 25px;
+    position: absolute;
+    right: 12px;
+    text-align: center;
+    top: 12px;
+    width: 24px;
+    text-decoration: none;
+    font-weight: bold;
+    border-radius: 12px;
+    box-shadow: 1px 1px 3px #000;
+}
+
+.close:hover {
+    background: rgb(13, 29, 97);
+}
+
+@media screen and (max-width: 1000px) and (min-width: 700px) {
+    .modalDialog>div {
+        width: 60%;
+    }
+    .right .editProfileForm label,
+    .right .editProfieleForm input,
+    .right .editProfileForm .button {
+        font-size: 2vw;
+    }
+}
+
+@media screen and (max-width: 700px) {
+    .modalDialog>div {
+        width: 75%;
+    }
+    .right .editProfileForm label,
+    .right .editProfileForm input,
+    .right .editProfileForm .button {
+        font-size: 2.5vw;
+    }
+}
+
+@media screen and (max-width: 455px) {
+    .modalDialog>div {
+        width: 75%;
+    }
+    .right .editProfileForm label,
+    .right .editProfileForm input,
+    .right .editProfileForm .button {
+        font-size: 4vw;
+    }
+}
+
+/* add group modal */
+
+.groupDialog {
+    position: fixed;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    background: rgba(145, 145, 145, 0.8);
+    z-index: 99999;
+    opacity: 0;
+    pointer-events: none;
+}
+
+.groupDialog:target {
+    opacity: 1;
+    pointer-events: auto;
+}
+
+.groupDialog>div {
+    overflow-x: hidden;
+    position: relative;
+    margin: 5% auto;
+    padding: 3% 5%;
+    background: #fff;
+}
+
+::-webkit-scrollbar {
+    display: none;
+}
+
+.groupDialog .right .header{
+    text-align: center;
+}
+
+.groupDialog .right .form-element{
+    display: grid;
+}
+
+.groupDialog .right input{
+    width: 20vw;
+    padding-top: 1em;
+    font-size: 15px;
+}
+.groupDialog .right textarea{
+    width: 20vw;
+    border: 1px solid;
+    margin-top: 0.5em;
+    font-size: 15px;
+}
+.groupDialog .right label{
+    margin-top: 0.6em;
+    font-size: 1.2em;
+}
+.groupDialog .right button {
+    font-size: 1.5vw;
+    font-weight: bold;
+    color: #4682b4;
+    text-decoration: none;
+    padding: 10px 30px 10px 30px;
+    border-radius: 23px;
+    background-color: rgb(6, 8, 61);
+    background-image: linear-gradient(rgb(6, 8, 61), rgb(10, 10, 15));
+    margin-left: 3.5vw;
+    margin-top: 0.5em;
+}
+
+.groupDialog .right .close {
+    background: #333333;
+    color: #FFFFFF;
+    line-height: 25px;
+    position: absolute;
+    right: 12px;
+    text-align: center;
+    top: 12px;
+    width: 24px;
+    text-decoration: none;
+    font-weight: bold;
+    border-radius: 12px;
+    box-shadow: 1px 1px 3px #000;
+}
+
+.groupDialog .right .close:hover {
+    background: rgb(13, 29, 97);
+}
+
+@media screen and (max-width: 1000px) and (min-width: 700px) {
+    .groupDialog>div {
+        width: 60%;
+    }
+    .right .addGroupForm label,
+    .right .addGroupForm input,
+    .right .addGroupForm .button {
+        font-size: 2vw;
+    }
+}
+
+@media screen and (max-width: 700px) {
+    .groupDialog>div {
+        width: 75%;
+    }
+    .right .addGroupForm label,
+    .right .addGroupForm input,
+    .right .addGroupForm .button {
+        font-size: 2.5vw;
+    }
+}
+
+@media screen and (max-width: 455px) {
+    .modalDialog>div {
+        width: 75%;
+    }
+    .right .addGroupForm label,
+    .right .addGroupForm input,
+    .right .addGroupForm .button {
+        font-size: 4vw;
     }
 }

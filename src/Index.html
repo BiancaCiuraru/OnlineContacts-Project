@@ -26,12 +26,77 @@
             <div class="username">
                 Username
             </div>
+            <div class="edit-profile">
+                <a class="link" href="#openModal">Edit Profile</a>
+            </div>
+            <div class="add-group">
+                <a class="link" href="#groupModal">Add group</a>
+            </div>
             <div class="logout">
                 <a href="./pages/login.html" class="add">
                     <img src="https://img.icons8.com/bubbles/50/000000/exit.png" alt="LogOut">
                 </a>
             </div>
+            
         </div>
+        <div id="openModal" class="modalDialog">
+                <div class="right">
+                    <a href="#close" title="Close" class="close">X</a>
+                    <div class="editProfileForm">
+                        <div class="header">
+                            <h2 class="over-title">Edit your profile</h2>
+                        </div>
+                        <form class="form">
+                            <div class="form-element">
+                                <label for="photo">Change your photo</label>
+                                <!-- <input type="image" id="photo" name="photo" class="form-control" src="#" alt="Photo"> -->
+                                <img src="./images/login.jpg" />
+                            </div>
+                            <div class="form-element">
+                                <label for="email">Email adress</label>
+                                <input type="email" class="form-control" id="email" placeholder="Enter your new email" required />
+                            </div>
+                            <div class="form-element">
+                                <label for="password">Password</label>
+                                <input type="password" class="form-control" id="password" placeholder="Enter your new password" required />
+                            </div>
+                            <div class="form-element">
+                                <label for="password2">Confirm Password</label>
+                                <input type="password" class="form-control" id="password2" placeholder="Enter your new password again" required />
+                            </div>
+            
+                            <div class="container-btn">
+                                <button type="button">Edit</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+
+            <div id="groupModal" class="groupDialog">
+                    <div class="right">
+                        <a href="#close" title="Close" class="close">X</a>
+                        <div class="addGroupForm">
+                            <div class="header">
+                                <h2 class="over-title">Add group</h2>
+                            </div>
+                            <form class="form">
+                                <div class="form-element">
+                                    <label for="email" >Group name</label>
+                                    <input type="email" class="form-control" id="email" placeholder="Enter group name" required />
+                                </div>
+                                <div class="form-element">
+                                    <label for="description">Description</label>
+                                    <textarea type="description" id="description" placeholder="Enter description" rows="4" required ></textarea>
+                                </div>
+                                <div class="container-btn">
+                                    <button type="button">Add group</button>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+    
     </header>
 
     <div class="row">
@@ -39,17 +104,20 @@
             <a href="Index.html" class="contact">
                 Contacts
             </a>
+            <a href="./pages/groups.html" class="group">
+                Groups
+            </a>
             <a href="./pages/add-contacts.html" class="add">
                 Add Contacts
             </a>
-
             <a href="./pages/Settings.html" class="setting">
                 Settings
             </a>
         </nav>
 
         <main>
-            <div id="content">
+            <div
+             id="content">
                 <div class="title">
                     <div class="text">
                         <p>Home/</p>
@@ -135,7 +203,7 @@
         </main>
 
     </div>
-
+    
 </body>
 
 </html>

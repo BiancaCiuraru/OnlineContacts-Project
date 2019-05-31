@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>OnCo</title>
+    <link rel="stylesheet" href="../css/login.css">
+    <link rel="stylesheet" href="../css/register.css">
+
+
+</head>
+
+<body>
+
+    <?php 
+        session_start();
+        
+        $conn = mysqli_connect('localhost', 'root', '');
+        mysqli_select_db($conn,'test');
+        if ($conn->connect_error) {
+            die("Connection failed: " . $conn->connect_error);
+        }
+
+        if(isset($_POST['registerButton'])){
+
+            $Fname=$_POST['Fname'];
+            $Lname=$_POST['Lname'];
+            $email=$_POST['email'];
+            $password=$_POST['password'];
+            $password2=$_POST['password2'];
+            echo $password2 . " ".$password;
+            if(strcmp($password,$password2)===0){
+                echo "sal";
+                $hashedPassword=md5($password);
+               // $registerStmt="INSERT INTO user(Fname, Lname, email, password) VALUES($Fname, $Lname, $email, $hashedPassword)";
+               // mysqli_query($conn, $registerStmt);
+                if($registerStmt = $conn -> prepare("INSERT INTO user(id_user,Fname, Lname, email, password)  VALUES(?,?,?,?,?)")){
+                $registerStmt -> bind_param('issss',1, $Fname, $Lname, $email, $hashedPassword);
+                $registerStmt -> execute();
+                $registerStmt -> close();}
+                // header('location:../index.html');
+            }
+            else{
+                $_SESSION['message']="The two passwords don't match";
+            }
+        } 
+    ?>
+    <div class="card">
+        <div class="container">
+            <div class="left">
+                <img src="../images/logo.png" />
+            </div>
+
+            <div class="right">
+                <div class="loginForm">
+                    <div class="header">
+                        <h6 class="over-title">Welcome back!</h6>
+                        <h2 class="title">Log In</h2>
+                    </div>
+                    <form class="form">
+                        <div class="form-element">
+                            <label for="email">Email adress</label>
+                            <input type="email" class="form-control" id="email" placeholder="👤 Enter your email" required />
+                        </div>
+                        <div class="form-element">
+                            <label for="password">Password</label>
+                            <input type="password" class="form-control" id="password" placeholder="⚿ Enter your password" required />
+                        </div>
+
+                        <div class="forgotPass">
+                            <a class="link" href="#">
+                                Forgot password?
+                            </a>
+                        </div>
+
+                        <div class="container-btn">
+                            <a class="button" href="../Index.html">Login</a>
+                        </div>
+                    </form>
+
+                    <div class="registerDiv">
+                        <p>You don't have an account yet?</p>
+                        <a class="link" href="#openModal">Create your personal account!</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div id="openModal" class="modalDialog">
+        <div class="right">
+            <a href="#close" title="Close" class="close">X</a>
+            <div class="registerForm">
+                <div class="header">
+                    <h6 class="over-title">Welcome!</h6>
+                    <h2 class="title">Sing Up</h2>
+                </div>
+                <form class="form" method="POST" >
+                    <div class="form-element">
+                        <label for="Fname">First name</label>
+                        <input type="text" class="form-control" id="Fname" name="Fname" placeholder="Enter your first name" required />
+                    </div>
+                    <div class="form-element">
+                        <label for="Lname">Last name</label>
+                        <input type="text" class="form-control" id="Lname" name="Lname" placeholder="Enter your last name" required />
+                    </div>
+                    <div class="form-element">
+                        <label for="email">Email adress</label>
+                        <input type="email" class="form-control" id="email" name="email" placeholder="Enter your email" required />
+                    </div>
+                    <div class="form-element">
+                        <label for="password">Password</label>
+                        <input type="password" class="form-control" id="password" name="password" placeholder="Enter your password" required />
+                    </div>
+                    <div class="form-element">
+                        <label for="password2">Confirm Password</label>
+                        <input type="password" class="form-control" id="password2" name="password2" placeholder="Enter your password again" required />
+                    </div>
+    
+                    <div class="container-btn">
+                        <!-- <a class="button" href="../Index.html">Sign Up</a> -->
+                        <button class="button" id="registerButton" name="registerButton">Sign Up</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+</body>
+
+</html>
