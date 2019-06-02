@@ -6,7 +6,10 @@ body {
     margin: 0;
     padding: 0;
     line-height: 1.5em;
+    font-family: Helvetica, Arial, sans-serif;
 }
+
+/*header css */
 
 header {
     width: 100%;
@@ -14,43 +17,20 @@ header {
     display: flex;
     overflow: hidden;
     position: fixed;
-    font-family: Helvetica, Arial, sans-serif;
+    z-index: 3;
     background-color: rgb(44, 44, 44);
     background-image: linear-gradient(rgb(6, 8, 61), rgb(10, 10, 15));
 }
 
-main {
-    width: 92%;
-    height: 100%;
-    margin-left: 8%;
-    margin-top: 5.5vw;
-    padding: 0;
-    overflow: hidden;
-    display: inline-block;
-    background-color: white;
-}
-
-nav {
-    position: fixed;
-    top: 5.8vw;
-    left: 0;
-    width: 8%;
-    height: 100%;
-    overflow: hidden;
-    background-color: rgb(10, 10, 15);
-    z-index: 1;
-}
-
 header .left {
-    width: 10%;
+    width: 8vw;
     float: left;
-    font-family: Impact, Charcoal, sans-serif;
 }
 
 header .left img {
     position: absolute;
     top: -1%;
-    left: 2%;
+    left: 1%;
     width: 6vw;
     height: 6vw;
 }
@@ -70,7 +50,6 @@ header .center .search input {
     width: 40%;
     padding: 12px 40px;
     font-size: 1.3vw;
-    font-family: Helvetica, Arial, sans-serif;
     border: 1px solid rgb(0, 0, 0);
     border-radius: 10px;
     background-color: #4682b4;
@@ -91,151 +70,213 @@ header .center .search input:focus {
 }
 
 header .right {
-    width: 30%;
+    padding-right: 50px;
+    margin: 0;
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    width: 40%;
 }
 
 header .right .avatar {
-    position: absolute;
-    right: 15%;
-    top: 0.9vw;
+    padding: 5px;
+    margin: 5px;
     width: 4vw;
     height: 4vw;
     border-radius: 50%;
 }
 
 header .right .username {
-    position: absolute;
-    left: 86%;
-    top: 1.7vw;
     color: #4682b4;
     font-size: 1.6vw;
+    line-height: 30px;
 }
 
-header .right .logout {
-    position: absolute;
-    left: 94%;
-    top: 0.8vw;
-    margin: 0;
+header .username a {
+    text-decoration: none;
 }
 
-.row {
-    display: flex;
-    flex-wrap: wrap;
-    width: 100%;
+header .username a:visited, a:link{
+    color:#4682b4;
 }
 
-nav a,
-.dropdown-content a {
+header .username a:hover {
+    color: rgb(198, 206, 253);
+}
+
+header .right .arrow-up {
+    position: fixed;
+    right: 7%;
+    top: 3.5vw;
+    display: none;
+    border-left: 20px solid transparent;
+    border-right: 20px solid transparent;
+    border-bottom: 20px solid rgb(6, 8, 61);
+}
+
+header .right .dropdown-header {
+    position: fixed;
+    width: 16vw;
+    right: 3%;
+    z-index: 3;
+    height: auto;
+    background-image: linear-gradient(rgb(6, 8, 61), rgb(10, 10, 15));
+    border-radius: 5px;
+    display: none;
+    text-align: left;
+    padding:20px;
+    color: #4682b4;
+}
+
+header .username:hover .arrow-up,.username:hover .dropdown-header{
+    display: block;
+}
+
+/* sidebar css */
+
+nav {
+    position: fixed;
+    top: 5.8vw;
+    left: 0;
+    width: 5%;
+    height: 100%;
+    overflow: hidden;
+    background-color: rgb(10, 10, 15);
+    z-index: 3;
+}
+
+nav a{
     display: block;
     padding: 1.2vw;
-    color: #4682b4;
-    text-align: left;
-    text-decoration: none;
-    font-family: Helvetica, Arial, sans-serif;
-    font-size: 1.4vw;
 }
 
-nav a.active {
-    background-color: rgb(10, 10, 15);
-    color: #4682b4;
-}
-
-nav a:hover {
+nav a:hover, a:active{
     background-color: rgb(198, 206, 253);
 }
 
-#content .title .text {
-    float: left;
-    width: 30%;
+/* main content css */
+
+main {
+    position: relative;
+    width: 100%;
+    margin-left: 5%;
+    margin-top: 5.8vw;
+    z-index:2;
+    overflow: hidden;
+    display: inline-block;
+    background-color: white;
 }
 
-#content .title {
-    margin: 0;
-    padding: 5px 0 0 2%;
-    height: 90px;
-    background-color: rgb(198, 206, 253);
-    text-align: left;
+main .title {
+    height: 6vw;
+    padding-left: 2vw;
     display: flex;
     flex-wrap: nowrap;
+    align-content: center;
+    background-color: rgb(198, 206, 253);
 }
 
-#content .title a {
-    text-decoration: none;
-    color: black;
+main .title .page-path{
+   color: rgb(10,10,15);
 }
 
-#content .title p {
-    font-size: 2vw;
-    font-family: Arial, Helvetica, sans-serif;
+main .page-path p{
+    font-size: 2.5vw;
 }
 
-#content .title h1 {
-    margin: -28% 0 60% 45%;
-    left: 16%;
-    top: 13.5%;
-    font-family: fantasy;
-}
-
-#content .title .addfilter {
-    margin-left: 65%;
-    width: 5vw;
-}
-
-#content .title .addfilter img,
-.dropdown img {
-    margin-top: 15%;
-    width: 4vw;
-    height: 4vw;
-}
-
-#content .title .dropdown img {
-    margin-top: 8%;
-    width: 4vw;
-    height: 4vw;
-}
-
-#content .title .dropdown {
-    width: 30%;
-    float: right;
-    overflow: hidden;
-}
-
-#content .title .dropdown .dropdown-btn {
-    border: none;
-    outline: none;
-    margin: 0;
-    padding: 20px 20px 20px 20px;
-}
-
-#content .title .dropdown-content {
-    display: none;
-    border: 2px solid black;
-    border-radius: 40px;
+main .page-path h1{
     position: absolute;
-    font-family: Arial, Helvetica, sans-serif;
-    font-size: 1.5vw;
-    color: rgb(10, 10, 15);
-    background-color: #4682b4;
-    min-width: 10vw;
-    text-align: left;
-    padding-left: 10px;
-    box-shadow: 8px 8px 16px 0px rgba(0, 0, 0, 0.2);
-    z-index: 1;
+    top:0.4vw;
+    left:9.5%;
+    font-weight: bolder;
+    font-size: 3vw;
 }
 
-#content .title .dropdown-content input[type="submit"] {
-    background-color: rgb(10, 10, 15);
+main .addfilter {
+    position: absolute;
+    top: 1.3vw;
+    right: 13%;
+}
+
+main .dropdown {
+    position: absolute;
+    top: 1.3vw;
+    right: 8%;
+}
+
+main .addfilter img, .dropdown img{
+    width: 3vw;
+    height: 3vw;
+}
+
+main .dropdown-content {
+    position: absolute;
+    width: 15vw;
+    right: 3%;
+    top: 3vw;
+    height: auto;
+    background-image: linear-gradient(rgb(6, 8, 61), rgb(10, 10, 15));
+    border-radius: 5px;
+    display: none;
+    text-align: left;
+    padding-top:0;
+    padding-left: 20px;
+    padding-bottom: 20px;
     color: #4682b4;
-    padding: 9px 12px;
-    margin-right: 30%;
+}
+
+main .dropdown:hover .dropdown-content {
+    display: block;
+}
+
+main .export .rdo{
+    display: block;
+    float: left;
+    width: 15px;
+    height: 15px;
+    border-radius: 10px;
+    background-color: #606062; 
+    background-image: linear-gradient(#474749,#606062);
+}
+
+main .export span {
+    display: inline;
+    font-size: 1.6vw;
+    font-weight: bold;
+    margin-left: 5px;
+}
+
+main .export label{
+    cursor: pointer;
+}
+
+main .export label:hover {
+    color: rgb(198, 206, 253);
+}
+
+main .export input[type="radio"]{
+    position: absolute;
+    opacity: 0;
+}
+  
+main .export  input[type="radio"]:checked + .rdo{
+    background-color: #606062 ;
+    background-image: linear-gradient(#4682b4,#4682b4);
+}
+
+main .dropdown-content input[type="submit"] {
+    background-color: rgb(6, 8, 61);
+    color: #4682b4;
+    font-size: 1.2vw;
+    font-weight: bold;
     border: none;
+    height: 30px;
+    margin-top:10px;
+    padding-left:15px;
+    padding-right:15px;
     border-radius: 4px;
     cursor: pointer;
-    float: right;
-}
-
-#content .title .dropdown:hover .dropdown-content {
-    display: block;
+    float: center;
 }
 
 main .alphabet {
@@ -255,34 +296,59 @@ main .alphabet li {
     padding: 0;
     font-size: 13px;
     color: white;
-    width: 3.703%;
+    width: 3.53%;
 }
 
 main .alphabet li:hover {
-    color: black;
+    color: rgb(10, 10, 15);
     font-weight: bold;
+    font-size: 1.2vw;
     background-color: rgb(198, 206, 253);
 }
 
-#content .listcontact, #content .listgroup {
+/* contact list css */
+
+main .listcontact, main .listgroup {
     display: flex;
     flex-wrap: wrap;
+    align-items:center;
+    padding-top:4%;
+    padding-right: 4%;
 }
 
-#content .listcontact>div, #content .listgroup>div {
+main .contactname, main .listgroup>div {
     width: 28%;
     height: 120px;
-    margin: 4%;
-    border: 1px solid gray;
+    margin: 0 0 4% 4%;
+    padding: 10px;
+    word-wrap: break-word;
+    font-weight: bold;
+    font-size: 1.5vw;
+    color: #4682b4;
     border-radius: 10px;
+    background-color: rgb(241, 243, 252);
+    box-shadow: 0 5px 10px 0 rgb(10, 10, 15,0.4);
+    transition: 0.3s;
 }
 
-#content .listcontact>div p, #content .listgroup>div p {
-    z-index: 1;
-    margin-left: 10%;
-    margin-top: 0;
-    color: #4682b4;
-    font-family: Arial, Helvetica, sans-serif;
+main .contactname:hover {
+    box-shadow: 0 10px 20px 0 rgb(10, 10, 15,0.4);
+    background-color: rgba(162, 176, 255, 0.5);
+}
+
+main .contactname .image{
+    width: 5vw;
+    height: 5vw;
+    margin-top:15px;
+    float: left;
+}
+main .contactname img{
+    width: 5vw;
+    height: 5vw;
+}
+
+main .contactname .text {
+    margin-top:25px;
 }
 
 .groupname img{
@@ -291,164 +357,141 @@ main .alphabet li:hover {
     height: 7vw;
     width: 7vw;
 }
- /*.listgroup .groupname p{
-    margin-top:-8vw; 
-    margin-left: 12vw;
-} */
-
-#content .listcontact .contactname .button1 {
-    margin-left: 90%;
-    font-size: 2vw;
+main .contactname .buttons{
+    z-index:1;
+    position:absolute;
+    width: 25%;
+    display: none;
 }
 
-#content .listcontact .contactname .button2 {
-    margin-top: -7%;
-    margin-right: 80%;
-    font-size: 1.5vw;
+main .contactname:hover .buttons{
+    display:block;
 }
 
-#content .listcontact .contactname .button3 {
-    margin: -7% 0 0 90%;
-    font-size: 2vw;
+main .listcontact .contactname .button1 {
+    margin-left:93%;
 }
 
-#content .listcontact .contactname .button1 a {
-    text-decoration: none;
-    color: red;
+main .listcontact .contactname .button2 {
+    margin-top:-25px;
 }
 
-#content .listcontact .contactname .button2 a,
-.contactname .button3 a {
-    text-decoration: none;
-    color: black;
+main .listcontact .contactname .button3 {
+    margin-top: 17%;
+    margin-left: 93%;
 }
 
-#content .listcontact .addcontact input[type=text],
-.addcontact textarea {
-    width: 100%;
-    padding: 12px;
-    border: 2px solid #ccc;
-    border-radius: 6px;
-    resize: vertical;
-}
-
-.addcontact label {
-    padding: 12px 12px 12px 0;
-    display: inline-block;
-}
-
-.addcontact input[type=submit] {
-    background-color: #4682b4;
-    color: rgb(10, 10, 15);
-    padding: 12px 20px;
-    margin-right: 5%;
-    border: none;
-    border-radius: 4px;
-    cursor: pointer;
-    float: right;
-}
-
-.addcontact input[type=submit]:hover {
-    background-color: #4682b4;
-}
-
-.addcontact {
-    background-color: #f2f2f2;
-    padding: 20px;
-    font-family: Arial, Helvetica, sans-serif;
-    color: #4682b4;
-}
-
-.col25 {
-    float: left;
-    width: 20%;
-    margin-top: 6px;
-}
-
-.col75 {
-    float: left;
-    width: 75%;
-    margin-top: 6px;
-}
-
-.rowform:after {
-    content: "";
-    display: table;
-    clear: both;
+.contactname .button1 img, .contactname .button2 img, .contactname .button3 img{
+    width:20px;
+    height: 20px;
 }
 
 @media screen and (max-width: 700px) {
-    .row {
-        flex-direction: column;
-    }
-    header {
-        flex-direction: column;
-    }
     nav {
         width: 100%;
-        height: auto;
-        position: relative;
+        height: 6.5%;
+        position: fixed;
+        top: 5.8vw;
+        padding-left:40%;
     }
     nav a {
         float: left;
     }
-}
-
-@media screen and (max-width: 600px) {
-    .col25,
-    .col75,
-    .addcontact input[type=submit] {
-        width: 100%;
-        margin-top: 0;
-    }
-}
-
-@media screen and (max-width: 700px) {
-    nav a {
-        text-align: center;
-        float: none;
-    }
     main {
         width: 100%;
-        margin: 0;
-        padding-top: 5%;
-    }
-    main #content .title {
-        display: none;
+        margin-left:0;
+        margin-top: 43px;
     }
 }
 
 @media screen and (max-width: 900px) {
-    nav {
-        margin-top: 5%;
-    }
-    header {
-        height: 15%;
-    }
-    header .right .logout {
-        left: 80%;
-    }
-    header .right .logout img {
-        height: 10vw;
-        width: 10vw;
-    }
     header .right .username {
-        font-size: 3vw;
+        font-size: 2vw;
         left: 65%;
     }
-    main #content .listcontact .contactname {
-        width: 70%;
-        margin-left: 15%;
+    main .listcontact .contactname {
+        width: 35%;
+        margin-left: 10%;
+        height: 100px;
     }
-    header .left,
-    header .right .avatar {
-        display: none;
+    main .contactname .text{
+        font-size: 2vw;
+        margin-top: 0px;
+    }
+    main .contactname .buttons{
+        width: 30%;
+        height: 80px;
+    }
+    main .contactname .buttons .button3{
+        margin-top:13%;
     }
     header .center .search input {
         width: 50%;
+        margin-left: 3%;
     }
 }
 
+
+@media screen and (max-width:500px){
+    header {
+        height: 7%;
+    }
+    header .left img{
+        width: 50px;
+        height: 50px;
+        z-index:1;
+        margin-left: 5%;
+    }
+    header .right{
+        display:none;
+    }
+    header .center
+    {
+        width: 90%;
+    } 
+    header .center .search {
+        margin-left: 10%;
+    }
+    header .center .search input {
+        font-size: 2.6vw;
+        background-size: 3vw;
+    }
+    
+    nav {
+        padding-left: 30%;
+        position: fixed;
+        top: 6.9%;
+        height: 6%;
+    }
+    main {
+        margin-top: 85px;
+    }
+    main .title {
+        display: none;
+    }
+    main .listcontact{
+        flex-direction: column;
+        padding: 10% 0 10% 0;
+    }
+    main .listcontact .contactname{
+        margin: 0 5% 5% 5%;
+        width: 80%;
+    }
+    main .contactname .text{
+        font-size: 4vw;
+    }
+    
+    main .contactname .image img,main .contactname .image{
+        width: 12vw;
+        height: 12vw;
+    }
+    main .listcontact .contactname .buttons{
+        width: 70%;
+    }
+    main .contactname .buttons .button3{
+        margin-top: 9%;
+    }
+}
 
 /* edit-profile modal */
 .modalDialog {
@@ -488,24 +531,24 @@ main .alphabet li:hover {
     display: grid;
 }
 
-input{
+.form-element input{
     width: 20vw;
     height: 3vw;
     border: none;
     border-bottom: 1px solid;
     margin-top: -0.3em;
 }
-label{
+.form-element label{
     margin-top: 0.5em;
     font-size: 1.2em;
 }
 
-img{
+.form-element img{
     width: 5vw;
     height: 7vw;
 }
 
-button {
+.form-element button {
     font-size: 1.5vw;
     font-weight: bold;
     color: #4682b4;
