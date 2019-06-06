@@ -351,7 +351,13 @@ main .alphabet li:hover {
 .addcontact input[type=submit]:hover {
     background-color: #4682b4;
 }
+/* butonul pt descrierea grupului */
+main .listcontact .contactname .button-group {
+    margin-top: 24%;
+    margin-left: 93%;
+}
 
+<<<<<<< Updated upstream
 .addcontact {
     background-color: #f2f2f2;
     padding: 20px;
@@ -375,6 +381,11 @@ main .alphabet li:hover {
     content: "";
     display: table;
     clear: both;
+=======
+.contactname .button1 img, .contactname .button2 img, .contactname .button3 img, .contactname .button-group img{
+    width:20px;
+    height: 20px;
+>>>>>>> Stashed changes
 }
 
 @media screen and (max-width: 700px) {
@@ -474,6 +485,7 @@ main .alphabet li:hover {
     margin: 5% auto;
     padding: 3% 5%;
     background: #fff;
+    width: 35%;
 }
 
 ::-webkit-scrollbar {
@@ -484,28 +496,45 @@ main .alphabet li:hover {
     text-align: center;
 }
 
-.form-element{
+.modalDialog .form-element{
     display: grid;
 }
 
+<<<<<<< Updated upstream
 input{
     width: 20vw;
+=======
+.modalDialog .form-element input{
+    width: 25vw;
+>>>>>>> Stashed changes
     height: 3vw;
     border: none;
     border-bottom: 1px solid;
     margin-top: -0.3em;
 }
+<<<<<<< Updated upstream
 label{
+=======
+.modalDialog .form-element label{
+>>>>>>> Stashed changes
     margin-top: 0.5em;
     font-size: 1.2em;
 }
 
+<<<<<<< Updated upstream
 img{
+=======
+.modalDialog .form-element img{
+>>>>>>> Stashed changes
     width: 5vw;
     height: 7vw;
 }
 
+<<<<<<< Updated upstream
 button {
+=======
+#editProfileBtn {
+>>>>>>> Stashed changes
     font-size: 1.5vw;
     font-weight: bold;
     color: #4682b4;
@@ -514,11 +543,11 @@ button {
     border-radius: 23px;
     background-color: rgb(6, 8, 61);
     background-image: linear-gradient(rgb(6, 8, 61), rgb(10, 10, 15));
-    margin-left: 6vw;
+    margin-left: 8vw;
     margin-top: 0.5em;
 }
 
-.close {
+.modalDialog .close {
     background: #333333;
     color: #FFFFFF;
     line-height: 25px;
@@ -533,7 +562,7 @@ button {
     box-shadow: 1px 1px 3px #000;
 }
 
-.close:hover {
+.modalDialog .close:hover {
     background: rgb(13, 29, 97);
 }
 
@@ -541,9 +570,9 @@ button {
     .modalDialog>div {
         width: 60%;
     }
-    .right .editProfileForm label,
-    .right .editProfieleForm input,
-    .right .editProfileForm .button {
+    .modalDialog .right .editProfileForm label,
+    .modalDialog .right .editProfieleForm input,
+    .modalDialog .right .editProfileForm .button {
         font-size: 2vw;
     }
 }
@@ -552,9 +581,9 @@ button {
     .modalDialog>div {
         width: 75%;
     }
-    .right .editProfileForm label,
-    .right .editProfileForm input,
-    .right .editProfileForm .button {
+    .modalDialog .right .editProfileForm label,
+    .modalDialog .right .editProfileForm input,
+    .modalDialog .right .editProfileForm .button {
         font-size: 2.5vw;
     }
 }
@@ -563,9 +592,9 @@ button {
     .modalDialog>div {
         width: 75%;
     }
-    .right .editProfileForm label,
-    .right .editProfileForm input,
-    .right .editProfileForm .button {
+    .modalDialog .right .editProfileForm label,
+    .modalDialog .right .editProfileForm input,
+    .modalDialog .right .editProfileForm .button {
         font-size: 4vw;
     }
 }
@@ -595,6 +624,7 @@ button {
     margin: 5% auto;
     padding: 3% 5%;
     background: #fff;
+    width: 30%;
 }
 
 ::-webkit-scrollbar {
@@ -609,10 +639,12 @@ button {
     display: grid;
 }
 
-.groupDialog .right input{
+.groupDialog input{
     width: 20vw;
     padding-top: 1em;
     font-size: 15px;
+    border: none;
+    border-bottom: 1px solid;
 }
 .groupDialog .right textarea{
     width: 20vw;
@@ -685,6 +717,97 @@ button {
     .right .addGroupForm label,
     .right .addGroupForm input,
     .right .addGroupForm .button {
+        font-size: 4vw;
+    }
+}
+
+/* add description group modal */
+
+.descriptionDialog {
+    position: fixed;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    background: rgba(145, 145, 145, 0.8);
+    z-index: 99999;
+    opacity: 0;
+    pointer-events: none;
+}
+
+.descriptionDialog:target {
+    opacity: 1;
+    pointer-events: auto;
+}
+
+.descriptionDialog>div {
+    overflow-x: hidden;
+    position: relative;
+    margin: 5% auto;
+    padding: 3% 5%;
+    background: #fff;
+    width: 30%;
+}
+
+::-webkit-scrollbar {
+    display: none;
+}
+
+.descriptionDialog .right .header{
+    text-align: center;
+}
+
+.descriptionDialog .right p{
+    display: grid;
+}
+
+.descriptionDialog .right p{
+    margin-top: -0.6em;
+    font-size: 1.2em;
+}
+
+.descriptionDialog .right .close {
+    background: #333333;
+    color: #FFFFFF;
+    line-height: 25px;
+    position: absolute;
+    right: 12px;
+    text-align: center;
+    top: 12px;
+    width: 24px;
+    text-decoration: none;
+    font-weight: bold;
+    border-radius: 12px;
+    box-shadow: 1px 1px 3px #000;
+}
+
+.descriptionDialog .right .close:hover {
+    background: rgb(13, 29, 97);
+}
+
+@media screen and (max-width: 1000px) and (min-width: 700px) {
+    .descriptionDialog>div {
+        width: 60%;
+    }
+    .right .descriptionGroupForm p {
+        font-size: 2vw;
+    }
+}
+
+@media screen and (max-width: 700px) {
+    .descriptionDialog>div {
+        width: 75%;
+    }
+    .right .descriptionGroupForm p {
+        font-size: 2.5vw;
+    }
+}
+
+@media screen and (max-width: 455px) {
+    .descriptionModal>div {
+        width: 75%;
+    }
+    .right .descriptionGroupForm p {
         font-size: 4vw;
     }
 }

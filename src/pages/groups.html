@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>OnCo - Home</title>
+    <title>OnCo</title>
     <link rel="stylesheet" type="text/css" href="../css/main.css" />
 </head>
 
@@ -17,13 +17,16 @@
 
         <div class="center">
             <div class="search">
-                <input type="text" name="search" placeholder="Search for anything...">
+                <form class="search-form">
+                    <input type="text" name="search" placeholder="Search for anything...">
+                </form>
             </div>
         </div>
 
         <div class="right">
             <img src="https://www.w3schools.com/howto/img_avatar.png" alt="Avatar" class="avatar">
             <div class="username">
+<<<<<<< Updated upstream
                 Username
             </div>
             <div class="edit-profile">
@@ -31,6 +34,14 @@
             </div>
             <div class="add-group">
                 <a class="link" href="#groupModal">Add group</a>
+=======
+                <a href="#" id="username">Username</a>
+                <div class="arrow-up"></div>
+                <div class="dropdown-header">
+                    <a href="#openModal"><img src="../images/edit.png"> Update Profile</a> <br />
+                    <a href="./login.html" class="logout"><img src="../images/logout.png"> Log Out</a>
+                </div>
+>>>>>>> Stashed changes
             </div>
             <div class="logout">
                 <a href="./pages/login.html" class="add">
@@ -40,11 +51,30 @@
             
         </div>
         <div id="openModal" class="modalDialog">
+<<<<<<< Updated upstream
                 <div class="right">
                     <a href="#close" title="Close" class="close">X</a>
                     <div class="editProfileForm">
                         <div class="header">
                             <h2 class="over-title">Edit your profile</h2>
+=======
+            <div class="right">
+                <a href="#close" title="Close" class="close">X</a>
+                <div class="editProfileForm">
+                    <div class="header">
+                        <h2 class="over-title">Edit your profile</h2>
+                    </div>
+                    <form class="form">
+                        <div class="form-element">
+                            <label for="photo">Change your photo</label>
+                            <!-- <input type="image" id="photo" name="photo" class="form-control" src="#" alt="Photo"> -->
+                            <img src="../images/login.jpg" />
+                        </div>
+                        <div class="form-element">
+                            <label for="email">Email adress</label>
+                            <input type="email" class="form-control" id="email" placeholder="Enter your new email"
+                                required />
+>>>>>>> Stashed changes
                         </div>
                         <form class="form">
                             <div class="form-element">
@@ -72,6 +102,7 @@
                     </div>
                 </div>
             </div>
+<<<<<<< Updated upstream
             <div id="groupModal" class="groupDialog">
                 <div class="right">
                     <a href="#close" title="Close" class="close">X</a>
@@ -96,6 +127,9 @@
                 </div>
             </div>
     
+=======
+        </div>
+>>>>>>> Stashed changes
     </header>
 
     <div class="row">
@@ -115,6 +149,7 @@
         </nav>
 
         <main>
+<<<<<<< Updated upstream
             <div
              id="content">
                 <div class="title">
@@ -197,6 +232,78 @@
 
         </main>
 
+=======
+            <div class="title">
+                <div class="page-path">
+                    <p>Home/<h1>Groups</h1></p>
+                </div>
+            </div>
+
+            <div class="listcontact">
+                <div class="contactname">
+                    <div class="buttons">
+                        <div class="button-group"><a href="#descriptionModal"><img src="../images/arrow-right.png" alt="View Details" title="View Details" /></a></div>
+                    </div>
+                    <div class="image">
+                            <img src="../images/logo.png" alt="Contact Photo" />
+                    </div>
+                    <div class="text">
+                        <p>Informatica <br>
+                            Created on: March 16, 2019
+                        </p>
+                    </div>
+                </div>
+                <div class="contactname">
+                    <div class="buttons">
+                        <div class="button-group"><a href="#descriptionModal"><img src="../images/arrow-right.png" alt="View Details" title="View Details" /></a></div>
+                    </div>
+                    <div class="image">
+                            <img src="../images/logo.png" alt="Contact Photo" />
+                    </div>
+                    <div class="text">
+                        <p>Informatica <br>
+                            Created on: March 16, 2019
+                        </p>
+                    </div>
+                </div>
+                <div class="contactname">
+                    <div class="buttons">
+                        <div class="button-group"><a href="#descriptionModal"><img src="../images/arrow-right.png" alt="View Details" title="View Details" /></a></div>
+                    </div>
+                    <div class="image">
+                            <img src="../images/logo.png" alt="Contact Photo" />
+                    </div>
+                    <div class="text">
+                        <p>Informatica <br>
+                            Created on: March 16, 2019
+                        </p>
+                    </div>
+                </div>
+            </div>
+
+        </main>
+    </div>
+
+    <div id="descriptionModal" class="descriptionDialog">
+        <div class="right">
+            <a href="#close" title="Close" class="close">X</a>
+            <div class="descriptionGroupForm">
+                <div class="header">
+                    <h2 class="over-title">Details about a group</h2>
+                </div>
+                <form class="form">
+                    <div class="lab">
+                        <p>  <h3>Group name:</h3> </p>
+                        <p>Informatica</p>
+                    </div>
+                    <div class="lab">
+                        <p>  <h3>Description</h3> </p>
+                        <p>Este un grup pentru studentii ai Facultatii de Informatica.....</p>
+                    </div>
+                </form>
+            </div>
+        </div>
+>>>>>>> Stashed changes
     </div>
     
 </body>
