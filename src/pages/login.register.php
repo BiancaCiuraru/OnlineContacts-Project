@@ -8,45 +8,9 @@
     <title>OnCo</title>
     <link rel="stylesheet" href="../css/login.css">
     <link rel="stylesheet" href="../css/register.css">
-
-
 </head>
 
 <body>
-
-    <?php 
-        session_start();
-        
-        $conn = mysqli_connect('localhost', 'root', '');
-        mysqli_select_db($conn,'test');
-        if ($conn->connect_error) {
-            die("Connection failed: " . $conn->connect_error);
-        }
-
-        if(isset($_POST['registerButton'])){
-
-            $Fname=$_POST['Fname'];
-            $Lname=$_POST['Lname'];
-            $email=$_POST['email'];
-            $password=$_POST['password'];
-            $password2=$_POST['password2'];
-            echo $password2 . " ".$password;
-            if(strcmp($password,$password2)===0){
-                echo "sal";
-                $hashedPassword=md5($password);
-               // $registerStmt="INSERT INTO user(Fname, Lname, email, password) VALUES($Fname, $Lname, $email, $hashedPassword)";
-               // mysqli_query($conn, $registerStmt);
-                if($registerStmt = $conn -> prepare("INSERT INTO user(id_user,Fname, Lname, email, password)  VALUES(?,?,?,?,?)")){
-                $registerStmt -> bind_param('issss',1, $Fname, $Lname, $email, $hashedPassword);
-                $registerStmt -> execute();
-                $registerStmt -> close();}
-                // header('location:../index.html');
-            }
-            else{
-                $_SESSION['message']="The two passwords don't match";
-            }
-        } 
-    ?>
     <div class="card">
         <div class="container">
             <div class="left">
@@ -59,14 +23,14 @@
                         <h6 class="over-title">Welcome back!</h6>
                         <h2 class="title">Log In</h2>
                     </div>
-                    <form class="form">
+                    <form class="form" action = "register.controller.php" >
                         <div class="form-element">
-                            <label for="email">Email adress</label>
-                            <input type="email" class="form-control" id="email" placeholder="👤 Enter your email" required />
+                            <label for="emailLogin">Email adress</label>
+                            <input type="email" class="form-control" id="emailLogin" name = "emailLogin" placeholder="👤 Enter your email" required />
                         </div>
                         <div class="form-element">
                             <label for="password">Password</label>
-                            <input type="password" class="form-control" id="password" placeholder="⚿ Enter your password" required />
+                            <input type="password" class="form-control" id="password" name = "password" placeholder="⚿ Enter your password" required />
                         </div>
 
                         <div class="forgotPass">
@@ -76,8 +40,13 @@
                         </div>
 
                         <div class="container-btn">
-                            <a class="button" href="../Index.html">Login</a>
+                            <button class="button" id="loginButton" name="submit" value = "loginButton">Login</button>
                         </div>
+                        <?php 
+                            if(isset($loginStatus) && $loginStatus === false) {
+                                echo '<p class="error" style = "color: red; margin-top: 1em; text-align: center; font-weight: bold; font-size: 1.5em;> Login error!</p>';
+                            } 
+                        ?>
                     </form>
 
                     <div class="registerDiv">
@@ -96,32 +65,46 @@
                     <h6 class="over-title">Welcome!</h6>
                     <h2 class="title">Sing Up</h2>
                 </div>
-                <form class="form" method="POST" >
+                <form action="register.controller.php" class="form" method="POST" >
                     <div class="form-element">
                         <label for="Fname">First name</label>
-                        <input type="text" class="form-control" id="Fname" name="Fname" placeholder="Enter your first name" required />
+                        <input type="text" class="form-control" id="Fname" name="Fname" placeholder="Enter your first name" />
                     </div>
                     <div class="form-element">
                         <label for="Lname">Last name</label>
-                        <input type="text" class="form-control" id="Lname" name="Lname" placeholder="Enter your last name" required />
+                        <input type="text" class="form-control" id="Lname" name="Lname" placeholder="Enter your last name"  />
                     </div>
                     <div class="form-element">
                         <label for="email">Email adress</label>
-                        <input type="email" class="form-control" id="email" name="email" placeholder="Enter your email" required />
+                        <input type="email" class="form-control" id="email" name="email" placeholder="Enter your email"  />
                     </div>
                     <div class="form-element">
-                        <label for="password">Password</label>
-                        <input type="password" class="form-control" id="password" name="password" placeholder="Enter your password" required />
+                        <label for="password1">Password</label>
+                        <input type="password" class="form-control" id="password1" name="password1" placeholder="Enter your password"  />
                     </div>
                     <div class="form-element">
                         <label for="password2">Confirm Password</label>
-                        <input type="password" class="form-control" id="password2" name="password2" placeholder="Enter your password again" required />
+                        <input type="password" class="form-control" id="password2" name="password2" placeholder="Enter your password again"  />
                     </div>
     
                     <div class="container-btn">
-                        <!-- <a class="button" href="../Index.html">Sign Up</a> -->
-                        <button class="button" id="registerButton" name="registerButton">Sign Up</button>
+                        <button class="button" id="registerButton" value="registerButton" name="submit">Sign Up</button>
                     </div>
+                    <?php 
+                        if($registerEmail === false) {
+                            echo '<p class="error" style = "color: red; margin-top: 1em; text-align: center; font-weight: bold; font-size: 1.5em;"> Email already exists!</p>';
+                        }else if($registerName === false){
+                            echo '<p class="error" style = "color: red; margin-top: 1em; text-align: center; font-weight: bold; font-size: 1.5em;"> Invalid name!</p>';
+                        }else if($registerPassword === false){
+                            echo '<p class="error" style = "color: red; margin-top: 1em; text-align: center; font-weight: bold; font-size: 1.5em;"> Passwords do not match!</p>';
+                        }else if($passwordRules === false){
+                            echo '<p class="error" style = "color: red; margin-top: 1em; text-align: center; font-weight: bold; font-size: 1.5em;"> Passwords must be at least 6 in length and must contain at least a non-letter character!</p>';
+                        }else if($fieldsStatus === false){
+                            echo '<p class="success" style = "color: red; margin-top: 1em; text-align: center; font-weight: bold; font-size: 1.5em;"> Please fill out all fields!</p>';
+                        }else if($registerStatus === true){
+                            echo '<p class="success" style = "color: red; margin-top: 1em; text-align: center; font-weight: bold; font-size: 1.5em;"> Register success!</p>';
+                        }
+                    ?>
                 </form>
             </div>
         </div>
