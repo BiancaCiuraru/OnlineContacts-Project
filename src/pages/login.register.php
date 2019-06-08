@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>OnCo</title>
+    <title>OnCo - Login</title>
     <link rel="stylesheet" href="../css/login.css">
     <link rel="stylesheet" href="../css/register.css">
 </head>
@@ -23,7 +23,7 @@
                         <h6 class="over-title">Welcome back!</h6>
                         <h2 class="title">Log In</h2>
                     </div>
-                    <form class="form" action = "register.controller.php" >
+                    <form class="form" action = "./register.controller.php" method="POST" >
                         <div class="form-element">
                             <label for="emailLogin">Email adress</label>
                             <input type="email" class="form-control" id="emailLogin" name = "emailLogin" placeholder="👤 Enter your email" required />
@@ -40,15 +40,16 @@
                         </div>
 
                         <div class="container-btn">
-                            <button class="button" id="loginButton" name="submit" value = "loginButton">Login</button>
+                            <button class="button" id="loginButton" name="submit" type="submit" value = "loginButton">Login</button>
                         </div>
-                        <?php 
-                            if(isset($loginStatus) && $loginStatus === false) {
-                                echo '<p class="error" style = "color: red; margin-top: 1em; text-align: center; font-weight: bold; font-size: 1.5em;> Login error!</p>';
-                            } 
-                        ?>
                     </form>
-
+                    <?php 
+                        if(isset($loginStatus) && $loginStatus === false) {
+                            echo '<p style="color: blue;"> Login error!</p>';
+                            echo '<p style="color: blue;">'.$_POST['emailLogin'].'<br>'.$_POST['password'].'</p>';
+                        } 
+                        
+                    ?>
                     <div class="registerDiv">
                         <p>You don't have an account yet?</p>
                         <a class="link" href="#openModal">Create your personal account!</a>

@@ -4,13 +4,42 @@
         'servername' => "localhost",
         'username' => "root",
         'password' => '',
-        'db' => 'test'
+        'db' => 'onco_db'
     ];
     
     $conn = new mysqli($CONFIG["servername"], $CONFIG["username"], $CONFIG["password"], $CONFIG["db"]);
     
     if ($conn->connect_error) {
         die("Connection failed: " . $conn->connect_error);
+    }
+
+    function login($emailLogin, $password) {
+        GLOBAL $conn;
+        $hashedPassword = md5($password);
+        $loginStmt = $conn -> prepare('SELECT * FROM utilizatori WHERE email = ? AND pass = ?');
+        $loginStmt -> bind_param('ss', $emailLogin, $hashedPassword);
+        $loginStmt -> execute();
+        $results = $loginStmt -> get_result();
+        $loginStmt -> close();
+        if($results -> num_rows  === 1) {
+            $firstRow = $results -> fetch_assoc();
+            return new User($firstRow['email'], $firstRow['pass']);
+        } 
+        return NULL;
+    }
+
+    function getLoggedUser($emailLogin, $hashedPassword) {
+        GLOBAL $conn;
+        $loginStmt = $conn -> prepare('SELECT * FROM utilizatori WHERE email = ? AND pass = ?');
+        $loginStmt -> bind_param('ss', $emailLogin, $hashedPassword);
+        $loginStmt -> execute();
+        $results = $loginStmt -> get_result();
+        $loginStmt -> close();
+        if($results -> num_rows  === 1) {
+            $firstRow = $results -> fetch_assoc();
+            return new User($firstRow['email'], $firstRow['pass']);
+        } 
+        return NULL;
     }
 
     function emailValidity($email){
@@ -76,6 +105,15 @@
         $insertStatement -> execute();
         $insertStatement -> close();
         return true;
+    }
+
+    class User {
+        public $emailLogin;
+        public $hashedPassword;
+        function __construct($emailLogin, $hashedPassword) {
+            $this -> emailLogin = $emailLogin;
+            $this -> hashedPassword = $hashedPassword;
+        }
     }
 
 ?>
