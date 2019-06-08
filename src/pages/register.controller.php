@@ -14,10 +14,10 @@
         if ($_POST['submit'] === 'registerButton') {
             if (!$_POST['Fname'] || !$_POST['Lname'] || !$_POST['email'] || !$_POST['password1'] || !$_POST['password2']) {
                 $fieldsStatus = false;
-            } else if (!nameValidity($_POST['Fname'], $_POST['Lname'], $_POST['email'])) {
+            }else if(!nameValidity($_POST['Fname'], $_POST['Lname'])){
                 $registerName = false;
-                // }else if(!filter_var($_POST['email'], FILTER_VALIDATE_EMAIL)){
-                //     $registerEmail = false;
+            }else if(!filter_var($_POST['email'], FILTER_VALIDATE_EMAIL)){
+                    $registerEmail = false;
             } else if (!passwordValidity($_POST['password1'], $_POST['password2'])) {
                 $registerPassword = false;
             } else if (!passwordRules($_POST['password1'], $_POST['password2'])) {
