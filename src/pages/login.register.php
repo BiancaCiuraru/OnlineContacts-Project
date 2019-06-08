@@ -8,6 +8,16 @@
     <title>OnCo - Login</title>
     <link rel="stylesheet" href="../css/login.css">
     <link rel="stylesheet" href="../css/register.css">
+
+    <style>
+        .error, .success{
+            color: red; 
+            margin-top: 1em; 
+            text-align: center; 
+            font-weight: bold; 
+            font-size: 1.5em;
+        }
+    </style>
 </head>
 
 <body>
@@ -93,17 +103,17 @@
                     </div>
                     <?php 
                         if($registerEmail === false) {
-                            echo '<p class="error" style = "color: red; margin-top: 1em; text-align: center; font-weight: bold; font-size: 1.5em;"> Email already exists!</p>';
+                            echo '<p class="error"> Email already exists!</p>';
                         }else if($registerName === false){
-                            echo '<p class="error" style = "color: red; margin-top: 1em; text-align: center; font-weight: bold; font-size: 1.5em;"> Invalid name!</p>';
+                            echo '<p class="error"> Invalid name!</p>';
                         }else if($registerPassword === false){
-                            echo '<p class="error" style = "color: red; margin-top: 1em; text-align: center; font-weight: bold; font-size: 1.5em;"> Passwords do not match!</p>';
+                            echo '<p class="error"> Passwords do not match!</p>';
                         }else if($passwordRules === false){
-                            echo '<p class="error" style = "color: red; margin-top: 1em; text-align: center; font-weight: bold; font-size: 1.5em;"> Passwords must be at least 6 in length and must contain at least a non-letter character!</p>';
+                            echo '<p class="error"> Passwords must be at least 6 in length and must contain at least a non-letter character!</p>';
                         }else if($fieldsStatus === false){
-                            echo '<p class="success" style = "color: red; margin-top: 1em; text-align: center; font-weight: bold; font-size: 1.5em;"> Please fill out all fields!</p>';
+                            echo '<p class="success"> Please fill out all fields!</p>';
                         }else if($registerStatus === true){
-                            echo '<p class="success" style = "color: red; margin-top: 1em; text-align: center; font-weight: bold; font-size: 1.5em;"> Register success!</p>';
+                            echo '<p class="success"> Register success!</p>';
                         }
                     ?>
                 </form>

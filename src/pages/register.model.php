@@ -4,7 +4,7 @@
         'servername' => "localhost",
         'username' => "root",
         'password' => '',
-        'db' => 'onco_db'
+        'db' => 'test'
     ];
     
     $conn = new mysqli($CONFIG["servername"], $CONFIG["username"], $CONFIG["password"], $CONFIG["db"]);
@@ -54,7 +54,7 @@
     }
 
     function nameValidity($Fname, $Lname){
-        if(!preg_match("/^[A-Z]+[a-zA-Z]*$/", $Fname) || !preg_match("/^[A-Z]+[a-zA-Z]*$/", $Lname)){
+        if(!preg_match("/\A[A-Z][a-z]*\z/", $Fname) || !preg_match("/\A[A-Z][a-z]*\z/", $Lname)){
             return false;
         }else {
             return true;
