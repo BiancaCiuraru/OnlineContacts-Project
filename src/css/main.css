@@ -350,6 +350,19 @@ main .contactname img{
 main .contactname .text {
     margin-top:25px;
 }
+main .contactname p {
+    margin-top:25px;
+    overflow: hidden;
+    white-space: nowrap;
+}
+
+.error, .success{
+    color: red; 
+    margin-top: 3.5em; 
+    text-align: center; 
+    font-weight: bold; 
+    font-size: 1.5em;
+}
 
 .groupname img{
     margin-left: 1.5vw;
@@ -650,6 +663,7 @@ main .listcontact .contactname .button-group {
     padding: 3% 5%;
     background: #fff;
     width: 30%;
+    height: 60%;
 }
 
 ::-webkit-scrollbar {
@@ -681,7 +695,7 @@ main .listcontact .contactname .button-group {
     margin-top: 0.6em;
     font-size: 1.2em;
 }
-.groupDialog .right button {
+.groupDialog .right .addGroupButton {
     font-size: 1.5vw;
     font-weight: bold;
     color: #4682b4;
@@ -691,7 +705,8 @@ main .listcontact .contactname .button-group {
     background-color: rgb(6, 8, 61);
     background-image: linear-gradient(rgb(6, 8, 61), rgb(10, 10, 15));
     margin-left: 4vw;
-    margin-top: 0.5em;
+    position: absolute;
+    margin-top: 1.5em;
 }
 
 .groupDialog .right .close {

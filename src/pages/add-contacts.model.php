@@ -42,7 +42,7 @@ class AddContactsModel{
         $result = $selectStatement -> get_result();
         $rez = $result->fetch_assoc();
         
-        $id_user = $rez['id_user']; //hardcodat
+        $id_user = $rez['id_user']; 
 
         $insertStatementContact = $this->conn -> prepare("INSERT INTO contact (fName, lName, birth_date, phone_number, photo, email, adress, descr, interests,id_user) VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
         $insertStatementContact -> bind_param("sssssssssi", $fname, $lname, $bday, $phone, $image, $email, $adress, $description, $interests, $id_user);

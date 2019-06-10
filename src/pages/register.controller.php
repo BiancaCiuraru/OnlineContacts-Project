@@ -1,47 +1,60 @@
 <?php
     session_start();
-
     include_once 'register.model.php';
-    $register = NULL;
-    $registerStatus = false;
-    $registerName = true;
-    $registerEmail = true;
-    $registerPassword = true;
-    $passwordRules = true;
-    $loginStatus = null;
-    $fieldsStatus = true;
-    if (isset($_POST['submit'])) {
-        if ($_POST['submit'] === 'registerButton') {
-            if (!$_POST['Fname'] || !$_POST['Lname'] || !$_POST['email'] || !$_POST['password1'] || !$_POST['password2']) {
-                $fieldsStatus = false;
-            }else if(!nameValidity($_POST['Fname'], $_POST['Lname'])){
-                $registerName = false;
-            }else if(!filter_var($_POST['email'], FILTER_VALIDATE_EMAIL)){
-                    $registerEmail = false;
-            } else if (!passwordValidity($_POST['password1'], $_POST['password2'])) {
-                $registerPassword = false;
-            } else if (!passwordRules($_POST['password1'], $_POST['password2'])) {
-                $passwordRules = false;
-            } else {
-                if ($em = emailValidity($_POST['email']) > 0) {
-                    $registerEmail = false;
-                } else {
-                    $register = register($_POST['Fname'], $_POST['Lname'], $_POST['email'], $_POST['password1'], $_POST['password2']);
-                    $registerStatus = true;
-                    // header('Location: ./register.controller.php#openModal');
+    class LoginRegisterController{
+        public $register;
+        public $registerStatus;
+        public $registerName;
+        public $registerEmail;
+        public $registerPassword;
+        public $passwordRules;
+        public $loginStatus;
+        public $fieldsStatus;
+        public $modelLoginRegister;
+        public $user;
+        public function __construct(){
+            $this->register = NULL;
+            $this->user = NULL;
+            $this->registerStatus = false;
+            $this->registerName = true;
+            $this->registerEmail = true;
+            $this->registerPassword = true;
+            $this->passwordRules = true;
+            $this->loginStatus = null;
+            $this->fieldsStatus = true;
+            $this->modelLoginRegister = new LoginRegisterModel();
+            if (isset($_POST['submit'])) {
+                if ($_POST['submit'] === 'registerButton') {
+                    if (!$_POST['Fname'] || !$_POST['Lname'] || !$_POST['email'] || !$_POST['password1'] || !$_POST['password2']) {
+                        $this->fieldsStatus = false;
+                    }else if(!$this->modelLoginRegister->nameValidity($_POST['Fname'], $_POST['Lname'])){
+                        $this->registerName = false;
+                    }else if (!$this->modelLoginRegister->passwordValidity($_POST['password1'], $_POST['password2'])) {
+                        $this->registerPassword = false;
+                    } else if (!$this->modelLoginRegister->passwordRules($_POST['password1'], $_POST['password2'])) {
+                        $this->passwordRules = false;
+                    } else {
+                        if ($this->modelLoginRegister->emailValidity($_POST['email']) > 0) {
+                            $this->registerEmail = false;
+                        } else {
+                            $this->register = $this->modelLoginRegister->register($_POST['Fname'], $_POST['Lname'], $_POST['email'], $_POST['password1'], $_POST['password2']);
+                            $this->registerStatus = true;
+                            // header('Location: ./register.controller.php');
+                        }
+                    }
+                } else if ($_POST['submit'] === 'loginButton') {
+                    $user = $login($_POST['emailLogin'], $_POST['password']);
+                    if ($user !== NULL) {
+                        header('Location: ../index.php');
+                        $_SESSION['emailLogin'] = $user -> emailLogin;
+                        $_SESSION['hashedPassword'] = $user -> hashedPassword;
+                    } else {
+                        $loginStatus = false;
+                    }
                 }
             }
-        } else if ($_POST['submit'] === 'loginButton') {
-            $user = login($_POST['emailLogin'], $_POST['password']);
-            if ($user !== NULL) {
-                header('Location: ../index.php');
-                $_SESSION['emailLogin'] = $user -> emailLogin;
-                $_SESSION['hashedPassword'] = $user -> hashedPassword;
-            } else {
-                $loginStatus = false;
-            }
         }
-    }
-    
+    } 
+    $controllerLoginRegister = new LoginRegisterController();
     include_once 'login.register.php';
 ?>

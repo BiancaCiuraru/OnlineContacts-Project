@@ -6,7 +6,18 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>OnCo - Home</title>
-    <link rel="stylesheet" type="text/css" href="../css/main.css" />
+    <link rel="stylesheet" type="text/css" href="../css/main.css?v=<?php echo time(); ?>" />
+
+    <style>
+        /* .error, .success{
+            color: red; 
+            margin-top: 3.5em; 
+            text-align: center; 
+            font-weight: bold; 
+            font-size: 1.5em;
+        } */
+    </style>
+
 </head>
 
 <body>
@@ -93,92 +104,91 @@
 
     <div class="row">
         <nav>
-            <a href="../Index.html">
+            <a href="../Index.php">
                 <img src="../images/contacts.png" alt="Contacts" title="Contacts" />
             </a>
-            <a href="./grupuri.html">
+            <a href="./grupuri.controller.php">
                 <img src="../images/group.png" alt="Groups" title="Groups" />
             </a>
-            <a href="./add-contacts.html">
+            <a href="./add-contacts.controller.php">
                 <img src="../images/add-user-2.png" alt="Add user" title="Add Contact" />
             </a>
+             
         </nav>
         <main>
             <div class="title">
                 <div class="page-path">
                     <p>Home/
                         <h1>Groups</h1>
+                        <a href="#groupsModal">Add Group</a>
                     </p>
                 </div>
             </div>
 
             <div class="listcontact">
-                <div class="contactname">
-                    <div class="buttons">
-                        <div class="button-group">
-                            <a href="#descriptionModal"><img src="../images/arrow-right.png" alt="View Details" title="View Details" /></a>
-                        </div>
-                    </div>
-                    <div class="image">
-                        <img src="../images/logo.png" alt="Contact Photo" />
-                    </div>
-                    <div class="text">
-                        <p>Informatica <br> Created on: March 16, 2019
-                        </p>
-                    </div>
-                </div>
-                <div class="contactname">
-                    <div class="buttons">
-                        <div class="button-group">
-                            <a href="#descriptionModal"><img src="../images/arrow-right.png" alt="View Details" title="View Details" /></a>
-                        </div>
-                    </div>
-                    <div class="image">
-                        <img src="../images/logo.png" alt="Contact Photo" />
-                    </div>
-                    <div class="text">
-                        <p>Informatica <br> Created on: March 16, 2019
-                        </p>
-                    </div>
-                </div>
-                <div class="contactname">
-                    <div class="buttons">
-                        <div class="button-group">
-                            <a href="#descriptionModal"><img src="../images/arrow-right.png" alt="View Details" title="View Details" /></a>
-                        </div>
-                    </div>
-                    <div class="image">
-                        <img src="../images/logo.png" alt="Contact Photo" />
-                    </div>
-                    <div class="text">
-                        <p>Informatica <br> Created on: March 16, 2019
-                        </p>
-                    </div>
-                </div>
+                <?php
+                    foreach ($controllerGroups->groupList as $group){
+                        echo "<div class='contactname'><div class='image'><img src='../images/logo.png' alt='Contact Photo' /></div>
+                        <div class='buttons'><div class='button-group'><a href='?groupName=". $group->groupName ."#descriptionModal'><img src='../images/arrow-right.png' alt='View Details' title='View Details' /></a></div></div>
+                        <p>Name: " . $group->nameGroup ."<br> Created at: ". $group->created_date ."</p></div>";
+                    }
+                ?>
             </div>
         </main>
     </div>
 
-    <div id="descriptionModal" class="descriptionDialog">
+    <!-- create new group -->
+    <div id="groupsModal" class="groupDialog">
         <div class="right">
             <a href="#close" title="Close" class="close">X</a>
+            <div class="addGroupForm">
+                <div class="header">
+                    <h2 class="over-title">Add group</h2>
+                </div>
+                <form class="form" action = "grupuri.controller.php" method = "POST" id = "form1">
+                    <div class="form-element">
+                        <label for="groupN">Group name</label>
+                        <input type="text" class="form-control" id="groupN" name = "groupN" value="" placeholder="Enter group name" required />
+                    </div>
+                    <div class="form-element">
+                        <label for="description">Description</label>
+                        <textarea type="description" id="description" name = "description" placeholder="Enter description" rows="4" required></textarea>
+                    </div>
+                    <div class="container-btn">
+                        <a href="#" onclick="document.getElementById('form1').submit(); " class = "addGroupButton">Add Group</a>
+                    </div>
+                    <?php
+                        if($controllerGroups->groupName == false){
+                            echo '<p class="error"> Invalid name!</p>';
+                        }else if($controllerGroups->groupNameStatus == false){
+                            echo '<p class="error"> Name already exists!</p>';
+                        }else if($controllerGroups->addGroupStatus == true){
+                            echo '<p class="success"> Group has been successfully added!</p>';
+                        }
+                    ?>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <div id="descriptionModal" class="descriptionDialog">
+        <div class="right">
+            <a href="grupuri.controller.php#close" title="Close" class="close">X</a>
             <div class="descriptionGroupForm">
                 <div class="header">
-                    <h2 class="over-title">Details about a group</h2>
+                    <h2 class="over-title">About this group</h2>
                 </div>
-                <form class="form">
-                    <div class="lab">
-                        <p>
-                            <h3>Group name:</h3>
-                        </p>
-                        <p>Informatica</p>
-                    </div>
-                    <div class="lab">
-                        <p>
-                            <h3>Description</h3>
-                        </p>
-                        <p>Este un grup pentru studentii Facultatii de Informatica.....</p>
-                    </div>
+                <form class="form" id = "form2">
+                    <?php
+                        echo "<div class='lab'>
+                            <p><h3>Group name:</h3></p>
+                                <p>" . $controllerGroups->getGroupName($_GET['groupName']) . "</p>
+                        </div>
+                        <div class='lab'>
+                            <p><h3>Description:</h3></p>
+                            <p>" . $controllerGroups->getDescription($_GET['groupName']) . "</p>
+                        </div>";
+                    ?>
                 </form>
             </div>
         </div>

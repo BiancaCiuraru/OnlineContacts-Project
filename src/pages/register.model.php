@@ -1,22 +1,18 @@
 <?php
-    
-    $CONFIG = [
-        'servername' => "localhost",
-        'username' => "root",
-        'password' => '',
-        'db' => 'test'
-    ];
-    
-    $conn = new mysqli($CONFIG["servername"], $CONFIG["username"], $CONFIG["password"], $CONFIG["db"]);
-    
-    if ($conn->connect_error) {
-        die("Connection failed: " . $conn->connect_error);
+    class LoginRegisterModel{
+    private $servername = "localhost";
+    private $username = "root";
+    private $password = "";
+    private $db = "test";
+    private $conn;
+
+    public function __construct(){
+        $this->conn= new mysqli($this->servername, $this->username, $this->password, $this->db);
     }
 
     function login($emailLogin, $password) {
-        GLOBAL $conn;
         $hashedPassword = md5($password);
-        $loginStmt = $conn -> prepare('SELECT * FROM utilizatori WHERE email = ? AND pass = ?');
+        $loginStmt = $this->conn -> prepare('SELECT * FROM utilizatori WHERE email = ? AND pass = ?');
         $loginStmt -> bind_param('ss', $emailLogin, $hashedPassword);
         $loginStmt -> execute();
         $results = $loginStmt -> get_result();
@@ -29,8 +25,7 @@
     }
 
     function getLoggedUser($emailLogin, $hashedPassword) {
-        GLOBAL $conn;
-        $loginStmt = $conn -> prepare('SELECT * FROM utilizatori WHERE email = ? AND pass = ?');
+        $loginStmt = $this->conn -> prepare('SELECT * FROM utilizatori WHERE email = ? AND pass = ?');
         $loginStmt -> bind_param('ss', $emailLogin, $hashedPassword);
         $loginStmt -> execute();
         $results = $loginStmt -> get_result();
@@ -43,8 +38,7 @@
     }
 
     function emailValidity($email){
-        GLOBAL $conn;
-        $selectStatement = $conn -> prepare("select email from utilizatori where email = ?");
+        $selectStatement = $this->conn -> prepare("select email from utilizatori where email = ?");
         $selectStatement -> bind_param("s", $email);
         $selectStatement -> execute();
         $result = $selectStatement -> get_result();
@@ -95,17 +89,16 @@
     }
 
     function register($Fname, $Lname, $email, $password1, $password2) {
-        GLOBAL $conn;
-
         $hashedPassword1 = md5($password1);
         $hashedPassword2 = md5($password2);
         
-        $insertStatement = $conn -> prepare("INSERT INTO utilizatori (firstName, lName, email, pass) VALUES(?, ?, ?, ?)");
+        $insertStatement = $this->conn -> prepare("INSERT INTO utilizatori (firstName, lName, email, pass) VALUES(?, ?, ?, ?)");
         $insertStatement -> bind_param("ssss", $Fname, $Lname, $email, $hashedPassword1);
         $insertStatement -> execute();
         $insertStatement -> close();
         return true;
     }
+}
 
     class User {
         public $emailLogin;

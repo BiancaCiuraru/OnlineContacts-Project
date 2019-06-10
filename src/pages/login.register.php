@@ -102,17 +102,17 @@
                         <button class="button" id="registerButton" value="registerButton" name="submit">Sign Up</button>
                     </div>
                     <?php 
-                        if($registerEmail === false) {
+                        if($controllerLoginRegister->registerEmail == false) {
                             echo '<p class="error"> Email already exists!</p>';
-                        }else if($registerName === false){
+                        }else if($controllerLoginRegister->registerName == false){
                             echo '<p class="error"> Invalid name!</p>';
-                        }else if($registerPassword === false){
+                        }else if($controllerLoginRegister->registerPassword == false){
                             echo '<p class="error"> Passwords do not match!</p>';
-                        }else if($passwordRules === false){
+                        }else if($controllerLoginRegister->passwordRules == false){
                             echo '<p class="error"> Passwords must be at least 6 in length and must contain at least a non-letter character!</p>';
-                        }else if($fieldsStatus === false){
+                        }else if($controllerLoginRegister->fieldsStatus == false){
                             echo '<p class="success"> Please fill out all fields!</p>';
-                        }else if($registerStatus === true){
+                        }else if($controllerLoginRegister->registerStatus == true){
                             echo '<p class="success"> Register success!</p>';
                         }
                     ?>
