@@ -49,6 +49,9 @@
         public function getGroupName($groupName){
             return $this->groupsModel->getGroupName($_SESSION['emailLogin'], $groupName);
         }
+        public function getContacts($groupName){
+            return $this->groupsModel->getContacts($_SESSION['emailLogin'], $groupName);
+        }
     }
     $controllerGroups = new GroupsController();
     include_once 'grupuri.php'; 

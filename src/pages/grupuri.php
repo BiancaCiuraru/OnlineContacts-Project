@@ -7,17 +7,6 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>OnCo - Home</title>
     <link rel="stylesheet" type="text/css" href="../css/main.css?v=<?php echo time(); ?>" />
-
-    <style>
-        /* .error, .success{
-            color: red; 
-            margin-top: 3.5em; 
-            text-align: center; 
-            font-weight: bold; 
-            font-size: 1.5em;
-        } */
-    </style>
-
 </head>
 
 <body>
@@ -188,6 +177,15 @@
                             <p><h3>Description:</h3></p>
                             <p>" . $controllerGroups->getDescription($_GET['groupName']) . "</p>
                         </div>";
+                        $contactList = $controllerGroups->getContacts($_GET['groupName']);
+                        echo "<p><h3>Contacts:</h3></p>";
+                        foreach ($contactList as $contact){
+                            echo "<div class='lab'>
+                                <ul> <li>Name: ". $contact->fName . " " .$contact->lName . "</li>
+                                <li>Email: ". $contact->email . "</li>
+                                </ul>
+                            </div>";
+                        }
                     ?>
                 </form>
             </div>
