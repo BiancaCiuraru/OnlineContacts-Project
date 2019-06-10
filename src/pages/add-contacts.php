@@ -87,13 +87,13 @@
 
     <div class="row">
         <nav>
-            <a href="../Index.html">
+            <a href="../Index.php">
                 <img src="../images/contacts.png" alt="Contacts" title="Contacts" />
             </a>
-            <a href="./grupuri.html">
+            <a href="./grupuri.controller.php">
                 <img src="../images/group.png" alt="Groups" title="Groups" />
             </a>
-            <a href="./add-contacts.html">
+            <a href="./add-contacts.controller.php">
                 <img src="../images/add-user-2.png" alt="Add user" title="Add Contact" />
             </a>
         </nav>

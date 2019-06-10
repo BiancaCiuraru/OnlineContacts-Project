@@ -4,7 +4,7 @@
     include_once './pages/register.model.php';
     $user = NULL;
     if(isset($_SESSION['emailLogin']) && isset($_SESSION['hashedPassword'])) {
-        $user = getLoggedUser($_SESSION['emailLogin'], $_SESSION['hashedPassword']);
+        $user = $getLoggedUser($_SESSION['emailLogin'], $_SESSION['hashedPassword']);
     } else {
         header('Location: ./pages/register.controller.php');
     }
@@ -79,32 +79,6 @@
                     </div>
                 </div>
             </div>
-
-            <!-- create new group -->
-            <div id="groupModal" class="groupDialog">
-                <div class="right">
-                    <a href="#close" title="Close" class="close">X</a>
-                    <div class="addGroupForm">
-                        <div class="header">
-                            <h2 class="over-title">Add group</h2>
-                        </div>
-                        <form class="form">
-                            <div class="form-element">
-                                <label for="email">Group name</label>
-                                <input type="email" class="form-control" id="email" placeholder="Enter group name" required />
-                            </div>
-                            <div class="form-element">
-                                <label for="description">Description</label>
-                                <textarea type="description" id="description" placeholder="Enter description" rows="4" required></textarea>
-                            </div>
-                            <div class="container-btn">
-                                <button type="button">Add group</button>
-                            </div>
-                        </form>
-                    </div>
-                </div>
-            </div>
-
         </header>
 
         <div class="row">
@@ -112,10 +86,10 @@
                 <a href="Index.html">
                     <img src="images/contacts.png" alt="Contacts" title="Contacts" />
                 </a>
-                <a href="./pages/grupuri.html">
+                <a href="./pages/grupuri.controller.php">
                     <img src="images/group.png" alt="Groups" title="Groups" />
                 </a>
-                <a href="./pages/add-contacts.html">
+                <a href="./pages/add-contacts.controller.php">
                     <img src="images/add-user-2.png" alt="Add user" title="Add Contact" />
                 </a>
             </nav>
