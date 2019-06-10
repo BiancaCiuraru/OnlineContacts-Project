@@ -92,6 +92,38 @@ class GroupsModel{
         $selectDetails->fetch();
         return $resultt;
     }
+
+    public function getContacts($email, $groupName){
+        $id_user = $this->getUserID($email);
+
+        $selectList = $this->conn -> prepare("select id_group from groups where id_user = ? and groupName = ?");
+        $selectList -> bind_param("is", $id_user, $groupName);
+        $selectList -> execute();
+        $list = $selectList -> get_result();
+        $listRow = $list -> fetch_assoc();
+        $id_g = $listRow['id_group'];
+
+        $selectIdGroup = $this->conn -> prepare("select id_contact from member where id_group = ?");
+        $selectIdGroup -> bind_param("i", $id_g);
+        $selectIdGroup -> execute();
+        $resultIdGroup = $selectIdGroup -> get_result();
+        $contactsList = array();
+        $index=0;
+        for($j=1; $j <= $resultIdGroup->num_rows; $j++){
+            $listId = $resultIdGroup -> fetch_assoc();
+            $id_c_m = $listId['id_contact'];
+
+            $selectIdContact = $this->conn -> prepare("select fName, lName, email from contact c where id_contact = ?");
+            $selectIdContact -> bind_param("i", $id_c_m);
+            $selectIdContact -> execute();
+            $resultIdContact = $selectIdContact -> get_result();
+            
+            $listIdContact = $resultIdContact -> fetch_assoc();
+            $contactsList[$index] = new Contact($listIdContact['fName'], $listIdContact['lName'], $listIdContact['email']);
+            $index++;
+        }
+        return $contactsList;
+    }
 }
 
 class Group {
@@ -104,6 +136,17 @@ class Group {
         $this -> created_date = $created_date;
         $this -> description = $description;
         $this -> groupName = $groupName;
+    }
+}
+
+class Contact {
+    public $fName;
+    public $lName;
+    public $email;
+    function __construct($fName, $lName, $email) {
+        $this -> fName = $fName;
+        $this -> lName = $lName;
+        $this -> email = $email;
     }
 }
 
