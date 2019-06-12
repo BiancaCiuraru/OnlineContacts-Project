@@ -1,5 +1,4 @@
 <?php
-// session_start();
 
 include_once '../models/register.model.php';
 include_once '../controllers/index.controller.php';
@@ -22,7 +21,7 @@ if (isset($_SESSION['emailLogin']) && isset($_SESSION['hashedPassword'])) {
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>OnCo - Home</title>
     <link rel="stylesheet" type="text/css" href="../css/main.css?v=<?php echo time(); ?>" />
-
+    <link rel="stylesheet" type="text/css" href="./css/register.css?v=<?php echo time(); ?>" />
 </head>
 
 <body>
@@ -47,42 +46,66 @@ if (isset($_SESSION['emailLogin']) && isset($_SESSION['hashedPassword'])) {
                 </a>
                 <div class="arrow-up"></div>
                 <div class="dropdown-header">
-                    <a href="#openModal"><img src="../images/edit.png"> Update Profile</a> <br />
+                    <a href="#editModal"><img src="../images/edit.png"> Update Profile</a> <br />
                     <a href="../views/login.register.php" class="logout"><img src="../images/logout.png"> Log Out</a>
                 </div>
             </div>
         </div>
 
         <!-- edit profile modal -->
-        <div id="openModal" class="modalDialog">
+        <div id="editModal" class="modalDialog">
             <div class="right">
                 <a href="#close" title="Close" class="close">X</a>
-                <div class="editProfileForm">
+                <div class="editProfile">
                     <div class="header">
                         <h2 class="over-title">Edit your profile</h2>
                     </div>
-                    <form class="form">
-                        <div class="form-element">
+                    <form action="#" class="form" method="POST">
+                        <div class="Photo">
                             <label for="photo">Change your photo</label>
-                            <!-- <input type="image" id="photo" name="photo" class="form-control" src="#" alt="Photo"> -->
-                            <img src="../images/login.jpg" />
+                            <input type="file" id="photo" name="photo" accept="image/*">
                         </div>
                         <div class="form-element">
-                            <label for="email">Email adress</label>
-                            <input type="email" class="form-control" id="email" placeholder="Enter your new email" required />
+                            <label for="emailE">Email adress</label>
+                            <input type="email" id="emailE" name="emailE" placeholder="Enter your email" />
                         </div>
                         <div class="form-element">
-                            <label for="password">Password</label>
-                            <input type="password" class="form-control" id="password" placeholder="Enter your new password" required />
+                            <label for="passwordE">Password</label>
+                            <input type="password" id="passwordE" name="passwordE" placeholder="Enter your new password" />
                         </div>
                         <div class="form-element">
-                            <label for="password2">Confirm Password</label>
-                            <input type="password" class="form-control" id="password2" placeholder="Enter your new password again" required />
+                            <label for="password2E">Confirm Password</label>
+                            <input type="password" id="password2E" name="password2E" placeholder="Enter your new password again" />
                         </div>
 
                         <div class="container-btn">
-                            <button type="button" id="editProfileBtn">Edit</button>
+                            <button id="editProfileBtn" value="editProfileBtn" type="submit" name="submit">Edit Profile</button>
                         </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- add contact to group -->
+        <div id="addToGroupModal" class="modalDialog">
+            <div class="right">
+                <a href="#close" title="Close" class="close">X</a>
+                <div class="viewDetail">
+                    <div class="header">
+                        <h2 class="over-title">Add To Groups</h2>
+                    </div>
+                    <form action="#" method="POST">
+                        <?php
+                        echo '<div class="groupsList">';
+                        $groupList = $controllerIndex->getGroups($_SESSION['emailLogin']);
+                        foreach ($groupList as $group) {
+                            echo '<ul>
+                                    <li><span class="spanGroup" id="nameGroup">' . $group->nameGroup . ' </span>
+                                        <button type="submit" name="submit" id="addToGroupBtn"> Add to this group </button>
+                                    </li>
+                                  </ul>';
+                        }
+                        echo '</div>';
+                        ?>
                     </form>
                 </div>
             </div>
@@ -101,7 +124,7 @@ if (isset($_SESSION['emailLogin']) && isset($_SESSION['hashedPassword'])) {
 
                         echo '<h3>This is ' . $contact->firstName . ' ' . $contact->lastName . '</h3>
                                     <div class="lab">
-                                        <img src="images/' . $contact->photo . '"/>
+                                        <img src="../images/' . $contact->photo . '"/>
                                         <ul>
                                             <li><span>Birthday</span>: ' . $contact->birthday . '</li>
                                             <li><span>Phone Number</span>: ' . $contact->phone_number . '</li>
@@ -132,12 +155,6 @@ if (isset($_SESSION['emailLogin']) && isset($_SESSION['hashedPassword'])) {
             </a>
         </nav>
 
-        <!-- <nav id="groups" class="sidebar">
-            <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">×</a>
-            <a href="#groupsModal">Add Group</a>
-            <a href="./pages/grupuri.controller.php">Groups</a>
-        </nav> -->
-
         <main>
             <div class="title">
                 <div class="page-path">
@@ -149,6 +166,37 @@ if (isset($_SESSION['emailLogin']) && isset($_SESSION['hashedPassword'])) {
                     <a href="#">
                         <img src="../images/filled-filter.png" alt="AddFilter">
                     </a>
+                    <div class="dropdown-filter">
+                        <div class="filter">
+                            <form action="#" method="POST">
+                                <h2>Select criteria for filtering</h2>
+                                <div class="form-element">
+                                    <label for="byname">By First Name / Last Name</label>
+                                    <input type="text" id="byname" name="byname" onkeyup="showResult(this.value)">
+                                </div>
+                                <div class="form-element Age">
+                                    <div class="byage"><label for="byage">By Age: </label></div>
+                                    <div class="criteria_age">
+                                        <label for="smaller_than"> Smaller Than <input type="number" id="smaller_than" name="smaller_than" min="0" max="100"> </label>
+                                        <label class="bigger" for="bigger_than"> Bigger Than <input type="number" id="bigger_than" name="bigger_than" min="0" max="100"> </label>
+                                    </div>
+                                </div>
+                                <div class="form-element">
+                                    <label for="byadress">By Adress</label>
+                                    <input type="text" id="byadress" name="byadress">
+                                </div>
+                                <div class="form-element">
+                                    <label for="byinterests">By Interests</label>
+                                    <input type="text" id="byinterests" name="byinterests">
+                                </div>
+                                <div class="form-element">
+                                    <label for="bydescr">By Description</label>
+                                    <input type="text" id="bydescr" name="bydescr">
+                                </div>
+                                <input type="submit" value="Search">
+                            </form>
+                        </div>
+                    </div>
                 </div>
                 <div class="dropdown">
                     <a href="#">
@@ -156,10 +204,10 @@ if (isset($_SESSION['emailLogin']) && isset($_SESSION['hashedPassword'])) {
                     </a>
                     <div class="dropdown-content">
                         <div class="export">
-                            <form method = "POST" action = "../controllers/index.controller.php">
+                            <form method="POST" action="../controllers/index.controller.php">
                                 <h2>Export contacts in a chosen format</h2>
                                 <label for="rdo1">
-                                    <input type="radio" id="rdo1" name="vCard" value ="vCard">
+                                    <input type="radio" id="rdo1" name="vCard" value="vCard">
                                     <span class="rdo"></span>
                                     <span>vCard</span>
                                 </label>
@@ -176,7 +224,7 @@ if (isset($_SESSION['emailLogin']) && isset($_SESSION['hashedPassword'])) {
                                     <span>Atom</span>
                                 </label>
                                 <br />
-                                <input type="submit" name = "export" value="Export">
+                                <input type="submit" name="export" value="Export">
                             </form>
                         </div>
                     </div>
@@ -273,25 +321,25 @@ if (isset($_SESSION['emailLogin']) && isset($_SESSION['hashedPassword'])) {
                 <?php
                 foreach ($controllerIndex->contactList as $contactss) {
                     echo '<div class="contactname ' . substr($contactss->firstName, 0, 1) . ' ' . substr($contactss->lastName, 0, 1) . '">
-                                         <div class="buttons">
-                                                <div class="button1">
-                                                    <a href="#"> <img src="../images/group.png" alt="add To Group" title="Add To Group" /></a>
-                                                 </div>
-                                                 <div class="button2">
-                                                     <a href="#"> <img src="../images/edit-contact.png" alt="Edit Contact" title="Edit Contact" /> </a>
-                                                </div>
-                                                 <div class="button3">
-                                                     <a class="idcontact" href="?contactEmail=' . $contactss->email . '#viewDetailsModal"><img src="../images/arrow-right.png" alt="View Details" title="View Details" /></a>
-                                                 </div>
-                                             </div>
-                                             <div class="image">
-                                                 <img src="../images/' . $contactss->photo . '" alt="Contact Photo" />
-                                             </div>
-                                             <div class="text">
-                                                <p>' . $contactss->firstName . ' ' . $contactss->lastName . ' <br> ' . $contactss->email . '
-                                                 </p>
-                                             </div>
-                                             </div>';
+                            <div class="buttons">
+                            <div class="button1">
+                                <a href="?contactEmail=' . $contactss->email . '#addToGroupModal"> <img src="../images/group.png" alt="add To Group" title="Add To Group" /></a>
+                            </div>
+                            <div class="button2">
+                                <a href="?contactEmail=' . $contactss->email . '#editContact"> <img src="../images/edit-contact.png" alt="Edit Contact" title="Edit Contact" /> </a>
+                            </div>
+                            <div class="button3">
+                                <a href="?contactEmail=' . $contactss->email . '#viewDetailsModal"><img src="../images/arrow-right.png" alt="View Details" title="View Details" /></a>
+                            </div>
+                        </div>
+                        <div class="image">
+                            <img src="../images/' . $contactss->photo . '" alt="Contact Photo" />
+                        </div>
+                        <div class="text">
+                            <p>' . $contactss->firstName . ' ' . $contactss->lastName . ' <br> ' . $contactss->email . '
+                            </p>
+                        </div>
+                        </div>';
                 }
                 ?>
 
@@ -350,6 +398,29 @@ if (isset($_SESSION['emailLogin']) && isset($_SESSION['hashedPassword'])) {
 
         function closeNav() {
             document.getElementById("groups").style.width = "0";
+        }
+    </script>
+    <script>
+        function showResult(str) {
+            if (str.length == 0) {
+                document.getElementsByClassName("listcontact").innerHTML = "";
+                document.getElementsByClassName("listcontact").style.border = "0px";
+                return;
+            }
+            if (window.XMLHttpRequest) {
+                // code for IE7+, Firefox, Chrome, Opera, Safari
+                xmlhttp = new XMLHttpRequest();
+            } else { // code for IE6, IE5
+                xmlhttp = new ActiveXObject("Microsoft.XMLHTTP");
+            }
+            xmlhttp.onreadystatechange = function() {
+                if (this.readyState == 4 && this.status == 200) {
+                    document.getElementsByClassName("listcontact").innerHTML = this.responseText;
+                    document.getElementsByClassName("listcontact").style.border = "1px solid #A5ACB2";
+                }
+            }
+            xmlhttp.open("GET", "filtrare.php?q=" + str, true);
+            xmlhttp.send();
         }
     </script>
 
