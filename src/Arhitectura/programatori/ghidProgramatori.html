@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="ro">
+
+<head>
+    <meta charset="utf-8">
+    <title>OnCo</title>
+    <link rel="stylesheet" type="text/css" href="style.css">
+</head>
+
+<body>
+    <h1>Online Contacts</h1>
+    <div>
+        <h4>Tiganescu Ana
+            <br>Ciuraru Bianca</h4>
+
+    </div>
+    <section>
+        <h4>Cuprins</h4>
+        <p> <a href="#C1"> 1. Introducere</a>
+            <br> <a href="#C2"> 2. Autentificare</a>
+            <br> <a href="#C3"> 3. Functionalitati</a>
+        </p>
+    </section>
+    <section id="C1">
+        <h4>1. Introducere</h4>
+        <p>
+            OnCo consta intr-o aplicatie Web care sa reprezinte un manager de contacte personale.
+            Fiecare persoana de contact va avea asociate informatii precum nume, prenume, adresa, data nasterii, minim o fotografie, numere de telefon, adrese de e-mail, descriere, interese.
+        </p>
+    </section>
+    <section id="C2">
+        <h4>2. Logare</h4>
+        <p>
+            Logarea utilizatorului se realizeaza prin intermediul sesiunilor. 
+        </p>
+    </section>
+    <section id="C3">
+        <h4>3. Functionalitati:</h4>
+        
+        <b>3.1 Autentificare:</b>
+        <p>Pentru a avea acces la functionalitatile aplicatiei este necesar ca utilizatorul sa-si creeze un cont, fiind stocate in baza de date anumite informatii despre utilizator, cum ar fi: id, nume, prenume, parola.</p>
+        
+        <b>3.2 Logare:</b>
+        <p>Pentru a avea acces la functionalitatile aplicatiei este necesar ca utilizatorul sa se logheze. Dupa introducerea email-ului si al parolei se verifica daca contul se afla in baza de date, iar in caz afirmativ, utilizatorului ii este permis accesul la site.</p>
+
+        <b>3.3 Crearea unui contact:</b>
+        <p>
+            Aceasta functie preia anumite detalii despre utilizator (nume, prenume, adresa, zi de nastere, email, descriere) si le introduce in baza de date.
+        </p>
+
+        <b>3.4 Editarea unui contact:</b>
+        <p>
+            Pe pagina de Contacts va aparea un buton care implementeaza aceasta functie care primeste ca parametru id-ul unui contact, verifica daca contactul se afla in baza de date, iar in caz afirmativ il returneaza cu noile modificari.
+        </p>
+
+        <b>3.5 Vizualizare detalii contact:</b>
+        <p>
+            Functia primeste ca parametru id_contactului si returneaza informatii privitoare la acesta.
+        </p>
+
+        <b>3.6 Filtrarea contactelor:</b>
+        <p>
+            Functia returneaza o lista de contacte asupra carora au fost efectuate anumite operatii, cum ar fi: obtinerea persoanelor mai tinere de 20 de ani localizate in Iasi.
+        </p>
+
+        <b>3.7 Creare grup:</b>
+        <p>
+            Prin intermediul acestei functii se creeaza un grup pentru contacte si sunt stocate in baza de date informatii privitoare la numele grupului, data crearii si descriere.
+        </p>
+
+        <b>3.8 Adaugarea unui contact la un anumit grup:</b>
+        <p>
+            Aceasta functie primeste ca parametru id-ul contactului si introduce in baza de date in tabela Group respectivul contact.
+        </p>
+
+        <b>3.9 Editare profil:</b>
+        <p>
+            Aceasta functie permite utilizatorului sa modifice sau sa introduca noi date personale.
+        </p>
+
+        <b>3.10 Export:</b>
+        <p>
+            Prin intermediul acestei functionalitati sunt exportate informatii in diferite formate, cum ar fi: CSV, Atom.
+    </section>
+</body>
+
+</html>

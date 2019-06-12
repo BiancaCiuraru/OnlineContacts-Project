@@ -395,6 +395,22 @@ main .listgroup>div {
     transition: 0.3s;
 }
 
+main .groupsname,
+main .listgroup>div {
+    width: 28%;
+    height: 120px;
+    margin: 0 0 4% 4%;
+    padding: 10px;
+    word-wrap: break-word;
+    font-weight: bold;
+    font-size: 1.5vw;
+    color: #4682b4;
+    border-radius: 10px;
+    background-color: rgb(241, 243, 252);
+    box-shadow: 0 5px 10px 0 rgb(10, 10, 15, 0.4);
+    transition: 0.3s;
+}
+
 main .contactname {
     display: none;
 }
@@ -431,6 +447,36 @@ main .contactname p {
     white-space: nowrap;
 }
 
+/*  */
+main .groupsname:hover {
+    box-shadow: 0 10px 20px 0 rgb(10, 10, 15, 0.4);
+    background-color: rgba(162, 176, 255, 0.5);
+}
+
+main .groupsname .image {
+    width: 5vw;
+    height: 5vw;
+    margin-top: 15px;
+    float: left;
+}
+
+main .groupsname img {
+    width: 4.8vw;
+    height: 4.8vw;
+    border-radius: 50%;
+}
+
+main .groupsname .text {
+    margin-top: 25px;
+}
+
+main .groupsname p {
+    margin-top: 25px;
+    overflow: hidden;
+    white-space: nowrap;
+}
+/*  */
+
 .error,
 .success {
     color: red;
@@ -447,43 +493,46 @@ main .contactname p {
     width: 7vw;
 }
 
-main .contactname .buttons {
+main .contactname .buttons, main .groupsname .buttons {
     z-index: 1;
     position: absolute;
     width: 25%;
     display: none;
 }
 
-main .contactname:hover .buttons {
+main .contactname:hover .buttons, main .groupsname:hover .buttons {
     display: block;
 }
 
-main .listcontact .contactname .button1 {
+main .listcontact .contactname .button1, main .groupsname:hover .button1 {
     margin-left: 93%;
 }
 
-main .listcontact .contactname .button2 {
+main .listcontact .contactname .button2, main .groupsname:hover .button2 {
     margin-top: -25px;
 }
 
-main .listcontact .contactname .button3 {
+main .listcontact .contactname .button3, main .groupsname:hover .button3 {
     margin-top: 17%;
     margin-left: 93%;
 }
 
-main .listcontact .contactname .button-group {
+main .listcontact .contactname .button-group, main .listcontact .groupsname .button-group {
     margin-top: 24%;
     margin-left: 93%;
 }
 
-.contactname .button-group img {
+.contactname .button-group img, .groupsname .button-group img {
     width: 20px;
     height: 20px;
 }
 
 .contactname .button1 img,
 .contactname .button2 img,
-.contactname .button3 img {
+.contactname .button3 img, 
+.groupsname .button1 img,
+.groupsname .button2 img,
+.groupsname .button3 img {
     width: 20px;
     height: 20px;
 }

@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>OnCo - Home</title>
-    <link rel="stylesheet" type="text/css" href="../css/main.css"/>
+    <link rel="stylesheet" type="text/css" href="../css/main.css" />
 </head>
 
 <body>
@@ -24,7 +24,8 @@
         <div class="right">
             <img src="https://www.w3schools.com/howto/img_avatar.png" alt="Avatar" class="avatar">
             <div class="username">
-                <a href="#" id="username">Username</a>
+                <a href="#" id="username">Username
+                </a>
                 <div class="arrow-up"></div>
                 <div class="dropdown-header">
                     <a href="#openModal"><img src="../images/edit.png"> Update Profile</a> <br />
@@ -65,30 +66,6 @@
                 </div>
             </div>
         </div>
-        <div id="groupModal" class="groupDialog">
-            <div class="right">
-                <a href="#close" title="Close" class="close">X</a>
-                <div class="addGroupForm">
-                    <div class="header">
-                        <h2 class="over-title">Add group</h2>
-                    </div>
-                    <form class="form">
-                        <div class="form-element">
-                            <label for="email">Group name</label>
-                            <input type="email" class="form-control" id="email" placeholder="Enter group name" required />
-                        </div>
-                        <div class="form-element">
-                            <label for="description">Description</label>
-                            <textarea type="description" id="description" placeholder="Enter description" rows="4" required></textarea>
-                        </div>
-                        <div class="container-btn">
-                            <button type="button">Add group</button>
-                        </div>
-                    </form>
-                </div>
-            </div>
-        </div>
-
     </header>
 
     <div class="row">
@@ -117,9 +94,10 @@
             <div class="listcontact">
                 <?php
                     foreach ($controllerGroups->groupList as $group){
-                        echo "<div class='contactname'><div class='image'><img src='../images/logo.png' alt='Contact Photo' /></div>
+                        echo "<div class='groupsname'><div class='image'><img src='../images/logo.png' alt='Contact Photo' /></div>
                         <div class='buttons'><div class='button-group'><a href='?groupName=". $group->groupName ."#descriptionModal'><img src='../images/arrow-right.png' alt='View Details' title='View Details' /></a></div></div>
                         <p>Name: " . $group->nameGroup ."<br> Created at: ". $group->created_date ."</p></div>";
+                    // echo "<p style ='color: red;'>ceva</p>";
                     }
                 ?>
             </div>
