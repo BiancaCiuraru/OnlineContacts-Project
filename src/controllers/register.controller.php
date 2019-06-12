@@ -1,6 +1,6 @@
 <?php
     session_start();
-    include_once 'register.model.php';
+    include_once '../models/register.model.php';
     class LoginRegisterController{
         public $register;
         public $registerStatus;
@@ -45,7 +45,7 @@
                 } else if ($_POST['submit'] === 'loginButton') {
                     $user = $this->modelLoginRegister->login($_POST['emailLogin'], $_POST['password']);
                     if ($user !== NULL) {
-                        header('Location: ../index.php');
+                        header('Location: ../controllers/index.controller.php');
                         $_SESSION['emailLogin'] = $user -> emailLogin;
                         $_SESSION['hashedPassword'] = $user -> hashedPassword;
                     } else {
@@ -56,5 +56,5 @@
         }
     } 
     $controllerLoginRegister = new LoginRegisterController();
-    include_once 'login.register.php';
+    include_once '../views/login.register.php';
 ?>

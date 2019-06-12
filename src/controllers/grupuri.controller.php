@@ -1,6 +1,6 @@
 <?php 
     session_start();
-    include_once 'grupuri.model.php';
+    include_once '../models/grupuri.model.php';
     class GroupsController{
         private $groupsModel;
         public $groupName;
@@ -48,5 +48,5 @@
         }
     }
     $controllerGroups = new GroupsController();
-    include_once 'grupuri.php'; 
+    include_once '../views/grupuri.php'; 
 ?>

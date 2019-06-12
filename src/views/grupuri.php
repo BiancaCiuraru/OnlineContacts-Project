@@ -28,7 +28,7 @@
                 <div class="arrow-up"></div>
                 <div class="dropdown-header">
                     <a href="#openModal"><img src="../images/edit.png"> Update Profile</a> <br />
-                    <a href="./pages/login.register.php" class="logout"><img src="../images/logout.png"> Log Out</a>
+                    <a href="../views/login.register.php" class="logout"><img src="../images/logout.png"> Log Out</a>
                 </div>
             </div>
         </div>
@@ -93,13 +93,13 @@
 
     <div class="row">
         <nav>
-            <a href="../Index.controller.php">
+            <a href="../controllers/Index.controller.php">
                 <img src="../images/contacts.png" alt="Contacts" title="Contacts" />
             </a>
-            <a href="./grupuri.controller.php">
+            <a href="../controllers/grupuri.controller.php">
                 <img src="../images/group.png" alt="Groups" title="Groups" />
             </a>
-            <a href="./add-contacts.controller.php">
+            <a href="../controllers/add-contacts.controller.php">
                 <img src="../images/add-user-2.png" alt="Add user" title="Add Contact" />
             </a>
              
@@ -134,7 +134,7 @@
                 <div class="header">
                     <h2 class="over-title">Add group</h2>
                 </div>
-                <form class="form" action = "grupuri.controller.php" method = "POST" id = "form1">
+                <form class="form" action = "../controllers/grupuri.controller.php" method = "POST" id = "form1">
                     <div class="form-element">
                         <label for="groupN">Group name</label>
                         <input type="text" class="form-control" id="groupN" name = "groupN" value="" placeholder="Enter group name" required />
@@ -168,7 +168,7 @@
 
     <div id="descriptionModal" class="descriptionDialog">
         <div class="right">
-            <a href="grupuri.controller.php#close" title="Close" class="close">X</a>
+            <a href="../controllers/grupuri.controller.php#close" title="Close" class="close">X</a>
             <div class="descriptionGroupForm">
                 <div class="header">
                     <h2 class="over-title">About this group</h2>

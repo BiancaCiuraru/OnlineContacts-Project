@@ -87,13 +87,13 @@
 
     <div class="row">
         <nav>
-            <a href="../Index.php">
+            <a href="../controllers/Index.controller.php">
                 <img src="../images/contacts.png" alt="Contacts" title="Contacts" />
             </a>
-            <a href="./grupuri.controller.php">
+            <a href="../controllers/grupuri.controller.php">
                 <img src="../images/group.png" alt="Groups" title="Groups" />
             </a>
-            <a href="./add-contacts.controller.php">
+            <a href="../controllers/add-contacts.controller.php">
                 <img src="../images/add-user-2.png" alt="Add user" title="Add Contact" />
             </a>
         </nav>
@@ -105,7 +105,7 @@
             </div>
 
             <div class="addcontact">
-                <form method = "POST" action = "add-contacts.controller.php" enctype="multipart/form-data">
+                <form method = "POST" action = "../controllers/add-contacts.controller.php" enctype="multipart/form-data">
                     <div class="rowform">
                         <div class="columnform">
                             <label for="fname">First Name</label>
