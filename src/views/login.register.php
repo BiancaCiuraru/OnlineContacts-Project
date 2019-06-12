@@ -23,7 +23,7 @@
                         <h6 class="over-title">Welcome back!</h6>
                         <h2 class="title">Log In</h2>
                     </div>
-                    <form class="form" action = "./register.controller.php" method="POST" >
+                    <form class="form" action = "../controllers/register.controller.php" method="POST" >
                         <div class="form-element">
                             <label for="emailLogin">Email adress</label>
                             <input type="email" class="form-control" id="emailLogin" name = "emailLogin" placeholder="👤 Enter your email" required />
@@ -66,7 +66,7 @@
                     <h6 class="over-title">Welcome!</h6>
                     <h2 class="title">Sing Up</h2>
                 </div>
-                <form action="register.controller.php" class="form" method="POST" >
+                <form action="../controllers/register.controller.php" class="form" method="POST" >
                     <div class="form-element">
                         <label for="Fname">First name</label>
                         <input type="text" class="form-control" id="Fname" name="Fname" placeholder="Enter your first name" />

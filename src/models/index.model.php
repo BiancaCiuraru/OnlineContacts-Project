@@ -154,56 +154,40 @@
         header('Content-Disposition: attachment; filename=data.xml');
         fputs($output, "<?xml version='1.0' encoding='iso-8859-1' >");
 
-         fputs($output, '<feed xml:lang="en-US" xmlns="http://www.w3.org/2005/Atom">');
-        //   $i = 0;
+         fputs($output, '<feed xml:lang="en-US" xmlns="http://www.w3.org/2005/Atom">
+        <title>Contacts</title>
+        <author> 
+			<name>Tiganescu Ana & Ciuraru Bianca</name>
+		</author> ');
           while($row = mysqli_fetch_assoc($resultContact))
             {
-            // if ($i > 0) {
-            //     fputs($output, "</entry>");
-            // }
-            fputs($output, "<entry>");
-            fputs($output, "<Nume>");
+            fputs($output, "<entry><Nume> ");
             fputs($output, $row['fName']);
-            fputs($output, "</Nume>");
-            fputs($output, "</entry>");
+            fputs($output, " </Nume>");
 
-            fputs($output, "<entry>");
-            fputs($output, "<Prenume>");
+            fputs($output, "<Prenume> ");
             fputs($output, $row['lName']);
-            fputs($output, "</Prenume>");
-            fputs($output, "</entry>");
+            fputs($output, " </Prenume>");
 
-            fputs($output, "<entry>");
-            fputs($output, "<Zi de nastere>");
+            fputs($output, "<Zi de nastere> ");
             fputs($output, $row['birth_date']);
-            fputs($output, "</Zi de nastere>");
-            fputs($output, "</entry>");
+            fputs($output, " </Zi de nastere>");
 
-            // fputs($output, "<entry>");
-            // fputs($output, "<Email>");
-            // fputs($output, $row['email']);
-            // fputs($output, "</Email>");
-            // fputs($output, "</entry>");
+            fputs($output, "<Email> ");
+            fputs($output, $row['email']);
+            fputs($output, " </Email>");
 
-            // fputs($output, "<entry>");
-            // fputs($output, "<Adresa>");
-            // fputs($output, $row['adress']);
-            // fputs($output, "</Adresa>");
-            // fputs($output, "</entry>");
+            fputs($output, "<Adresa> ");
+            fputs($output, $row['adress']);
+            fputs($output, " </Adresa>");
 
-            // fputs($output, "<entry>");
-            // fputs($output, "<Descriere>");
-            // fputs($output, $row['descr']);
-            // fputs($output, "</Descriere>");
-            // fputs($output, "</entry>");
+            fputs($output, "<Descriere> ");
+            fputs($output, $row['descr']);
+            fputs($output, " </Descriere>");
 
-            // fputs($output, "<entry>");
-            // fputs($output, "<Interese>");
-            // fputs($output, $row['interests']);
-            // fputs($output, "</Interese>");
-            // fputs($output, "</entry>");
-            
-            // $i++;
+            fputs($output, "<Interese> ");
+            fputs($output, $row['interests']);
+            fputs($output, " </Interese></entry>");
           }			
           fputs($output, "</entry></feed>");
 

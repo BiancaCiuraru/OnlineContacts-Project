@@ -1,6 +1,6 @@
 <?php 
     session_start();
-    include_once 'grupuri.model.php';
+    include_once '../models/grupuri.model.php';
     class GroupsController{
         private $groupsModel;
         public $groupName;
@@ -22,18 +22,12 @@
             //adaugare grup
             if(isset($_POST['groupN'])){
                 if(!$this->groupsModel -> nameGroupValidity($_POST['groupN'])){
-                    // header('Location: ./grupuri.controller.php?check=false#groupsModal');
                     $this->groupName = false;
-                    // $this->check = false;
                 }else{
                     if(!$this->groupsModel->addGroup($_POST['groupN'], $_POST['description'])){
-                        // header('Location: ./grupuri.controller.php?check=false#groupsModal');
                         $this->groupNameStatus = false;
-                        // $this->check = false;
                     }else{
-                        // header('Location: ./grupuri.controller.php?check=true#groupsModal');
                         $this->addGroupStatus = true;
-                        // $this->check = true;
                     }
                 }
             }
@@ -54,5 +48,5 @@
         }
     }
     $controllerGroups = new GroupsController();
-    include_once 'grupuri.php'; 
+    include_once '../views/grupuri.php'; 
 ?>

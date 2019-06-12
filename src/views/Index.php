@@ -1,15 +1,15 @@
 <?php
 // session_start();
 
-include_once './pages/register.model.php';
-include_once './index.controller.php';
+include_once '../models/register.model.php';
+include_once '../controllers/index.controller.php';
 $model = new LoginRegisterModel;
 $controllerIndex = new IndexController;
 $user = NULL;
 if (isset($_SESSION['emailLogin']) && isset($_SESSION['hashedPassword'])) {
     $user = $model->getLoggedUser($_SESSION['emailLogin'], $_SESSION['hashedPassword']);
 } else {
-    header('Location: ./pages/register.controller.php');
+    header('Location: ../controllers/register.controller.php');
 }
 ?>
 
@@ -21,14 +21,14 @@ if (isset($_SESSION['emailLogin']) && isset($_SESSION['hashedPassword'])) {
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>OnCo - Home</title>
-    <link rel="stylesheet" type="text/css" href="./css/main.css?v=<?php echo time(); ?>" />
+    <link rel="stylesheet" type="text/css" href="../css/main.css?v=<?php echo time(); ?>" />
 
 </head>
 
 <body>
     <header>
         <div class="left">
-            <img src="./images/logo.png">
+            <img src="../images/logo.png">
         </div>
 
         <div class="center">
@@ -47,8 +47,8 @@ if (isset($_SESSION['emailLogin']) && isset($_SESSION['hashedPassword'])) {
                 </a>
                 <div class="arrow-up"></div>
                 <div class="dropdown-header">
-                    <a href="#openModal"><img src="./images/edit.png"> Update Profile</a> <br />
-                    <a href="./pages/login.register.php" class="logout"><img src="./images/logout.png"> Log Out</a>
+                    <a href="#openModal"><img src="../images/edit.png"> Update Profile</a> <br />
+                    <a href="../views/login.register.php" class="logout"><img src="../images/logout.png"> Log Out</a>
                 </div>
             </div>
         </div>
@@ -65,7 +65,7 @@ if (isset($_SESSION['emailLogin']) && isset($_SESSION['hashedPassword'])) {
                         <div class="form-element">
                             <label for="photo">Change your photo</label>
                             <!-- <input type="image" id="photo" name="photo" class="form-control" src="#" alt="Photo"> -->
-                            <img src="./images/login.jpg" />
+                            <img src="../images/login.jpg" />
                         </div>
                         <div class="form-element">
                             <label for="email">Email adress</label>
@@ -90,7 +90,7 @@ if (isset($_SESSION['emailLogin']) && isset($_SESSION['hashedPassword'])) {
 
         <div id="viewDetailsModal" class="modalDialog">
             <div class="right">
-                <a href="Index.php#close" title="Close" class="close">X</a>
+                <a href="../controllers/Index.controller.php#close" title="Close" class="close">X</a>
                 <div class="viewDetail">
                     <div class="header">
                         <h2 class="over-title">Contact Details</h2>
@@ -121,14 +121,14 @@ if (isset($_SESSION['emailLogin']) && isset($_SESSION['hashedPassword'])) {
 
     <div class="row">
         <nav>
-            <a href="./index.controller.php">
-                <img src="./images/contacts.png" alt="Contacts" title="Contacts" />
+            <a href="../controllers/index.controller.php">
+                <img src="../images/contacts.png" alt="Contacts" title="Contacts" />
             </a>
-            <a href="./pages/grupuri.controller.php">
-                <img src="./images/group.png" alt="Groups" title="Groups" />
+            <a href="../controllers/grupuri.controller.php">
+                <img src="../images/group.png" alt="Groups" title="Groups" />
             </a>
-            <a href="./pages/add-contacts.controller.php">
-                <img src="./images/add-user-2.png" alt="Add user" title="Add Contact" />
+            <a href="../controllers/add-contacts.controller.php">
+                <img src="../images/add-user-2.png" alt="Add user" title="Add Contact" />
             </a>
         </nav>
 
@@ -147,16 +147,16 @@ if (isset($_SESSION['emailLogin']) && isset($_SESSION['hashedPassword'])) {
                 </div>
                 <div class="addfilter">
                     <a href="#">
-                        <img src="./images/filled-filter.png" alt="AddFilter">
+                        <img src="../images/filled-filter.png" alt="AddFilter">
                     </a>
                 </div>
                 <div class="dropdown">
                     <a href="#">
-                        <img src="./images/download.png" alt="Export">
+                        <img src="../images/download.png" alt="Export">
                     </a>
                     <div class="dropdown-content">
                         <div class="export">
-                            <form method = "POST" action = "index.controller.php">
+                            <form method = "POST" action = "../controllers/index.controller.php">
                                 <h2>Export contacts in a chosen format</h2>
                                 <label for="rdo1">
                                     <input type="radio" id="rdo1" name="vCard" value ="vCard">
@@ -275,17 +275,17 @@ if (isset($_SESSION['emailLogin']) && isset($_SESSION['hashedPassword'])) {
                     echo '<div class="contactname ' . substr($contactss->firstName, 0, 1) . ' ' . substr($contactss->lastName, 0, 1) . '">
                                          <div class="buttons">
                                                 <div class="button1">
-                                                    <a href="#"> <img src="images/group.png" alt="add To Group" title="Add To Group" /></a>
+                                                    <a href="#"> <img src="../images/group.png" alt="add To Group" title="Add To Group" /></a>
                                                  </div>
                                                  <div class="button2">
-                                                     <a href="#"> <img src="images/edit-contact.png" alt="Edit Contact" title="Edit Contact" /> </a>
+                                                     <a href="#"> <img src="../images/edit-contact.png" alt="Edit Contact" title="Edit Contact" /> </a>
                                                 </div>
                                                  <div class="button3">
-                                                     <a class="idcontact" href="?contactEmail=' . $contactss->email . '#viewDetailsModal"><img src="images/arrow-right.png" alt="View Details" title="View Details" /></a>
+                                                     <a class="idcontact" href="?contactEmail=' . $contactss->email . '#viewDetailsModal"><img src="../images/arrow-right.png" alt="View Details" title="View Details" /></a>
                                                  </div>
                                              </div>
                                              <div class="image">
-                                                 <img src="images/' . $contactss->photo . '" alt="Contact Photo" />
+                                                 <img src="../images/' . $contactss->photo . '" alt="Contact Photo" />
                                              </div>
                                              <div class="text">
                                                 <p>' . $contactss->firstName . ' ' . $contactss->lastName . ' <br> ' . $contactss->email . '

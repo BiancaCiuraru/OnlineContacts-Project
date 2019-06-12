@@ -1,6 +1,6 @@
 <?php 
     session_start();
-    include_once 'add-contacts.model.php';
+    include_once '../models/add-contacts.model.php';
     class AddContactsController{
         public $contactName;
         public $contactEmail;
@@ -32,5 +32,5 @@
         }
     }
     $controllerAddContacts=new AddContactsController();
-    include_once 'add-contacts.php'; 
+    include_once '../views/add-contacts.php'; 
 ?>

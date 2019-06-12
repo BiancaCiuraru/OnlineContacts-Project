@@ -1,6 +1,6 @@
 <?php
     session_start();
-    include_once 'index.model.php';
+    include_once '../models/index.model.php';
     class IndexController{
         public $contactList;
         public $username;
@@ -31,5 +31,5 @@
     }
 
     $controllerIndex=new IndexController();
-    include_once 'Index.php'; 
+    include_once '../views/Index.php'; 
 ?>
