@@ -8,16 +8,6 @@
     <title>OnCo - Login</title>
     <link rel="stylesheet" href="../css/login.css">
     <link rel="stylesheet" href="../css/register.css">
-
-    <style>
-        .error, .success{
-            color: red; 
-            margin-top: 1em; 
-            text-align: center; 
-            font-weight: bold; 
-            font-size: 1.5em;
-        }
-    </style>
 </head>
 
 <body>
@@ -103,17 +93,29 @@
                     </div>
                     <?php 
                         if($controllerLoginRegister->registerEmail == false) {
-                            echo '<p class="error"> Email already exists!</p>';
+                            echo '<script>
+                                    if(alert("Email already exists!")){window.location.reload();}
+                                </script>';
                         }else if($controllerLoginRegister->registerName == false){
-                            echo '<p class="error"> Invalid name!</p>';
+                            echo '<script>
+                                    if(alert("Invalid name!")){window.location.reload();}
+                                </script>';
                         }else if($controllerLoginRegister->registerPassword == false){
-                            echo '<p class="error"> Passwords do not match!</p>';
+                            echo '<script>
+                                    if(alert("Passwords do not match!")){window.location.reload();}
+                                </script>';
                         }else if($controllerLoginRegister->passwordRules == false){
-                            echo '<p class="error"> Passwords must be at least 6 in length and must contain at least a non-letter character!</p>';
+                            echo '<script>
+                                    if(alert("Passwords must be at least 6 in length and must contain at least a non-letter character!")){window.location.reload();}
+                                </script>';
                         }else if($controllerLoginRegister->fieldsStatus == false){
-                            echo '<p class="success"> Please fill out all fields!</p>';
+                            echo '<script>
+                                    if(alert("Please fill out all fields!")){window.location.reload();}
+                                </script>';
                         }else if($controllerLoginRegister->registerStatus == true){
-                            echo '<p class="success"> Register success!</p>';
+                            echo '<script>
+                                    if(alert("Register success!")){window.location.reload();}
+                                </script>';
                         }
                     ?>
                 </form>

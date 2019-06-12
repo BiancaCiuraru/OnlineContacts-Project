@@ -3,7 +3,7 @@
         private $servername = "localhost";
         private $username = "root";
         private $password = "";
-        private $db = "onco_db";
+        private $db = "test";
         private $conn;
 
         public function __construct(){
@@ -96,7 +96,122 @@
             $contact= new Contacts($listContact['fName'], $listContact['lName'], $listContact['email'], $listContact['photo'], $listContact['phone_number'], $listContact['birth_date'], $listContact['adress'], $listContact['descr'], $listContact['interests']);
             return $contact;
         }    
-    } }}
+    } }
+
+    public function exportCSV($email){
+        $id_user = $this->getUserID($email);
+
+        $output = fopen("php://output", "w");
+        fputcsv($output, array('Nume', 'Prenume', 'Data nastere','Email', 'Adresa', 'Descriere', 'Interese'));
+        $selectContact = $this->conn -> prepare("select fName, lName, birth_date, email, adress, descr, interests from contact where id_user = ?");
+        $selectContact -> bind_param("i", $id_user);
+        $selectContact -> execute();
+        $resultContact = $selectContact -> get_result();
+        while($row = mysqli_fetch_assoc($resultContact)){
+            fputcsv($output, $row);
+        }
+        header('Content-Type: text/csv; charset=utf-8');
+        header('Content-Disposition: attachment; filename=data.csv');
+        fclose($output);
+        exit();
+    }
+
+    public function exportVCard($email){
+        
+        $id_user = $this->getUserID($email);
+
+        $selectContact = $this->conn -> prepare("select photo, fName, lName, birth_date, email, adress, descr, interests from contact where id_user = ?");
+        $selectContact -> bind_param("i", $id_user);
+        $selectContact -> execute();
+        $resultContact = $selectContact -> get_result();
+
+        include("vcardexp.inc.php");
+        $test = new vcardexp;
+        for($i=0; $i<$resultContact->num_rows;$i++){
+            $row = mysqli_fetch_assoc($resultContact);
+            $test->setValue("fName", $row['fName']);
+            $test->setValue("lName", $row['lName']);
+            $test->setValue("birth_date", $row['birth_date']);
+            $test->setValue("email", $row['email']);
+            $test->setValue("adress", $row['adress']);
+            $test->setValue("descr", $row['descr']);
+            $test->setValue("interests", $row['interests']);
+            $test -> setPicture($row['photo']);
+            $test->copyPicture($row['photo']);
+            $test->getCard();
+        }
+        exit();
+    }
+
+    public function exportAtom($email){
+        $id_user = $this->getUserID($email);
+        $output = fopen("php://output", "w"); //sunt preluate datele
+        $selectContact = $this->conn -> prepare("select fName, lName, birth_date, email, adress, descr, interests from contact where id_user = ?");
+        $selectContact -> bind_param("i", $id_user);
+        $selectContact -> execute();
+        $resultContact = $selectContact -> get_result();
+        header('Content-Type: text/xml');
+        header('Content-Disposition: attachment; filename=data.xml');
+        fputs($output, "<?xml version='1.0' encoding='iso-8859-1' >");
+
+         fputs($output, '<feed xml:lang="en-US" xmlns="http://www.w3.org/2005/Atom">');
+        //   $i = 0;
+          while($row = mysqli_fetch_assoc($resultContact))
+            {
+            // if ($i > 0) {
+            //     fputs($output, "</entry>");
+            // }
+            fputs($output, "<entry>");
+            fputs($output, "<Nume>");
+            fputs($output, $row['fName']);
+            fputs($output, "</Nume>");
+            fputs($output, "</entry>");
+
+            fputs($output, "<entry>");
+            fputs($output, "<Prenume>");
+            fputs($output, $row['lName']);
+            fputs($output, "</Prenume>");
+            fputs($output, "</entry>");
+
+            fputs($output, "<entry>");
+            fputs($output, "<Zi de nastere>");
+            fputs($output, $row['birth_date']);
+            fputs($output, "</Zi de nastere>");
+            fputs($output, "</entry>");
+
+            // fputs($output, "<entry>");
+            // fputs($output, "<Email>");
+            // fputs($output, $row['email']);
+            // fputs($output, "</Email>");
+            // fputs($output, "</entry>");
+
+            // fputs($output, "<entry>");
+            // fputs($output, "<Adresa>");
+            // fputs($output, $row['adress']);
+            // fputs($output, "</Adresa>");
+            // fputs($output, "</entry>");
+
+            // fputs($output, "<entry>");
+            // fputs($output, "<Descriere>");
+            // fputs($output, $row['descr']);
+            // fputs($output, "</Descriere>");
+            // fputs($output, "</entry>");
+
+            // fputs($output, "<entry>");
+            // fputs($output, "<Interese>");
+            // fputs($output, $row['interests']);
+            // fputs($output, "</Interese>");
+            // fputs($output, "</entry>");
+            
+            // $i++;
+          }			
+          fputs($output, "</entry></feed>");
+
+        fclose($output);
+        exit();
+    }
+
+}
     
     class Contacts {
         public $firstName;

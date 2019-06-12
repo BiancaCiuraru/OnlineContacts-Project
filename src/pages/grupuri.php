@@ -93,7 +93,7 @@
 
     <div class="row">
         <nav>
-            <a href="../Index.php">
+            <a href="../Index.controller.php">
                 <img src="../images/contacts.png" alt="Contacts" title="Contacts" />
             </a>
             <a href="./grupuri.controller.php">
@@ -108,8 +108,8 @@
             <div class="title">
                 <div class="page-path">
                     <p>Home/
-                        <h1>Groups</h1>
-                        <a href="#groupsModal">Add Group</a>
+                        <h1>Groups/<a href="#groupsModal" style="text-decoration: none; color:black;">Add Group</a></h1>
+                        
                     </p>
                 </div>
             </div>
@@ -148,11 +148,17 @@
                     </div>
                     <?php
                         if($controllerGroups->groupName == false){
-                            echo '<p class="error"> Invalid name!</p>';
+                            echo '<script>
+                                    if(alert("Invalid name!")){window.location.reload();}
+                                </script>';
                         }else if($controllerGroups->groupNameStatus == false){
-                            echo '<p class="error"> Name already exists!</p>';
+                            echo '<script>
+                                    if(alert("Name already exists!")){window.location.reload();}
+                                </script>';
                         }else if($controllerGroups->addGroupStatus == true){
-                            echo '<p class="success"> Group has been successfully added!</p>';
+                            echo '<script>
+                                    if(alert("Group has been successfully added!")){window.location.reload();}
+                                </script>';
                         }
                     ?>
                 </form>
