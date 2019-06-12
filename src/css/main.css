@@ -155,42 +155,8 @@ nav a {
 }
 
 nav a:hover,
-a:active,
-.sidebar a:hover,
 a:active {
     background-color: rgb(198, 206, 253);
-}
-
-.sidebar {
-    padding-top: 50px;
-    transition: 0.5s;
-    position: fixed;
-    top: 5.8vw;
-    left: 5%;
-    width: 0;
-    height: 100%;
-    overflow: hidden;
-    background-color: rgb(10, 10, 15);
-    z-index: 3;
-}
-
-.sidebar a {
-    padding: 1.2vw;
-    text-decoration: none;
-    font-size: 25px;
-    font-weight: bold;
-    color: #4682b4;
-    display: block;
-    transition: 0.3s;
-}
-
-.sidebar .closebtn {
-    position: absolute;
-    top: 0px;
-    right: 20px;
-    width: 50px;
-    height: 50px;
-    font-size: 25px;
 }
 
 
@@ -251,6 +217,48 @@ main .addfilter img,
     height: 3vw;
 }
 
+main .dropdown-filter {
+    position: absolute;
+    width: 35vw;
+    right: 3%;
+    top: 3vw;
+    height: auto;
+    background-image: linear-gradient(rgb(6, 8, 61), rgb(10, 10, 15));
+    border-radius: 5px;
+    display: none;
+    text-align: left;
+    padding: 0px 30px 30px 20px;
+    color: #4682b4;
+}
+
+main .dropdown-filter label {
+    font-size: 1.4vw;
+}
+
+main .dropdown-filter input {
+    padding: 2px 0px 2px 10px;
+    float: right;
+    height: 25px;
+    border-radius: 5px;
+    background-color: #4682b4;
+    border: 1px solid rgb(0, 0, 0);
+}
+
+main .Age .byage {
+    width: 100%;
+    padding-right: 20px;
+}
+
+main .Age .criteria_age {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+main .criteria_age .bigger {
+    position: absolute;
+    right: 30px;
+}
+
 main .dropdown-content {
     position: absolute;
     width: 15vw;
@@ -267,7 +275,8 @@ main .dropdown-content {
     color: #4682b4;
 }
 
-main .dropdown:hover .dropdown-content {
+main .dropdown:hover .dropdown-content,
+main .addfilter:hover .dropdown-filter {
     display: block;
 }
 
@@ -306,7 +315,8 @@ main .export input[type="radio"]:checked+.rdo {
     background-image: linear-gradient(#4682b4, #4682b4);
 }
 
-main .dropdown-content input[type="submit"] {
+main .dropdown-content input[type="submit"],
+.dropdown-filter input[type="submit"] {
     background-color: rgb(6, 8, 61);
     color: #4682b4;
     font-size: 1.2vw;
@@ -345,20 +355,12 @@ main #alphabet a {
     text-decoration: none;
 }
 
-
-/* main .alphabet  a:hover,a:active{
-    color: #4682b4;
-} */
-
 main #alphabet a:visited,
 a:link {
     color: white;
 }
 
 main #alphabet li:hover {
-    /* color: rgb(10, 10, 15);
-    font-weight: bold;
-    font-size: 1.2vw; */
     background-color: rgb(198, 206, 253);
 }
 
@@ -447,7 +449,6 @@ main .contactname p {
     white-space: nowrap;
 }
 
-/*  */
 main .groupsname:hover {
     box-shadow: 0 10px 20px 0 rgb(10, 10, 15, 0.4);
     background-color: rgba(162, 176, 255, 0.5);
@@ -475,6 +476,8 @@ main .groupsname p {
     overflow: hidden;
     white-space: nowrap;
 }
+
+
 /*  */
 
 .error,
@@ -493,43 +496,50 @@ main .groupsname p {
     width: 7vw;
 }
 
-main .contactname .buttons, main .groupsname .buttons {
+main .contactname .buttons,
+main .groupsname .buttons {
     z-index: 1;
     position: absolute;
     width: 25%;
     display: none;
 }
 
-main .contactname:hover .buttons, main .groupsname:hover .buttons {
+main .contactname:hover .buttons,
+main .groupsname:hover .buttons {
     display: block;
 }
 
-main .listcontact .contactname .button1, main .groupsname:hover .button1 {
+main .listcontact .contactname .button1,
+main .groupsname:hover .button1 {
     margin-left: 93%;
 }
 
-main .listcontact .contactname .button2, main .groupsname:hover .button2 {
+main .listcontact .contactname .button2,
+main .groupsname:hover .button2 {
     margin-top: -25px;
 }
 
-main .listcontact .contactname .button3, main .groupsname:hover .button3 {
+main .listcontact .contactname .button3,
+main .groupsname:hover .button3 {
     margin-top: 17%;
     margin-left: 93%;
 }
 
-main .listcontact .contactname .button-group, main .listcontact .groupsname .button-group {
+main .listcontact .contactname .button-group,
+main .listcontact .groupsname .button-group {
     margin-top: 24%;
     margin-left: 93%;
 }
 
-.contactname .button-group img, .groupsname .button-group img {
+.contactname .button-group img,
+.groupsname .button-group img {
     width: 20px;
     height: 20px;
 }
 
 .contactname .button1 img,
 .contactname .button2 img,
-.contactname .button3 img, 
+.contactname .button3 img,
 .groupsname .button1 img,
 .groupsname .button2 img,
 .groupsname .button3 img {
@@ -976,6 +986,10 @@ main .listcontact .contactname .button-group, main .listcontact .groupsname .but
     }
 }
 
+*:focus {
+    outline: none;
+}
+
 @media screen and (max-width: 455px) {
     .descriptionModal>div {
         width: 75%;
@@ -1003,4 +1017,15 @@ span {
 .viewDetail img {
     width: 10vw;
     height: 10vw;
+}
+
+
+/* add to group */
+
+.viewDetail .groupsList .spanGroup {
+    margin-right: 50px;
+}
+
+.viewDetail .groupsList button {
+    float: right;
 }

@@ -3,7 +3,7 @@
     private $servername = "localhost";
     private $username = "root";
     private $password = "";
-    private $db = "test";
+    private $db = "onco_db";
     private $conn;
 
     public function __construct(){

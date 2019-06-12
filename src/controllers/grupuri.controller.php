@@ -9,7 +9,7 @@
         public $groupList;
         public $detailsList;
         public $check;
-
+        public $username;
         public function __construct(){
             $this->groupName = true;
             $this->addGroupStatus = false;
@@ -17,7 +17,7 @@
             $this->check = true;
             $this->groupList = null;
             $this->groupsModel = new GroupsModel();
-            
+            $this->username = $this->groupsModel -> username($_SESSION['emailLogin']);
 
             //adaugare grup
             if(isset($_POST['groupN'])){

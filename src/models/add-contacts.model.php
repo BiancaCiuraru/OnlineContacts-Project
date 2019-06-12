@@ -4,7 +4,7 @@ class AddContactsModel{
     private $servername = "localhost";
     private $username = "root";
     private $password = "";
-    private $db = "test";
+    private $db = "onco_db";
     private $conn;
 
     public function __construct(){
@@ -50,6 +50,20 @@ class AddContactsModel{
         $insertStatementContact -> close();
 
         return true;
+    }
+
+    public function username($email)
+    {
+        $selectStatement = $this->conn->prepare("select firstName, lName from utilizatori where email = ?");
+        $selectStatement->bind_param("s", $email);
+        $selectStatement->execute();
+        $results = $selectStatement->get_result();
+        $selectStatement->close();
+
+        if ($results->num_rows  === 1) {
+            $firstRow = $results->fetch_assoc();
+            return $firstRow['firstName'] . ' ' . $firstRow['lName'];
+        }
     }
 }
 

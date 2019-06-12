@@ -39,50 +39,49 @@
         <div class="right">
             <img src="https://www.w3schools.com/howto/img_avatar.png" alt="Avatar" class="avatar">
             <div class="username">
-                <a href="#" id="username">Username</a>
+                <a href="#" id="username">
+                    <?php
+                        echo $controllerAddContacts->username;
+                    ?></a>
                 <div class="arrow-up"></div>
                 <div class="dropdown-header">
-                    <a href="#openModal"><img src="../images/edit.png"> Update Profile</a> <br />
+                    <a href="#editModal"><img src="../images/edit.png"> Update Profile</a> <br />
                     <a href="./login.html" class="logout"><img src="../images/logout.png"> Log Out</a>
                 </div>
             </div>
         </div>
-        <div id="openModal" class="modalDialog">
+        <!-- <div id="editModal" class="modalDialog">
             <div class="right">
                 <a href="#close" title="Close" class="close">X</a>
-                <div class="editProfileForm">
+                <div class="editProfile">
                     <div class="header">
                         <h2 class="over-title">Edit your profile</h2>
                     </div>
-                    <form class="form">
-                        <div class="form-element">
+                    <form action="#" class="form" method="POST">
+                        <div class="Photo">
                             <label for="photo">Change your photo</label>
-                            <!-- <input type="image" id="photo" name="photo" class="form-control" src="#" alt="Photo"> -->
-                            <img src="../images/login.jpg" />
+                            <input type="file" id="photo" name="photo" accept="image/*">
                         </div>
                         <div class="form-element">
-                            <label for="email">Email adress</label>
-                            <input type="email" class="form-control" id="email" placeholder="Enter your new email"
-                                required />
+                            <label for="emailE">Email adress</label>
+                            <input type="email" id="emailE" name="emailE" placeholder="Enter your email" />
                         </div>
                         <div class="form-element">
-                            <label for="password">Password</label>
-                            <input type="password" class="form-control" id="password"
-                                placeholder="Enter your new password" required />
+                            <label for="passwordE">Password</label>
+                            <input type="password" id="passwordE" name="passwordE" placeholder="Enter your new password" />
                         </div>
                         <div class="form-element">
-                            <label for="password2">Confirm Password</label>
-                            <input type="password" class="form-control" id="password2"
-                                placeholder="Enter your new password again" required />
+                            <label for="password2E">Confirm Password</label>
+                            <input type="password" id="password2E" name="password2E" placeholder="Enter your new password again" />
                         </div>
 
                         <div class="container-btn">
-                            <button type="button">Edit</button>
+                            <button id="editProfileBtn" value="editProfileBtn" type="submit" name="submit">Edit Profile</button>
                         </div>
-                    </form>
                 </div>
             </div>
-        </div>
+        </div> -->
+
     </header>
 
     <div class="row">
