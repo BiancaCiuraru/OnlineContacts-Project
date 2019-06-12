@@ -22,18 +22,12 @@
             //adaugare grup
             if(isset($_POST['groupN'])){
                 if(!$this->groupsModel -> nameGroupValidity($_POST['groupN'])){
-                    // header('Location: ./grupuri.controller.php?check=false#groupsModal');
                     $this->groupName = false;
-                    // $this->check = false;
                 }else{
                     if(!$this->groupsModel->addGroup($_POST['groupN'], $_POST['description'])){
-                        // header('Location: ./grupuri.controller.php?check=false#groupsModal');
                         $this->groupNameStatus = false;
-                        // $this->check = false;
                     }else{
-                        // header('Location: ./grupuri.controller.php?check=true#groupsModal');
                         $this->addGroupStatus = true;
-                        // $this->check = true;
                     }
                 }
             }
