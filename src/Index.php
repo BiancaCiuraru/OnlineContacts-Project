@@ -88,31 +88,6 @@ if (isset($_SESSION['emailLogin']) && isset($_SESSION['hashedPassword'])) {
             </div>
         </div>
 
-        <!-- create new group -->
-        <div id="groupModal" class="groupDialog">
-            <div class="right">
-                <a href="#close" title="Close" class="close">X</a>
-                <div class="addGroupForm">
-                    <div class="header">
-                        <h2 class="over-title">Add group</h2>
-                    </div>
-                    <form class="form">
-                        <div class="form-element">
-                            <label for="email">Group name</label>
-                            <input type="email" class="form-control" id="email" placeholder="Enter group name" required />
-                        </div>
-                        <div class="form-element">
-                            <label for="description">Description</label>
-                            <textarea type="description" id="description" placeholder="Enter description" rows="4" required></textarea>
-                        </div>
-                        <div class="container-btn">
-                            <button type="button">Add group</button>
-                        </div>
-                    </form>
-                </div>
-            </div>
-        </div>
-
         <div id="viewDetailsModal" class="modalDialog">
             <div class="right">
                 <a href="Index.php#close" title="Close" class="close">X</a>
@@ -149,7 +124,7 @@ if (isset($_SESSION['emailLogin']) && isset($_SESSION['hashedPassword'])) {
             <a href="./index.controller.php">
                 <img src="./images/contacts.png" alt="Contacts" title="Contacts" />
             </a>
-            <a href="#groups" onclick="openNav()">
+            <a href="./pages/grupuri.controller.php">
                 <img src="./images/group.png" alt="Groups" title="Groups" />
             </a>
             <a href="./pages/add-contacts.controller.php">
@@ -157,11 +132,11 @@ if (isset($_SESSION['emailLogin']) && isset($_SESSION['hashedPassword'])) {
             </a>
         </nav>
 
-        <nav id="groups" class="sidebar">
+        <!-- <nav id="groups" class="sidebar">
             <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">×</a>
-            <a href="#groupModal">Add Group</a>
+            <a href="#groupsModal">Add Group</a>
             <a href="./pages/grupuri.controller.php">Groups</a>
-        </nav>
+        </nav> -->
 
         <main>
             <div class="title">
@@ -181,26 +156,28 @@ if (isset($_SESSION['emailLogin']) && isset($_SESSION['hashedPassword'])) {
                     </a>
                     <div class="dropdown-content">
                         <div class="export">
-                            <h2>Export contacts in a chosen format</h2>
-                            <label for="rdo1">
-                                <input type="radio" id="rdo1" name="radio">
-                                <span class="rdo"></span>
-                                <span>vCard</span>
-                            </label>
-                            <br />
-                            <label for="rdo2">
-                                <input type="radio" id="rdo2" name="radio">
-                                <span class="rdo"></span>
-                                <span>CSV</span>
-                            </label>
-                            <br />
-                            <label for="rdo3">
-                                <input type="radio" id="rdo3" name="radio">
-                                <span class="rdo"></span>
-                                <span>Atom</span>
-                            </label>
-                            <br />
-                            <input type="submit" value="Export">
+                            <form method = "POST" action = "index.controller.php">
+                                <h2>Export contacts in a chosen format</h2>
+                                <label for="rdo1">
+                                    <input type="radio" id="rdo1" name="vCard" value ="vCard">
+                                    <span class="rdo"></span>
+                                    <span>vCard</span>
+                                </label>
+                                <br />
+                                <label for="rdo2">
+                                    <input type="radio" id="rdo2" name="csv">
+                                    <span class="rdo"></span>
+                                    <span>CSV</span>
+                                </label>
+                                <br />
+                                <label for="rdo3">
+                                    <input type="radio" id="rdo3" name="Atom">
+                                    <span class="rdo"></span>
+                                    <span>Atom</span>
+                                </label>
+                                <br />
+                                <input type="submit" name = "export" value="Export">
+                            </form>
                         </div>
                     </div>
                 </div>
