@@ -43,7 +43,7 @@
                         }
                     }
                 } else if ($_POST['submit'] === 'loginButton') {
-                    $user = $login($_POST['emailLogin'], $_POST['password']);
+                    $user = $this->modelLoginRegister->login($_POST['emailLogin'], $_POST['password']);
                     if ($user !== NULL) {
                         header('Location: ../index.php');
                         $_SESSION['emailLogin'] = $user -> emailLogin;

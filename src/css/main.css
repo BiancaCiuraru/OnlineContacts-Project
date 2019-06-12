@@ -9,6 +9,7 @@ body {
     font-family: Helvetica, Arial, sans-serif;
 }
 
+
 /*header css */
 
 header {
@@ -96,8 +97,9 @@ header .username a {
     text-decoration: none;
 }
 
-header .username a:visited, a:link{
-    color:#4682b4;
+header .username a:visited,
+a:link {
+    color: #4682b4;
 }
 
 header .username a:hover {
@@ -124,13 +126,15 @@ header .right .dropdown-header {
     border-radius: 5px;
     display: none;
     text-align: left;
-    padding:20px;
+    padding: 20px;
     color: #4682b4;
 }
 
-header .username:hover .arrow-up,.username:hover .dropdown-header{
+header .username:hover .arrow-up,
+.username:hover .dropdown-header {
     display: block;
 }
+
 
 /* sidebar css */
 
@@ -145,23 +149,60 @@ nav {
     z-index: 3;
 }
 
-nav a{
+nav a {
     display: block;
     padding: 1.2vw;
 }
 
-nav a:hover, a:active{
+nav a:hover,
+a:active,
+.sidebar a:hover,
+a:active {
     background-color: rgb(198, 206, 253);
 }
+
+.sidebar {
+    padding-top: 50px;
+    transition: 0.5s;
+    position: fixed;
+    top: 5.8vw;
+    left: 5%;
+    width: 0;
+    height: 100%;
+    overflow: hidden;
+    background-color: rgb(10, 10, 15);
+    z-index: 3;
+}
+
+.sidebar a {
+    padding: 1.2vw;
+    text-decoration: none;
+    font-size: 25px;
+    font-weight: bold;
+    color: #4682b4;
+    display: block;
+    transition: 0.3s;
+}
+
+.sidebar .closebtn {
+    position: absolute;
+    top: 0px;
+    right: 20px;
+    width: 50px;
+    height: 50px;
+    font-size: 25px;
+}
+
 
 /* main content css */
 
 main {
+    transition: margin-left .5s;
     position: relative;
     width: 100%;
     margin-left: 5%;
     margin-top: 5.8vw;
-    z-index:2;
+    z-index: 2;
     overflow: hidden;
     display: inline-block;
     background-color: white;
@@ -176,18 +217,18 @@ main .title {
     background-color: rgb(198, 206, 253);
 }
 
-main .title .page-path{
-   color: rgb(10,10,15);
+main .title .page-path {
+    color: rgb(10, 10, 15);
 }
 
-main .page-path p{
+main .page-path p {
     font-size: 2.5vw;
 }
 
-main .page-path h1{
+main .page-path h1 {
     position: absolute;
-    top:0.4vw;
-    left:9.5%;
+    top: 0.4vw;
+    left: 9.5%;
     font-weight: bolder;
     font-size: 3vw;
 }
@@ -204,7 +245,8 @@ main .dropdown {
     right: 8%;
 }
 
-main .addfilter img, .dropdown img{
+main .addfilter img,
+.dropdown img {
     width: 3vw;
     height: 3vw;
 }
@@ -219,7 +261,7 @@ main .dropdown-content {
     border-radius: 5px;
     display: none;
     text-align: left;
-    padding-top:0;
+    padding-top: 0;
     padding-left: 20px;
     padding-bottom: 20px;
     color: #4682b4;
@@ -229,14 +271,14 @@ main .dropdown:hover .dropdown-content {
     display: block;
 }
 
-main .export .rdo{
+main .export .rdo {
     display: block;
     float: left;
     width: 15px;
     height: 15px;
     border-radius: 10px;
-    background-color: #606062; 
-    background-image: linear-gradient(#474749,#606062);
+    background-color: #606062;
+    background-image: linear-gradient(#474749, #606062);
 }
 
 main .export span {
@@ -246,7 +288,7 @@ main .export span {
     margin-left: 5px;
 }
 
-main .export label{
+main .export label {
     cursor: pointer;
 }
 
@@ -254,14 +296,14 @@ main .export label:hover {
     color: rgb(198, 206, 253);
 }
 
-main .export input[type="radio"]{
+main .export input[type="radio"] {
     position: absolute;
     opacity: 0;
 }
-  
-main .export  input[type="radio"]:checked + .rdo{
-    background-color: #606062 ;
-    background-image: linear-gradient(#4682b4,#4682b4);
+
+main .export input[type="radio"]:checked+.rdo {
+    background-color: #606062;
+    background-image: linear-gradient(#4682b4, #4682b4);
 }
 
 main .dropdown-content input[type="submit"] {
@@ -271,15 +313,15 @@ main .dropdown-content input[type="submit"] {
     font-weight: bold;
     border: none;
     height: 30px;
-    margin-top:10px;
-    padding-left:15px;
-    padding-right:15px;
+    margin-top: 10px;
+    padding-left: 15px;
+    padding-right: 15px;
     border-radius: 4px;
     cursor: pointer;
     float: center;
 }
 
-main .alphabet {
+main #alphabet {
     height: 25px;
     width: 100%;
     padding: 0;
@@ -290,7 +332,7 @@ main .alphabet {
     text-align: center;
 }
 
-main .alphabet li {
+main #alphabet li {
     float: left;
     margin: 0;
     padding: 0;
@@ -299,24 +341,46 @@ main .alphabet li {
     width: 3.53%;
 }
 
-main .alphabet li:hover {
-    color: rgb(10, 10, 15);
+main #alphabet a {
+    text-decoration: none;
+}
+
+
+/* main .alphabet  a:hover,a:active{
+    color: #4682b4;
+} */
+
+main #alphabet a:visited,
+a:link {
+    color: white;
+}
+
+main #alphabet li:hover {
+    /* color: rgb(10, 10, 15);
     font-weight: bold;
-    font-size: 1.2vw;
+    font-size: 1.2vw; */
     background-color: rgb(198, 206, 253);
 }
 
+main #alphabet a:hover li {
+    color: rgb(10, 10, 15);
+    font-weight: bold;
+}
+
+
 /* contact list css */
 
-main .listcontact, main .listgroup {
+main .listcontact,
+main .listgroup {
     display: flex;
     flex-wrap: wrap;
-    align-items:center;
-    padding-top:4%;
+    align-items: center;
+    padding-top: 4%;
     padding-right: 4%;
 }
 
-main .contactname, main .listgroup>div {
+main .contactname,
+main .listgroup>div {
     width: 28%;
     height: 120px;
     margin: 0 0 4% 4%;
@@ -327,66 +391,79 @@ main .contactname, main .listgroup>div {
     color: #4682b4;
     border-radius: 10px;
     background-color: rgb(241, 243, 252);
-    box-shadow: 0 5px 10px 0 rgb(10, 10, 15,0.4);
+    box-shadow: 0 5px 10px 0 rgb(10, 10, 15, 0.4);
     transition: 0.3s;
 }
 
+main .contactname {
+    display: none;
+}
+
+main .show {
+    display: block;
+}
+
 main .contactname:hover {
-    box-shadow: 0 10px 20px 0 rgb(10, 10, 15,0.4);
+    box-shadow: 0 10px 20px 0 rgb(10, 10, 15, 0.4);
     background-color: rgba(162, 176, 255, 0.5);
 }
 
-main .contactname .image{
+main .contactname .image {
     width: 5vw;
     height: 5vw;
-    margin-top:15px;
+    margin-top: 15px;
     float: left;
 }
-main .contactname img{
-    width: 5vw;
-    height: 5vw;
+
+main .contactname img {
+    width: 4.8vw;
+    height: 4.8vw;
+    border-radius: 50%;
 }
 
 main .contactname .text {
-    margin-top:25px;
+    margin-top: 25px;
 }
+
 main .contactname p {
-    margin-top:25px;
+    margin-top: 25px;
     overflow: hidden;
     white-space: nowrap;
 }
 
-.error, .success{
-    color: red; 
-    margin-top: 3.5em; 
-    text-align: center; 
-    font-weight: bold; 
+.error,
+.success {
+    color: red;
+    margin-top: 3.5em;
+    text-align: center;
+    font-weight: bold;
     font-size: 1.5em;
 }
 
-.groupname img{
+.groupname img {
     margin-left: 1.5vw;
     margin-top: 1vw;
     height: 7vw;
     width: 7vw;
 }
-main .contactname .buttons{
-    z-index:1;
-    position:absolute;
+
+main .contactname .buttons {
+    z-index: 1;
+    position: absolute;
     width: 25%;
     display: none;
 }
 
-main .contactname:hover .buttons{
-    display:block;
+main .contactname:hover .buttons {
+    display: block;
 }
 
 main .listcontact .contactname .button1 {
-    margin-left:93%;
+    margin-left: 93%;
 }
 
 main .listcontact .contactname .button2 {
-    margin-top:-25px;
+    margin-top: -25px;
 }
 
 main .listcontact .contactname .button3 {
@@ -399,13 +476,15 @@ main .listcontact .contactname .button-group {
     margin-left: 93%;
 }
 
-.contactname .button-group img{
-    width:20px;
+.contactname .button-group img {
+    width: 20px;
     height: 20px;
 }
 
-.contactname .button1 img, .contactname .button2 img, .contactname .button3 img{
-    width:20px;
+.contactname .button1 img,
+.contactname .button2 img,
+.contactname .button3 img {
+    width: 20px;
     height: 20px;
 }
 
@@ -415,14 +494,14 @@ main .listcontact .contactname .button-group {
         height: 6.5%;
         position: fixed;
         top: 5.8vw;
-        padding-left:40%;
+        padding-left: 40%;
     }
     nav a {
         float: left;
     }
     main {
         width: 100%;
-        margin-left:0;
+        margin-left: 0;
         margin-top: 43px;
     }
 }
@@ -437,16 +516,16 @@ main .listcontact .contactname .button-group {
         margin-left: 10%;
         height: 100px;
     }
-    main .contactname .text{
+    main .contactname .text {
         font-size: 2vw;
         margin-top: 0px;
     }
-    main .contactname .buttons{
+    main .contactname .buttons {
         width: 30%;
         height: 80px;
     }
-    main .contactname .buttons .button3{
-        margin-top:13%;
+    main .contactname .buttons .button3 {
+        margin-top: 13%;
     }
     header .center .search input {
         width: 50%;
@@ -454,24 +533,22 @@ main .listcontact .contactname .button-group {
     }
 }
 
-
-@media screen and (max-width:500px){
+@media screen and (max-width:500px) {
     header {
         height: 7%;
     }
-    header .left img{
+    header .left img {
         width: 50px;
         height: 50px;
-        z-index:1;
+        z-index: 1;
         margin-left: 5%;
     }
-    header .right{
-        display:none;
+    header .right {
+        display: none;
     }
-    header .center
-    {
+    header .center {
         width: 90%;
-    } 
+    }
     header .center .search {
         margin-left: 10%;
     }
@@ -479,7 +556,6 @@ main .listcontact .contactname .button-group {
         font-size: 2.6vw;
         background-size: 3vw;
     }
-    
     nav {
         padding-left: 30%;
         position: fixed;
@@ -492,31 +568,33 @@ main .listcontact .contactname .button-group {
     main .title {
         display: none;
     }
-    main .listcontact{
+    main .listcontact {
         flex-direction: column;
         padding: 10% 0 10% 0;
     }
-    main .listcontact .contactname{
+    main .listcontact .contactname {
         margin: 0 5% 5% 5%;
         width: 80%;
     }
-    main .contactname .text{
+    main .contactname .text {
         font-size: 4vw;
     }
-    
-    main .contactname .image img,main .contactname .image{
+    main .contactname .image img,
+    main .contactname .image {
         width: 12vw;
         height: 12vw;
     }
-    main .listcontact .contactname .buttons{
+    main .listcontact .contactname .buttons {
         width: 70%;
     }
-    main .contactname .buttons .button3{
+    main .contactname .buttons .button3 {
         margin-top: 9%;
     }
 }
 
+
 /* edit-profile modal */
+
 .modalDialog {
     position: fixed;
     top: 0;
@@ -547,27 +625,28 @@ main .listcontact .contactname .button-group {
     display: none;
 }
 
-.header{
+.header {
     text-align: center;
 }
 
-.modalDialog .form-element{
+.modalDialog .form-element {
     display: grid;
 }
 
-.modalDialog .form-element input{
+.modalDialog .form-element input {
     width: 25vw;
     height: 3vw;
     border: none;
     border-bottom: 1px solid;
     margin-top: -0.3em;
 }
-.modalDialog .form-element label{
+
+.modalDialog .form-element label {
     margin-top: 0.5em;
     font-size: 1.2em;
 }
 
-.modalDialog .form-element img{
+.modalDialog .form-element img {
     width: 5vw;
     height: 7vw;
 }
@@ -637,6 +716,7 @@ main .listcontact .contactname .button-group {
     }
 }
 
+
 /* add group modal */
 
 .groupDialog {
@@ -670,31 +750,34 @@ main .listcontact .contactname .button-group {
     display: none;
 }
 
-.groupDialog .right .header{
+.groupDialog .right .header {
     text-align: center;
 }
 
-.groupDialog .right .form-element{
+.groupDialog .right .form-element {
     display: grid;
 }
 
-.groupDialog .right input{
+.groupDialog .right input {
     width: 20vw;
     padding-top: 1em;
     font-size: 15px;
     border: none;
     border-bottom: 1px solid;
 }
-.groupDialog .right textarea{
+
+.groupDialog .right textarea {
     width: 20vw;
     border: 1px solid;
     margin-top: 0.5em;
     font-size: 15px;
 }
-.groupDialog .right label{
+
+.groupDialog .right label {
     margin-top: 0.6em;
     font-size: 1.2em;
 }
+
 .groupDialog .right .addGroupButton {
     font-size: 1.5vw;
     font-weight: bold;
@@ -761,6 +844,7 @@ main .listcontact .contactname .button-group {
     }
 }
 
+
 /* add description group modal */
 
 .descriptionDialog {
@@ -793,15 +877,15 @@ main .listcontact .contactname .button-group {
     display: none;
 }
 
-.descriptionDialog .right .header{
+.descriptionDialog .right .header {
     text-align: center;
 }
 
-.descriptionDialog .right p{
+.descriptionDialog .right p {
     display: grid;
 }
 
-.descriptionDialog .right p{
+.descriptionDialog .right p {
     margin-top: -0.6em;
     font-size: 1.2em;
 }
@@ -850,4 +934,24 @@ main .listcontact .contactname .button-group {
     .right .descriptionGroupForm p {
         font-size: 4vw;
     }
+}
+
+.viewDetail {
+    text-align: center;
+    margin: auto;
+}
+
+.viewDetail h3,
+span {
+    font-weight: bold;
+    color: rgb(13, 29, 97);
+}
+
+.viewDetail ul {
+    list-style-type: none;
+}
+
+.viewDetail img {
+    width: 10vw;
+    height: 10vw;
 }
