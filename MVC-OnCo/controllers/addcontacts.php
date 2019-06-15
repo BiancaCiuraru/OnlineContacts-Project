@@ -1,19 +1,26 @@
 <?php 
-    session_start();
+    if (!isset($_SESSION)) {
+        session_start();
+    } else {
+        session_destroy();
+        session_start();
+    }
     include_once './models/addcontacts_model.php';
-    class AddContacts{
+    class AddContacts extends Controller{
         public $contactName;
         public $contactEmail;
         public $contactStatus;
-        private $addContactsModel;
+        public $addContactsModel;
         public $nameValidity;
         public $emailValidity;
         public $username;
         public function __construct(){
+            parent::__construct();
             $this->contactName = true;
             $this->contactEmail = true;
             $this->contactStatus = false;
-            $this->addContactsModel = new AddContactsModel();
+            $this->addContactsModel = new AddContacts_Model();
+            $this->view->render('pages/add-contacts');
             $this->username = $this->addContactsModel->username($_SESSION['emailLogin']);
 
             if(isset($_POST['submit'])) {
@@ -32,5 +39,5 @@
             }
         }
     }
-    $controllerAddContacts=new AddContactsController();
+    $controllerAddContacts=new AddContacts();
 ?>

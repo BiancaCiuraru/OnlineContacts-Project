@@ -1,15 +1,5 @@
 <?php
-
-// include_once '../models/register.model.php';
-// include_once '../controllers/index.controller.php';
-// $model = new LoginRegisterModel;
-$controllerIndex = new Index();
-// $user = NULL;
-// if (isset($_SESSION['emailLogin']) && isset($_SESSION['hashedPassword'])) {
-//     $user = $model->getLoggedUser($_SESSION['emailLogin'], $_SESSION['hashedPassword']);
-// } else {
-//     header('Location: ../controllers/register.controller.php');
-// }
+    $controllerIndex = new Index();
 ?>
 
 <!DOCTYPE html>
@@ -41,7 +31,7 @@ $controllerIndex = new Index();
             <div class="username">
                 <a href="#" id="username">
                     <?php
-                    echo $controllerIndex->username;
+                        echo $controllerIndex->username;
                     ?>
                 </a>
                 <div class="arrow-up"></div>
@@ -123,17 +113,17 @@ $controllerIndex = new Index();
                         $contact = $controllerIndex->getContacts($_GET['contactEmail']);
 
                         echo '<h3>This is ' . $contact->firstName . ' ' . $contact->lastName . '</h3>
-                                    <div class="lab">
-                                        <img src="../public/images/' . $contact->photo . '"/>
-                                        <ul>
-                                            <li><span>Birthday</span>: ' . $contact->birthday . '</li>
-                                            <li><span>Phone Number</span>: ' . $contact->phone_number . '</li>
-                                            <li><span>Email</span>: ' . $contact->email . '</li>
-                                            <li><span>Adress</span>: ' . $contact->adress . '</li>
-                                            <li><span>Interests</span>: ' . $contact->interests . '</li>
-                                            <li><span>Description</span>: ' . $contact->description . '</li>
-                                        </ul>
-                                    </div>';
+                            <div class="lab">
+                                <img src="../public/images/' . $contact->photo . '"/>
+                                <ul>
+                                    <li><span>Birthday</span>: ' . $contact->birthday . '</li>
+                                    <li><span>Phone Number</span>: ' . $contact->phone_number . '</li>
+                                    <li><span>Email</span>: ' . $contact->email . '</li>
+                                    <li><span>Adress</span>: ' . $contact->adress . '</li>
+                                    <li><span>Interests</span>: ' . $contact->interests . '</li>
+                                    <li><span>Description</span>: ' . $contact->description . '</li>
+                                 </ul>
+                            </div>';
                         ?>
                     </form>
                 </div>
@@ -150,7 +140,7 @@ $controllerIndex = new Index();
             <a href="grupuri">
                 <img src="../public/images/group.png" alt="Groups" title="Groups" />
             </a>
-            <a href="add-contacts">
+            <a href="addcontacts">
                 <img src="../public/images/add-user-2.png" alt="Add user" title="Add Contact" />
             </a>
         </nav>
@@ -319,7 +309,7 @@ $controllerIndex = new Index();
 
             <div class="listcontact">
                 <?php
-                foreach ((array) $controllerIndex->contactList as $contactss) {
+                foreach ((array)$controllerIndex->contactList as $contactss) {
                     echo '<div class="contactname ' . substr($contactss->firstName, 0, 1) . ' ' . substr($contactss->lastName, 0, 1) . '">
                             <div class="buttons">
                             <div class="button1">

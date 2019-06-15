@@ -1,14 +1,8 @@
 <?php
 
-class AddContacts_Model{
-    private $servername = "localhost";
-    private $username = "root";
-    private $password = "";
-    private $db = "test";
-    private $conn;
-
+class AddContacts_Model extends Model{
     public function __construct(){
-        $this->conn= new mysqli($this->servername, $this->username, $this->password, $this->db);
+        parent::__construct();
     }
 
     public function nameValidity($fname, $lname){
@@ -20,48 +14,51 @@ class AddContacts_Model{
     }
 
     public function emailValidity($email){
-        $selectStatement = $this->conn -> prepare("select email from contact where email = ?");
-        $selectStatement -> bind_param("s", $email);
+        $selectStatement = $this->db -> prepare("select email from contact where email = ?");
+        $selectStatement -> bindParam(1, $email, PDO::PARAM_STR);
         $selectStatement -> execute();
-        $result = $selectStatement -> get_result();
-
-        $rez = $result->num_rows;
+        $rez = $selectStatement->rowCount();
         return $rez;
     }
 
     public function addContact($fname, $lname, $bday, $phone, $email, $adress, $interests, $description){
 
-        $target = "../images/" .basename($_FILES['pic']['name']); //folderul in care imi mut imaginea 
+        $target = "./public/images/" .basename($_FILES['pic']['name']); //folderul in care imi mut imaginea 
         $image = $_FILES['pic']['name'];
 
         move_uploaded_file($_FILES['pic']['tmp_name'], $target); //iau imaginea si o pun in folderul images pt ca mai apoi e nevoie de ea pt listarea contactelor
 
-        $selectStatement = $this->conn -> prepare("select id_user from utilizatori where email = ?");
-        $selectStatement -> bind_param("s", $_SESSION['emailLogin']);
+        $selectStatement = $this->db -> prepare("select id_user from utilizatori where email = ?");
+        $selectStatement -> bindParam(1, $_SESSION['emailLogin'], PDO::PARAM_STR);
         $selectStatement -> execute();
-        $result = $selectStatement -> get_result();
-        $rez = $result->fetch_assoc();
+        $rez = $selectStatement->fetch();
         
         $id_user = $rez['id_user']; 
 
-        $insertStatementContact = $this->conn -> prepare("INSERT INTO contact (fName, lName, birth_date, phone_number, photo, email, adress, descr, interests,id_user) VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
-        $insertStatementContact -> bind_param("sssssssssi", $fname, $lname, $bday, $phone, $image, $email, $adress, $description, $interests, $id_user);
+        $insertStatementContact = $this->db -> prepare("INSERT INTO contact (fName, lName, birth_date, phone_number, photo, email, adress, descr, interests,id_user) VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
+        $insertStatementContact -> bindParam(1, $fname, PDO::PARAM_STR);
+        $insertStatementContact -> bindParam(2, $lname, PDO::PARAM_STR);
+        $insertStatementContact -> bindParam(3, $bday, PDO::PARAM_STR);
+        $insertStatementContact -> bindParam(4, $phone, PDO::PARAM_STR);
+        $insertStatementContact -> bindParam(5, $image, PDO::PARAM_STR);
+        $insertStatementContact -> bindParam(6, $email, PDO::PARAM_STR);
+        $insertStatementContact -> bindParam(7, $adress, PDO::PARAM_STR);
+        $insertStatementContact -> bindParam(8, $description, PDO::PARAM_STR);
+        $insertStatementContact -> bindParam(9, $interests, PDO::PARAM_STR);
+        $insertStatementContact -> bindParam(10, $id_user, PDO::PARAM_INT);
         $insertStatementContact -> execute();
-        $insertStatementContact -> close();
 
         return true;
     }
 
     public function username($email)
     {
-        $selectStatement = $this->conn->prepare("select firstName, lName from utilizatori where email = ?");
-        $selectStatement->bind_param("s", $email);
+        $selectStatement = $this->db->prepare("select firstName, lName from utilizatori where email = ?");
+        $selectStatement->bindParam(1, $email, PDO::PARAM_STR);
         $selectStatement->execute();
-        $results = $selectStatement->get_result();
-        $selectStatement->close();
 
-        if ($results->num_rows  === 1) {
-            $firstRow = $results->fetch_assoc();
+        if ($selectStatement->rowCount()  === 1) {
+            $firstRow = $selectStatement->fetch();
             return $firstRow['firstName'] . ' ' . $firstRow['lName'];
         }
     }

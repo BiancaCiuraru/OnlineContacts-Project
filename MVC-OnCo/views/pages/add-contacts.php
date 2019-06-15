@@ -1,3 +1,6 @@
+<?php
+    $controllerAddContacts = new AddContacts();
+?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -5,9 +8,9 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>OnCo</title>
-    <link rel="stylesheet" type="text/css" href="../css/main.css" />
-    <link rel="stylesheet" type="text/css" href="../css/addcontact.css" />
+    <title>OnCo - Add Contacts</title>
+    <link rel="stylesheet" type="text/css" href="../public/css/main.css" />
+    <link rel="stylesheet" type="text/css" href="../public/css/addcontact.css" />
 
     <style>
         .error, .success{
@@ -25,7 +28,7 @@
 <body>
     <header>
         <div class="left">
-            <img src="../images/logo.png">
+            <img src="../public/images/logo.png">
         </div>
 
         <div class="center">
@@ -45,8 +48,8 @@
                     ?></a>
                 <div class="arrow-up"></div>
                 <div class="dropdown-header">
-                    <a href="#editModal"><img src="../images/edit.png"> Update Profile</a> <br />
-                    <a href="./login.html" class="logout"><img src="../images/logout.png"> Log Out</a>
+                    <a href="#editModal"><img src="../public/images/edit.png"> Update Profile</a> <br />
+                    <a href="?login" class="logout"><img src="../public/images/logout.png"> Log Out</a>
                 </div>
             </div>
         </div>
@@ -86,14 +89,14 @@
 
     <div class="row">
         <nav>
-            <a href="../controllers/Index.controller.php">
-                <img src="../images/contacts.png" alt="Contacts" title="Contacts" />
+            <a href="index">
+                <img src="../public/images/contacts.png" alt="Contacts" title="Contacts" />
             </a>
-            <a href="../controllers/grupuri.controller.php">
-                <img src="../images/group.png" alt="Groups" title="Groups" />
+            <a href="grupuri">
+                <img src="../public/images/group.png" alt="Groups" title="Groups" />
             </a>
-            <a href="../controllers/add-contacts.controller.php">
-                <img src="../images/add-user-2.png" alt="Add user" title="Add Contact" />
+            <a href="add-contacts">
+                <img src="../public/images/add-user-2.png" alt="Add user" title="Add Contact" />
             </a>
         </nav>
         <main>
@@ -104,7 +107,7 @@
             </div>
 
             <div class="addcontact">
-                <form method = "POST" action = "../controllers/add-contacts.controller.php" enctype="multipart/form-data">
+                <form method = "POST" action = "#" enctype="multipart/form-data">
                     <div class="rowform">
                         <div class="columnform">
                             <label for="fname">First Name</label>
