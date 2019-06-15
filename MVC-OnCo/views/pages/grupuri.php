@@ -1,3 +1,7 @@
+<?php 
+    $controllerGroups = new Grupuri();
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -28,7 +32,7 @@
             <div class="username">
                 <a href="#" id="username">
                     <?php
-                    echo $controllerGroups->username;
+                        echo $controllerGroups->username;
                     ?>
                 </a>
                 <div class="arrow-up"></div>
@@ -40,7 +44,7 @@
         </div>
         <div id="editModal" class="modalDialog">
             <div class="right">
-                <a href="#close" title="Close" class="close">X</a>
+                <a href="grupuri#" title="Close" class="close">X</a>
                 <div class="editProfile">
                     <div class="header">
                         <h2 class="over-title">Edit your profile</h2>
@@ -74,14 +78,14 @@
 
     <div class="row">
         <nav>
-            <a href="../controllers/Index.controller.php">
-                <img src="../images/contacts.png" alt="Contacts" title="Contacts" />
+            <a href="index">
+                <img src="../public/images/contacts.png" alt="Contacts" title="Contacts" />
             </a>
-            <a href="../controllers/grupuri.controller.php">
-                <img src="../images/group.png" alt="Groups" title="Groups" />
+            <a href="grupuri">
+                <img src="../public/images/group.png" alt="Groups" title="Groups" />
             </a>
-            <a href="../controllers/add-contacts.controller.php">
-                <img src="../images/add-user-2.png" alt="Add user" title="Add Contact" />
+            <a href="addcontacts">
+                <img src="../public/images/add-user-2.png" alt="Add user" title="Add Contact" />
             </a>
              
         </nav>
@@ -98,8 +102,8 @@
             <div class="listcontact">
                 <?php
                     foreach ($controllerGroups->groupList as $group){
-                        echo "<div class='groupsname'><div class='image'><img src='../images/logo.png' alt='Contact Photo' /></div>
-                        <div class='buttons'><div class='button-group'><a href='?groupName=". $group->groupName ."#descriptionModal'><img src='../images/arrow-right.png' alt='View Details' title='View Details' /></a></div></div>
+                        echo "<div class='groupsname'><div class='image'><img src='../public/images/logo.png' alt='Contact Photo' /></div>
+                        <div class='buttons'><div class='button-group'><a href='?groupName=". $group->groupName ."#descriptionModal'><img src='../public/images/arrow-right.png' alt='View Details' title='View Details' /></a></div></div>
                         <p>Name: " . $group->nameGroup ."<br> Created at: ". $group->created_date ."</p></div>";
                     // echo "<p style ='color: red;'>ceva</p>";
                     }
@@ -111,12 +115,12 @@
     <!-- create new group -->
     <div id="groupsModal" class="groupDialog">
         <div class="right">
-            <a href="#close" title="Close" class="close">X</a>
+            <a href="grupuri#" title="Close" class="close">X</a>
             <div class="addGroupForm">
                 <div class="header">
                     <h2 class="over-title">Add group</h2>
                 </div>
-                <form class="form" action = "../controllers/grupuri.controller.php" method = "POST" id = "form1">
+                <form class="form" action = "#" method = "POST" id = "form1">
                     <div class="form-element">
                         <label for="groupN">Group name</label>
                         <input type="text" class="form-control" id="groupN" name = "groupN" value="" placeholder="Enter group name" required />
@@ -150,7 +154,7 @@
 
     <div id="descriptionModal" class="descriptionDialog">
         <div class="right">
-            <a href="../controllers/grupuri.controller.php#close" title="Close" class="close">X</a>
+            <a href="grupuri#" title="Close" class="close">X</a>
             <div class="descriptionGroupForm">
                 <div class="header">
                     <h2 class="over-title">About this group</h2>

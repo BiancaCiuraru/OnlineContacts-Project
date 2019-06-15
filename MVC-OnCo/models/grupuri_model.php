@@ -70,7 +70,8 @@ class Grupuri_Model extends Model{
         $selectDetails -> bindParam(1, $id_user, PDO::PARAM_INT);
         $selectDetails -> bindParam(2, $groupName, PDO::PARAM_STR);
         $selectDetails -> execute();
-        return $selectDetails;
+        $rez = $selectDetails->fetch();
+        return $rez['descript'];
     }
 
     public function getGroupName($email, $groupName){
@@ -80,7 +81,8 @@ class Grupuri_Model extends Model{
         $selectDetails -> bindParam(1, $id_user, PDO::PARAM_INT);
         $selectDetails -> bindParam(2, $groupName, PDO::PARAM_STR);
         $selectDetails -> execute();
-        return $selectDetails;
+        $rez = $selectDetails->fetch();
+        return $rez['groupName'];
     }
 
     public function getContacts($email, $groupName){
@@ -88,7 +90,7 @@ class Grupuri_Model extends Model{
 
         $selectList = $this->db -> prepare("select id_group from groups where id_user = ? and groupName = ?");
         $selectList -> bindParam(1, $id_user, PDO::PARAM_INT);
-        $selectList -> binrParam(2, $groupName, PDO::PARAM_STR);
+        $selectList -> bindParam(2, $groupName, PDO::PARAM_STR);
         $selectList -> execute();
         $listRow = $selectList -> fetch();
         $id_g = $listRow['id_group'];
@@ -116,7 +118,7 @@ class Grupuri_Model extends Model{
     public function username($email)
     {
         $selectStatement = $this->db->prepare("select firstName, lName from utilizatori where email = ?");
-        $selectStatement->bindParam(1, $email, PDO::PARAM_INT);
+        $selectStatement->bindParam(1, $email, PDO::PARAM_STR);
         $selectStatement->execute();
 
         if ($selectStatement->rowCount()  === 1) {
