@@ -4,7 +4,7 @@ class GroupsModel{
     private $servername = "localhost";
     private $username = "root";
     private $password = "";
-    private $db = "onco_db";
+    private $db = "test";
     private $conn;
 
     public function __construct(){
