@@ -1,0 +1,82 @@
+.modalDialog {
+    position: fixed;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    background: rgba(145, 145, 145, 0.8);
+    z-index: 99999;
+    opacity: 0;
+    pointer-events: none;
+}
+
+.modalDialog:target {
+    opacity: 1;
+    pointer-events: auto;
+}
+
+.modalDialog>div {
+    width: 40%;
+    max-height: calc(100vh - 100px);
+    overflow-x: hidden;
+    position: relative;
+    margin: 5% auto;
+    padding: 3% 5%;
+    background: #fff;
+}
+
+::-webkit-scrollbar {
+    display: none;
+}
+
+.close {
+    background: #333333;
+    color: #FFFFFF;
+    line-height: 25px;
+    position: absolute;
+    right: 12px;
+    text-align: center;
+    top: 12px;
+    width: 24px;
+    text-decoration: none;
+    font-weight: bold;
+    border-radius: 12px;
+    box-shadow: 1px 1px 3px #000;
+}
+
+.close:hover {
+    background: rgb(13, 29, 97);
+}
+
+@media screen and (max-width: 1000px) and (min-width: 700px) {
+    .modalDialog>div {
+        width: 60%;
+    }
+    .right .registerForm label,
+    .right .registerForm input,
+    .right .registerForm .button {
+        font-size: 2vw;
+    }
+}
+
+@media screen and (max-width: 700px) {
+    .modalDialog>div {
+        width: 75%;
+    }
+    .right .registerForm label,
+    .right .registerForm input,
+    .right .registerForm .button {
+        font-size: 2.5vw;
+    }
+}
+
+@media screen and (max-width: 455px) {
+    .modalDialog>div {
+        width: 75%;
+    }
+    .right .registerForm label,
+    .right .registerForm input,
+    .right .registerForm .button {
+        font-size: 4vw;
+    }
+}

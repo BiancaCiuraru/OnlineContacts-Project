@@ -1,6 +1,6 @@
 <?php
 
-class AddContactsModel{
+class AddContacts_Model{
     private $servername = "localhost";
     private $username = "root";
     private $password = "";

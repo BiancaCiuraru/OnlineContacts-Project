@@ -1,0 +1,104 @@
+.addcontact form{
+    margin: 2% 0% 5% 10%;
+    font-size: 1.5vw;
+    color: #4682b4;
+}
+
+.rowform{
+    display: flex;
+    flex-wrap: wrap;
+    margin-right: 5%;
+    margin-bottom: 20px;
+}
+
+.columnform {
+    width: 40%;
+    margin-right: 10%;
+}
+
+.addcontact .description{
+    width: 100%;
+    margin-right: 10%;
+}
+
+.addcontact label {
+    padding-bottom: 3px;
+    padding-right: 10px;
+    display: inline-block;
+}
+
+.addcontact input{
+    padding-left: 10px;
+    border: 2px solid #ccc;
+    border-radius: 4px;
+    height: 35px;
+}
+
+.addcontact textarea{
+    padding-left: 10px;
+    padding-top: 5px;
+    border: 2px solid #ccc;
+    border-radius: 4px;
+    width: 100%;
+    font-family: Helvetica, Arial, sans-serif;
+}
+
+.columnform input[type="file"]  {
+    border:none;
+}
+
+.columnform input[type="file"]:focus{
+    outline:none;
+}
+
+.addcontact input[type="text"], textarea
+{
+    width:100%;
+}
+
+.addcontact input[type="email"]{
+    width: 85%;
+}
+
+.addcontact button {
+    display: inline-block;
+    font-size: 1.5vw;
+    font-weight: bold;
+    color: #4682b4;
+    text-decoration: none;
+    padding: 10px 20px;
+    border-radius: 4px;
+    background-color: rgb(6, 8, 61);
+    background-image: linear-gradient(rgb(6, 8, 61), rgb(10, 10, 15));
+} */
+
+.addcontact button:hover {
+    background-color: rgb(13, 29, 97);
+    background-image: linear-gradient(rgb(13, 29, 97), rgb(6, 8, 61));
+}
+
+.rowform:after {
+    content: "";
+    display: table;
+    clear: both;
+}
+
+@media screen and (max-width: 900px) {
+    .addcontact form, .addcontact button{
+        font-size: 2.5vw;
+    }
+    .rowform{
+        margin-bottom: 15px;
+    }
+}
+
+@media screen and (max-width: 500px) {
+    .rowform{
+        flex-direction: column;
+        margin-bottom: 15px;
+    }
+
+    .addcontact form, .addcontact button {
+        font-size: 3.5vw;
+    }
+}

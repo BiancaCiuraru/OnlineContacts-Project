@@ -1,0 +1,1031 @@
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    padding: 0;
+    line-height: 1.5em;
+    font-family: Helvetica, Arial, sans-serif;
+}
+
+
+/*header css */
+
+header {
+    width: 100%;
+    height: 5.8vw;
+    display: flex;
+    overflow: hidden;
+    position: fixed;
+    z-index: 3;
+    background-color: rgb(44, 44, 44);
+    background-image: linear-gradient(rgb(6, 8, 61), rgb(10, 10, 15));
+}
+
+header .left {
+    width: 8vw;
+    float: left;
+}
+
+header .left img {
+    position: absolute;
+    top: -1%;
+    left: 1%;
+    width: 6vw;
+    height: 6vw;
+}
+
+header .center {
+    width: 50%;
+    float: left;
+    margin: auto 1vw;
+}
+
+header .center .search {
+    overflow: auto;
+    border-radius: 10px;
+}
+
+header .center .search input {
+    width: 40%;
+    padding: 12px 40px;
+    font-size: 1.3vw;
+    border: 1px solid rgb(0, 0, 0);
+    border-radius: 10px;
+    background-color: #4682b4;
+    background-image: url('https://img.icons8.com/ios/50/000000/search.png');
+    background-position: 10px 10px;
+    background-size: 1.8vw;
+    background-repeat: no-repeat;
+    transition: width 0.4s ease-in-out;
+}
+
+header .center .search input::placeholder {
+    color: rgb(13, 29, 97);
+}
+
+header .center .search input:focus {
+    outline: 0;
+    width: 100%;
+}
+
+header .right {
+    padding-right: 50px;
+    margin: 0;
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    width: 40%;
+}
+
+header .right .avatar {
+    padding: 5px;
+    margin: 5px;
+    width: 4vw;
+    height: 4vw;
+    border-radius: 50%;
+}
+
+header .right .username {
+    color: #4682b4;
+    font-size: 1.6vw;
+    line-height: 30px;
+}
+
+header .username a {
+    text-decoration: none;
+}
+
+header .username a:visited,
+a:link {
+    color: #4682b4;
+}
+
+header .username a:hover {
+    color: rgb(198, 206, 253);
+}
+
+header .right .arrow-up {
+    position: fixed;
+    right: 7%;
+    top: 3.5vw;
+    display: none;
+    border-left: 20px solid transparent;
+    border-right: 20px solid transparent;
+    border-bottom: 20px solid rgb(6, 8, 61);
+}
+
+header .right .dropdown-header {
+    position: fixed;
+    width: 16vw;
+    right: 3%;
+    z-index: 3;
+    height: auto;
+    background-image: linear-gradient(rgb(6, 8, 61), rgb(10, 10, 15));
+    border-radius: 5px;
+    display: none;
+    text-align: left;
+    padding: 20px;
+    color: #4682b4;
+}
+
+header .username:hover .arrow-up,
+.username:hover .dropdown-header {
+    display: block;
+}
+
+
+/* sidebar css */
+
+nav {
+    position: fixed;
+    top: 5.8vw;
+    left: 0;
+    width: 5%;
+    height: 100%;
+    overflow: hidden;
+    background-color: rgb(10, 10, 15);
+    z-index: 3;
+}
+
+nav a {
+    display: block;
+    padding: 1.2vw;
+}
+
+nav a:hover,
+a:active {
+    background-color: rgb(198, 206, 253);
+}
+
+
+/* main content css */
+
+main {
+    transition: margin-left .5s;
+    position: relative;
+    width: 100%;
+    margin-left: 5%;
+    margin-top: 5.8vw;
+    z-index: 2;
+    overflow: hidden;
+    display: inline-block;
+    background-color: white;
+}
+
+main .title {
+    height: 6vw;
+    padding-left: 2vw;
+    display: flex;
+    flex-wrap: nowrap;
+    align-content: center;
+    background-color: rgb(198, 206, 253);
+}
+
+main .title .page-path {
+    color: rgb(10, 10, 15);
+}
+
+main .page-path p {
+    font-size: 2.5vw;
+}
+
+main .page-path h1 {
+    position: absolute;
+    top: 0.4vw;
+    left: 9.5%;
+    font-weight: bolder;
+    font-size: 3vw;
+}
+
+main .addfilter {
+    position: absolute;
+    top: 1.3vw;
+    right: 13%;
+}
+
+main .dropdown {
+    position: absolute;
+    top: 1.3vw;
+    right: 8%;
+}
+
+main .addfilter img,
+.dropdown img {
+    width: 3vw;
+    height: 3vw;
+}
+
+main .dropdown-filter {
+    position: fixed;
+    width: 35vw;
+    right: 8%;
+    top: 10vw;
+    height: auto;
+    background-image: linear-gradient(rgb(6, 8, 61), rgb(10, 10, 15));
+    border-radius: 5px;
+    display: none;
+    text-align: left;
+    padding: 0px 30px 30px 20px;
+    color: #4682b4;
+}
+
+main .dropdown-filter label {
+    font-size: 1.4vw;
+}
+
+main .dropdown-filter input {
+    padding: 2px 0px 2px 10px;
+    float: right;
+    height: 25px;
+    border-radius: 5px;
+    background-color: #4682b4;
+    border: 1px solid rgb(0, 0, 0);
+}
+
+main .Age .byage {
+    width: 100%;
+    padding-right: 20px;
+}
+
+main .Age .criteria_age {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+main .criteria_age .bigger {
+    position: absolute;
+    right: 30px;
+}
+
+main .dropdown-content {
+    position: absolute;
+    width: 15vw;
+    right: 3%;
+    top: 3vw;
+    height: auto;
+    background-image: linear-gradient(rgb(6, 8, 61), rgb(10, 10, 15));
+    border-radius: 5px;
+    display: none;
+    text-align: left;
+    padding-top: 0;
+    padding-left: 20px;
+    padding-bottom: 20px;
+    color: #4682b4;
+}
+
+main .dropdown:hover .dropdown-content,
+main .addfilter:hover .dropdown-filter {
+    display: block;
+}
+
+main .export .rdo {
+    display: block;
+    float: left;
+    width: 15px;
+    height: 15px;
+    border-radius: 10px;
+    background-color: #606062;
+    background-image: linear-gradient(#474749, #606062);
+}
+
+main .export span {
+    display: inline;
+    font-size: 1.6vw;
+    font-weight: bold;
+    margin-left: 5px;
+}
+
+main .export label {
+    cursor: pointer;
+}
+
+main .export label:hover {
+    color: rgb(198, 206, 253);
+}
+
+main .export input[type="radio"] {
+    position: absolute;
+    opacity: 0;
+}
+
+main .export input[type="radio"]:checked+.rdo {
+    background-color: #606062;
+    background-image: linear-gradient(#4682b4, #4682b4);
+}
+
+main .dropdown-content input[type="submit"],
+.dropdown-filter input[type="submit"] {
+    background-color: rgb(6, 8, 61);
+    color: #4682b4;
+    font-size: 1.2vw;
+    font-weight: bold;
+    border: none;
+    height: 30px;
+    margin-top: 10px;
+    padding-left: 15px;
+    padding-right: 15px;
+    border-radius: 4px;
+    cursor: pointer;
+    float: center;
+}
+
+main #alphabet {
+    height: 25px;
+    width: 100%;
+    padding: 0;
+    background: rgb(10, 10, 15);
+    list-style-type: none;
+    margin: auto 0;
+    cursor: pointer;
+    text-align: center;
+}
+
+main #alphabet li {
+    float: left;
+    margin: 0;
+    padding: 0;
+    font-size: 13px;
+    color: white;
+    width: 3.53%;
+}
+
+main #alphabet a {
+    text-decoration: none;
+}
+
+main #alphabet a:visited,
+a:link {
+    color: white;
+}
+
+main #alphabet li:hover {
+    background-color: rgb(198, 206, 253);
+}
+
+main #alphabet a:hover li {
+    color: rgb(10, 10, 15);
+    font-weight: bold;
+}
+
+
+/* contact list css */
+
+main .listcontact,
+main .listgroup {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    padding-top: 4%;
+    padding-right: 4%;
+}
+
+main .contactname,
+main .listgroup>div {
+    width: 28%;
+    height: 120px;
+    margin: 0 0 4% 4%;
+    padding: 10px;
+    word-wrap: break-word;
+    font-weight: bold;
+    font-size: 1.5vw;
+    color: #4682b4;
+    border-radius: 10px;
+    background-color: rgb(241, 243, 252);
+    box-shadow: 0 5px 10px 0 rgb(10, 10, 15, 0.4);
+    transition: 0.3s;
+}
+
+main .groupsname,
+main .listgroup>div {
+    width: 28%;
+    height: 120px;
+    margin: 0 0 4% 4%;
+    padding: 10px;
+    word-wrap: break-word;
+    font-weight: bold;
+    font-size: 1.5vw;
+    color: #4682b4;
+    border-radius: 10px;
+    background-color: rgb(241, 243, 252);
+    box-shadow: 0 5px 10px 0 rgb(10, 10, 15, 0.4);
+    transition: 0.3s;
+}
+
+main .contactname {
+    display: none;
+}
+
+main .show {
+    display: block;
+}
+
+main .contactname:hover {
+    box-shadow: 0 10px 20px 0 rgb(10, 10, 15, 0.4);
+    background-color: rgba(162, 176, 255, 0.5);
+}
+
+main .contactname .image {
+    width: 5vw;
+    height: 5vw;
+    margin-top: 15px;
+    float: left;
+}
+
+main .contactname img {
+    width: 4.8vw;
+    height: 4.8vw;
+    border-radius: 50%;
+}
+
+main .contactname .text {
+    margin-top: 25px;
+}
+
+main .contactname p {
+    margin-top: 25px;
+    overflow: hidden;
+    white-space: nowrap;
+}
+
+main .groupsname:hover {
+    box-shadow: 0 10px 20px 0 rgb(10, 10, 15, 0.4);
+    background-color: rgba(162, 176, 255, 0.5);
+}
+
+main .groupsname .image {
+    width: 5vw;
+    height: 5vw;
+    margin-top: 15px;
+    float: left;
+}
+
+main .groupsname img {
+    width: 4.8vw;
+    height: 4.8vw;
+    border-radius: 50%;
+}
+
+main .groupsname .text {
+    margin-top: 25px;
+}
+
+main .groupsname p {
+    margin-top: 25px;
+    overflow: hidden;
+    white-space: nowrap;
+}
+
+
+/*  */
+
+.error,
+.success {
+    color: red;
+    margin-top: 3.5em;
+    text-align: center;
+    font-weight: bold;
+    font-size: 1.5em;
+}
+
+.groupname img {
+    margin-left: 1.5vw;
+    margin-top: 1vw;
+    height: 7vw;
+    width: 7vw;
+}
+
+main .contactname .buttons,
+main .groupsname .buttons {
+    z-index: 1;
+    position: absolute;
+    width: 25%;
+    display: none;
+}
+
+main .contactname:hover .buttons,
+main .groupsname:hover .buttons {
+    display: block;
+}
+
+main .listcontact .contactname .button1,
+main .groupsname:hover .button1 {
+    margin-left: 93%;
+}
+
+main .listcontact .contactname .button2,
+main .groupsname:hover .button2 {
+    margin-top: -25px;
+}
+
+main .listcontact .contactname .button3,
+main .groupsname:hover .button3 {
+    margin-top: 17%;
+    margin-left: 93%;
+}
+
+main .listcontact .contactname .button-group,
+main .listcontact .groupsname .button-group {
+    margin-top: 24%;
+    margin-left: 93%;
+}
+
+.contactname .button-group img,
+.groupsname .button-group img {
+    width: 20px;
+    height: 20px;
+}
+
+.contactname .button1 img,
+.contactname .button2 img,
+.contactname .button3 img,
+.groupsname .button1 img,
+.groupsname .button2 img,
+.groupsname .button3 img {
+    width: 20px;
+    height: 20px;
+}
+
+@media screen and (max-width: 700px) {
+    nav {
+        width: 100%;
+        height: 6.5%;
+        position: fixed;
+        top: 5.8vw;
+        padding-left: 40%;
+    }
+    nav a {
+        float: left;
+    }
+    main {
+        width: 100%;
+        margin-left: 0;
+        margin-top: 43px;
+    }
+}
+
+@media screen and (max-width: 900px) {
+    header .right .username {
+        font-size: 2vw;
+        left: 65%;
+    }
+    main .listcontact .contactname {
+        width: 35%;
+        margin-left: 10%;
+        height: 100px;
+    }
+    main .contactname .text {
+        font-size: 2vw;
+        margin-top: 0px;
+    }
+    main .contactname .buttons {
+        width: 30%;
+        height: 80px;
+    }
+    main .contactname .buttons .button3 {
+        margin-top: 13%;
+    }
+    header .center .search input {
+        width: 50%;
+        margin-left: 3%;
+    }
+}
+
+@media screen and (max-width:500px) {
+    header {
+        height: 7%;
+    }
+    header .left img {
+        width: 50px;
+        height: 50px;
+        z-index: 1;
+        margin-left: 5%;
+    }
+    header .right {
+        display: none;
+    }
+    header .center {
+        width: 90%;
+    }
+    header .center .search {
+        margin-left: 10%;
+    }
+    header .center .search input {
+        font-size: 2.6vw;
+        background-size: 3vw;
+    }
+    nav {
+        padding-left: 30%;
+        position: fixed;
+        top: 6.9%;
+        height: 6%;
+    }
+    main {
+        margin-top: 85px;
+    }
+    main .title {
+        display: none;
+    }
+    main .listcontact {
+        flex-direction: column;
+        padding: 10% 0 10% 0;
+    }
+    main .listcontact .contactname {
+        margin: 0 5% 5% 5%;
+        width: 80%;
+    }
+    main .contactname .text {
+        font-size: 4vw;
+    }
+    main .contactname .image img,
+    main .contactname .image {
+        width: 12vw;
+        height: 12vw;
+    }
+    main .listcontact .contactname .buttons {
+        width: 70%;
+    }
+    main .contactname .buttons .button3 {
+        margin-top: 9%;
+    }
+}
+
+
+/* edit-profile modal */
+
+.modalDialog {
+    position: fixed;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    background: rgba(145, 145, 145, 0.8);
+    z-index: 99999;
+    opacity: 0;
+    pointer-events: none;
+}
+
+.modalDialog:target {
+    opacity: 1;
+    pointer-events: auto;
+}
+
+.modalDialog>div {
+    overflow-x: hidden;
+    position: relative;
+    margin: 5% auto;
+    padding: 3% 5%;
+    background: #fff;
+    width: 35%;
+}
+
+::-webkit-scrollbar {
+    display: none;
+}
+
+.header {
+    text-align: center;
+}
+
+.modalDialog .form-element {
+    display: grid;
+}
+
+.modalDialog .form-element input {
+    width: 25vw;
+    height: 3vw;
+    border: none;
+    border-bottom: 1px solid;
+    margin-top: -0.3em;
+}
+
+.modalDialog .form-element label {
+    margin-top: 0.5em;
+    font-size: 1.2em;
+}
+
+.modalDialog .form-element img {
+    width: 5vw;
+    height: 7vw;
+}
+
+#editProfileBtn {
+    font-size: 1.5vw;
+    font-weight: bold;
+    color: #4682b4;
+    text-decoration: none;
+    padding: 10px 30px 10px 30px;
+    border-radius: 23px;
+    background-color: rgb(6, 8, 61);
+    background-image: linear-gradient(rgb(6, 8, 61), rgb(10, 10, 15));
+    margin-left: 8vw;
+    margin-top: 0.5em;
+}
+
+.modalDialog .close {
+    background: #333333;
+    color: #FFFFFF;
+    line-height: 25px;
+    position: absolute;
+    right: 12px;
+    text-align: center;
+    top: 12px;
+    width: 24px;
+    text-decoration: none;
+    font-weight: bold;
+    border-radius: 12px;
+    box-shadow: 1px 1px 3px #000;
+}
+
+.modalDialog .close:hover {
+    background: rgb(13, 29, 97);
+}
+
+@media screen and (max-width: 1000px) and (min-width: 700px) {
+    .modalDialog>div {
+        width: 60%;
+    }
+    .modalDialog .right .editProfileForm label,
+    .modalDialog .right .editProfieleForm input,
+    .modalDialog .right .editProfileForm .button {
+        font-size: 2vw;
+    }
+}
+
+@media screen and (max-width: 700px) {
+    .modalDialog>div {
+        width: 75%;
+    }
+    .modalDialog .right .editProfileForm label,
+    .modalDialog .right .editProfileForm input,
+    .modalDialog .right .editProfileForm .button {
+        font-size: 2.5vw;
+    }
+}
+
+@media screen and (max-width: 455px) {
+    .modalDialog>div {
+        width: 75%;
+    }
+    .modalDialog .right .editProfileForm label,
+    .modalDialog .right .editProfileForm input,
+    .modalDialog .right .editProfileForm .button {
+        font-size: 4vw;
+    }
+}
+
+
+/* add group modal */
+
+.groupDialog {
+    position: fixed;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    background: rgba(145, 145, 145, 0.8);
+    z-index: 99999;
+    opacity: 0;
+    pointer-events: none;
+}
+
+.groupDialog:target {
+    opacity: 1;
+    pointer-events: auto;
+}
+
+.groupDialog>div {
+    overflow-x: hidden;
+    position: relative;
+    margin: 5% auto;
+    padding: 3% 5%;
+    background: #fff;
+    width: 30%;
+    height: 70%;
+}
+
+::-webkit-scrollbar {
+    display: none;
+}
+
+.groupDialog .right .header {
+    text-align: center;
+}
+
+.groupDialog .right .form-element {
+    display: grid;
+}
+
+.groupDialog .right input {
+    width: 20vw;
+    padding-top: 1em;
+    font-size: 15px;
+    border: none;
+    border-bottom: 1px solid;
+}
+
+.groupDialog .right textarea {
+    width: 20vw;
+    border: 1px solid;
+    margin-top: 0.5em;
+    font-size: 15px;
+}
+
+.groupDialog .right label {
+    margin-top: 0.6em;
+    font-size: 1.2em;
+}
+
+.groupDialog .right .addGroupButton {
+    font-size: 1.5vw;
+    font-weight: bold;
+    color: #4682b4;
+    text-decoration: none;
+    padding: 10px 30px 10px 30px;
+    border-radius: 23px;
+    background-color: rgb(6, 8, 61);
+    background-image: linear-gradient(rgb(6, 8, 61), rgb(10, 10, 15));
+    margin-left: 4vw;
+    position: absolute;
+    margin-top: 1.5em;
+}
+
+.groupDialog .right .close {
+    background: #333333;
+    color: #FFFFFF;
+    line-height: 25px;
+    position: absolute;
+    right: 12px;
+    text-align: center;
+    top: 12px;
+    width: 24px;
+    text-decoration: none;
+    font-weight: bold;
+    border-radius: 12px;
+    box-shadow: 1px 1px 3px #000;
+}
+
+.groupDialog .right .close:hover {
+    background: rgb(13, 29, 97);
+}
+
+@media screen and (max-width: 1000px) and (min-width: 700px) {
+    .groupDialog>div {
+        width: 60%;
+    }
+    .right .addGroupForm label,
+    .right .addGroupForm input,
+    .right .addGroupForm .button {
+        font-size: 2vw;
+    }
+}
+
+@media screen and (max-width: 700px) {
+    .groupDialog>div {
+        width: 75%;
+    }
+    .right .addGroupForm label,
+    .right .addGroupForm input,
+    .right .addGroupForm .button {
+        font-size: 2.5vw;
+    }
+}
+
+@media screen and (max-width: 455px) {
+    .modalDialog>div {
+        width: 75%;
+    }
+    .right .addGroupForm label,
+    .right .addGroupForm input,
+    .right .addGroupForm .button {
+        font-size: 4vw;
+    }
+}
+
+
+/* add description group modal */
+
+.descriptionDialog {
+    position: fixed;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    background: rgba(145, 145, 145, 0.8);
+    z-index: 99999;
+    opacity: 0;
+    pointer-events: none;
+}
+
+.descriptionDialog:target {
+    opacity: 1;
+    pointer-events: auto;
+}
+
+.descriptionDialog>div {
+    overflow-x: hidden;
+    position: relative;
+    margin: 5% auto;
+    padding: 3% 5%;
+    background: #fff;
+    width: 30%;
+}
+
+::-webkit-scrollbar {
+    display: none;
+}
+
+.descriptionDialog .right .header {
+    text-align: center;
+}
+
+.descriptionDialog .right p {
+    display: grid;
+}
+
+.descriptionDialog .right p {
+    margin-top: -0.6em;
+    font-size: 1.2em;
+}
+
+.descriptionDialog .right .close {
+    background: #333333;
+    color: #FFFFFF;
+    line-height: 25px;
+    position: absolute;
+    right: 12px;
+    text-align: center;
+    top: 12px;
+    width: 24px;
+    text-decoration: none;
+    font-weight: bold;
+    border-radius: 12px;
+    box-shadow: 1px 1px 3px #000;
+}
+
+.descriptionDialog .right .close:hover {
+    background: rgb(13, 29, 97);
+}
+
+@media screen and (max-width: 1000px) and (min-width: 700px) {
+    .descriptionDialog>div {
+        width: 60%;
+    }
+    .right .descriptionGroupForm p {
+        font-size: 2vw;
+    }
+}
+
+@media screen and (max-width: 700px) {
+    .descriptionDialog>div {
+        width: 75%;
+    }
+    .right .descriptionGroupForm p {
+        font-size: 2.5vw;
+    }
+}
+
+*:focus {
+    outline: none;
+}
+
+@media screen and (max-width: 455px) {
+    .descriptionModal>div {
+        width: 75%;
+    }
+    .right .descriptionGroupForm p {
+        font-size: 4vw;
+    }
+}
+
+.viewDetail {
+    text-align: center;
+    margin: auto;
+}
+
+.viewDetail h3,
+span {
+    font-weight: bold;
+    color: rgb(13, 29, 97);
+}
+
+.viewDetail ul {
+    list-style-type: none;
+}
+
+.viewDetail img {
+    width: 10vw;
+    height: 10vw;
+}
+
+
+/* add to group */
+
+.viewDetail .groupsList .spanGroup {
+    margin-right: 50px;
+}
+
+.viewDetail .groupsList button {
+    float: right;
+}
