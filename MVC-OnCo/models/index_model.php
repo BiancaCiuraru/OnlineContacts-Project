@@ -297,18 +297,13 @@ class Index_Model extends Model
         $result = $selectContact -> fetch();
         $idContact = $result['id_contact'];
 
-        $selectGroup = $this->db->prepare("select m.id_contact, id_group from member m join contact c on m.id_contact=c.id_contact where id_user = ?");
-        $selectGroup->bindParam(1, $id_user, PDO::PARAM_INT);
+        $selectGroup = $this->db->prepare("select count(*) from member where id_contact = ? and id_group=?");
+        $selectGroup->bindParam(1, $idContact, PDO::PARAM_INT);
+        $selectGroup->bindParam(2, $idGroup, PDO::PARAM_INT);
         $selectGroup->execute();
-        $resultGroup = $selectGroup -> fetch();
-        $idGroupMember = $resultGroup['id_group'];
-        $idContactMember = $resultGroup['id_contact'];
-        // echo $idContact;
-        // echo $idContactMember;
-        // echo $idGroup;
-        // echo $idGroupMember;
+        $resultGroup = $selectGroup -> fetchColumn();
 
-        if($idContact === $idContactMember && $idGroup === $idGroupMember)
+        if($resultGroup>0)
         {
             return false;
         }else{

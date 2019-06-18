@@ -18,9 +18,6 @@ class Index extends Controller
     public $fieldsStatus;
     public $edit;
     public $editStatus;
-    public $checked1;
-    public $checked2;
-    public $checked3;
     function __construct()
     {
         parent::__construct();
@@ -67,19 +64,10 @@ class Index extends Controller
 
         if (isset($_POST['export'])) {
             if (isset($_POST['csv'])) {
-                $this->checked1 = true;
-                $this->checked2 = false;
-                $this->checked3 = false;
                 $this->contactModel->exportCSV($_SESSION['emailLogin']);
             } else if (isset($_POST['vCard'])) {
-                $this->checked1 = false;
-                $this->checked2 = true;
-                $this->checked3 = false;
                 $this->contactModel->exportVCard($_SESSION['emailLogin']);
             } else if (isset($_POST['Atom'])) {
-                $this->checked1 = false;
-                $this->checked2 = false;
-                $this->checked3 = true;
                 $this->contactModel->exportAtom($_SESSION['emailLogin']);
             }
         }
@@ -90,14 +78,33 @@ class Index extends Controller
             echo '<script language="JavaScript"> window.location.href ="register" </script>';
             die();
         }
+
+        //edit contact
         if(isset($_POST['editContactBtn'])){
-            $this->contactModel->updatePhoto($_SESSION['emailLogin'], $_GET['contactEmail']);
-            $this->contactModel->updateFirstName($_SESSION['emailLogin'], $_GET['contactEmail'], $_POST['nameContact']);
-            $this->contactModel->updateAdress($_SESSION['emailLogin'], $_GET['contactEmail'], $_POST['adressContact']);
-            $this->contactModel->updateInterests($_SESSION['emailLogin'], $_GET['contactEmail'], $_POST['interestsContact']);
-            $this->contactModel->updateDescription($_SESSION['emailLogin'], $_GET['contactEmail'], $_POST['descriptionContact']);
-            header('Location: index.php');
+            if(!($_POST['nameContact']=="")){
+                $this->contactModel->updateFirstName($_SESSION['emailLogin'], $_GET['contactEmail'], $_POST['nameContact']); 
+            } 
+            if(!($_POST['adressContact']=="")){
+                $this->contactModel->updateAdress($_SESSION['emailLogin'], $_GET['contactEmail'], $_POST['adressContact']);
+            } 
+            if(!($_POST['interestsContact']=="")){
+                $this->contactModel->updateInterests($_SESSION['emailLogin'], $_GET['contactEmail'], $_POST['interestsContact']);
+            }
+            if(!($_POST['descriptionContact']=="")){
+                $this->contactModel->updateDescription($_SESSION['emailLogin'], $_GET['contactEmail'], $_POST['descriptionContact']);
+            }
+            if(!($_FILES["photoContact"]["name"]=="")){
+                $this->contactModel->updatePhoto($_SESSION['emailLogin'], $_GET['contactEmail']);
+            }
+            
         }
+        // if(isset($_POST['idGroupp'])){
+        //     echo "ceva";
+        //     // $result=$controllerIndex->addToGroup($_GET['contactEmail'], $_POST['idGroupp']);
+        //     $this->contactModel->addToGroup($_SESSION['emailLogin'],$_GET['contactEmail'], $_POST['idGroupp']);
+        //     // header("Location: index.php");
+        //     // $result=$controllerIndex->addToGroup($_GET['contactEmail'], $_GET['groupId']);
+        // }
         // if(isset($_POST['addToGroupBtn'])){
         //     $this->contactModel->addToGroup($_SESSION['emailLogin'],$_GET['contactEmail'], $_GET['groupId']);
         // }
@@ -106,25 +113,7 @@ class Index extends Controller
 
     public function addToGroup($contactEmail, $idGroup)
     {
-        // if(isset($_POST['addToGroupBtn'])){
-            return $this->contactModel->addToGroup($_SESSION['emailLogin'],$contactEmail, $idGroup);
-        // }
-    }
-
-    // public function updatePhoto($contactEmail){
-    //     return $this->contactModel->updatePhoto($_SESSION['emailLogin'], $contactEmail, isset($_POST['nameContact']));
-    // }
-    public function updateFirstName($contactEmail){
-        return $this->contactModel->updateFirstName($_SESSION['emailLogin'], $contactEmail, isset($_POST['nameContact']));
-    }
-    public function updateDescription($contactEmail){
-        return $this->contactModel->updateDescription($_SESSION['emailLogin'], $contactEmail, isset($_POST['descriptionContact']));
-    }
-    public function updateInterests($contactEmail){
-        return $this->contactModel->updateInterests($_SESSION['emailLogin'], $contactEmail, isset($_POST['interestsContact']));
-    }
-    public function updateAdress($contactEmail){
-        return $this->contactModel->updateAdress($_SESSION['emailLogin'], $contactEmail,isset($_POST['adressContact']));
+        return $this->contactModel->addToGroup($_SESSION['emailLogin'],$contactEmail, $idGroup);
     }
 
     public function getContacts($contactEmail)
@@ -138,4 +127,3 @@ class Index extends Controller
 }
 
 $controllerIndex = new Index();
-// include_once './views/index.php';

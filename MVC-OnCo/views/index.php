@@ -70,6 +70,7 @@
                         <div class="container-btn">
                             <button id="editProfileBtn" value="editProfileBtn" type="submit" name="submit">Edit Profile</button>
                         </div>
+                    </form>
                 </div>
             </div>
         </div>
@@ -82,34 +83,26 @@
                     <div class="header">
                         <h2 class="over-title">Add To Groups</h2>
                     </div>
-                    <form action="index" method="POST" id = "addToGroup">
-                    <!-- <button type="submit" name="addToGroupBtn" id="addToGroupBtn"> Add to this group </button> -->
-                        <?php
-                            echo '<div class="groupsList">';
-                            $groupList = $controllerIndex->getGroups($_SESSION['emailLogin']);
-                            // <button id="addToGroupBtn' . $group->idGroup . '" value="addToGroupBtn" type="submit" name="addToGroupBtn" class = "addToGroupBtn">Add to ' . $group->nameGroup . '</button>
-                            // <button id="addToGroupBtn" value="addToGroupBtn" type="submit" name="submit" class = "addToGroupBtn">Add to this group</button>
-                            //<a href="#addToGroupModal" onclick="document.getElementById(\'addToGroup\').submit();" style="text-decoration:none; color: black; border:1px solid; background:#C0C0C0;" id = "addToGroupBtn" class = "addToGroupBtn">Add to this group</a>
-                            foreach ($groupList as $group) {
-                                echo '<ul>
-                                        <li> 
-                                        <span class="spanGroup" name="' . $group->nameGroup . '"> '. $group->nameGroup .'</span>
-                                        <button id="addToGroupBtn' . $group->idGroup . '" value="addToGroupBtn" type="submit" name="addToGroupBtn" class = "addToGroupBtn">Add to ' . $group->nameGroup . '</button>
-                                        <form action = "index.php" method ="POST"> <input type="hidden" name="idGroupp" value="'. $group->idGroup .'"></form>
-                                        </li>
-                                    </ul>';
-                                    // $element = $group->idGroup;
-                                    // $result= array();
-                                    // array_push($result, 'addToGroupBtn'. $group->idGroup .'');
-                            }
-                            echo '</div>';
-                            
-                            if(isset($_POST['addToGroupBtn'])){
-                                $result=$controllerIndex->addToGroup($_GET['contactEmail'], $_POST['idGroupp']);
-                                // $result=$controllerIndex->addToGroup($_GET['contactEmail'], $_GET['groupId']);
-                            }    
-                        ?>
-                    </form>
+                    <?php
+                        echo '<div class="groupsList">';
+                        $groupList = $controllerIndex->getGroups($_SESSION['emailLogin']);
+                        echo '<ul>';
+                        // <button id="addToGroupBtn' . $group->idGroup . '" value="addToGroupBtn" type="submit" name="addToGroupBtn" class = "addToGroupBtn">Add to ' . $group->nameGroup . '</button>
+                        foreach ($groupList as $group) {
+                            echo'<li> 
+                            <span class="spanGroup" name="' . $group->nameGroup . '"> '. $group->nameGroup .'</span>
+                            <a href="index" onclick="document.getElementById(\'addToGroup'. $group->idGroup .'\').submit();"  id = "addToGroupBtn" class = "buttonAddToGroup">Add to this group</a>
+                            <form  method ="POST" id="addToGroup'. $group->idGroup .'">
+                                <input type="hidden" name="idGroupp" value="'. $group->idGroup .'">
+                            </form>
+                            </li>';
+                        }
+                        echo '</ul>';
+                        echo '</div>';
+                        if(isset($_POST['idGroupp'])){
+                            $result=$controllerIndex->addToGroup($_GET['contactEmail'], $_POST['idGroupp']);
+                        }    
+                    ?>
                 </div>
             </div>
         </div>
@@ -146,12 +139,12 @@
         <!-- edit contact modal -->
         <div id="editContactModal" class="modalContactDialog">
             <div class="right">
-                <a href="index#" title="Close" class="close">X</a>
+                <a href="index" title="Close" class="close">X</a>
                 <div class="editContact">
                     <div class="header">
                         <h2 class="over-title">Edit contact</h2>
                     </div>
-                    <form id = "formEditContact" class="form" method="POST" enctype="multipart/form-data">
+                    <form  id = "formEditContact" class="form" method="POST" enctype="multipart/form-data">
                         <div class="photoContact">
                             <label for="photoContact">Change your photo</label>
                             <input type="file" id = "photoContact" name="photoContact" accept="image/*">
@@ -166,11 +159,12 @@
                             <input class="inputContact" type="interestsContact" id="interestsContact" name="interestsContact" placeholder="Enter the new interests" />
                         </div>
                         <div class="form-element">
-                            <input class="inputContact" type="descriptionContact" id="descriptionContact" name="descriptionContact" placeholder="Enter the new description" />
+                            <textarea class="inputContact" id="descriptionContact" name="descriptionContact" id="descriptionContact" placeholder="Enter the new description" rows="1"></textarea>
                         </div>
 
                         <div class="container-btn">
                             <button id="editContactBtn" value="editContactBtn" type="submit" name="editContactBtn">Edit Contact</button>
+                            <!-- <a href="index#editContactModal" onclick="document.getElementById('formEditContact').submit();" style="text-decoration:none; color: black; border:1px solid; background:#C0C0C0;" id = "editContactBtn" class = "editContactBtn">Edit Contact</a> -->
                         </div>
                     </form>
                 </div>
@@ -244,7 +238,7 @@
                             <form method="POST" action="index">
                                 <h2>Export contacts in a chosen format</h2>
                                 <label for="rdo1">
-                                    <input type="radio" id="rdo1" name="vCard" value="vCard">
+                                    <input type="radio" id="rdo1" name="vCard">
                                     <span class="rdo"></span>
                                     <span>vCard</span>
                                 </label>
