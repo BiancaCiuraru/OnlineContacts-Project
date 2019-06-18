@@ -13,6 +13,8 @@
     <link rel="stylesheet" type="text/css" href="../public/css/main.css" />
     <link rel="stylesheet" type="text/css" href="../public/css/register.css" />
 
+    
+
 </head>
 
 <body>
@@ -115,12 +117,12 @@
     <!-- create new group -->
     <div id="groupsModal" class="groupDialog">
         <div class="right">
-            <a href="grupuri#" title="Close" class="close">X</a>
+            <a href="grupuri" title="Close" class="close">X</a>
             <div class="addGroupForm">
                 <div class="header">
                     <h2 class="over-title">Add group</h2>
                 </div>
-                <form class="form" action = "#" method = "POST" id = "form1">
+                <form id = "addGroupsForm" name="addGroupsForm" action = "./controllers/grupuri.php" method="POST">
                     <div class="form-element">
                         <label for="groupN">Group name</label>
                         <input type="text" class="form-control" id="groupN" name = "groupN" value="" placeholder="Enter group name" required />
@@ -129,9 +131,13 @@
                         <label for="description">Description</label>
                         <textarea type="description" id="description" name = "description" placeholder="Enter description" rows="4" required></textarea>
                     </div>
+                    
                     <div class="container-btn">
-                        <a href="#" onclick="document.getElementById('form1').submit(); " class = "addGroupButton">Add Group</a>
+                        <!-- <a href="grupuri#groupsModal" onclick="document.getElementById('#addGroupsForm').submit();" class = "addGroupButton" >Add Group</a> -->
+                        <!-- <a href="grupuri#groupsModal" onclick="myFunction();" class = "addGroupButton" >Add Group</a> -->
+                        <button id="addGroupBtn" value="addGroupBtn" type="submit" name="submit" class = "addGroupButton">Add Group</button>
                     </div>
+
                     <?php
                         if($controllerGroups->groupName == false){
                             echo '<script>
@@ -142,12 +148,13 @@
                                     if(alert("Name already exists!")){window.location.reload();}
                                 </script>';
                         }else if($controllerGroups->addGroupStatus == true){
-                            echo '<script>
-                                    if(alert("Group has been successfully added!")){window.location.reload();}
-                                </script>';
+                            // echo '<script>
+                            //         if(alert("Group has been successfully added!")){window.location.reload();}
+                            //     </script>';
                         }
                     ?>
-                </form>
+                    
+                </form id ="formAddGroups">
             </div>
         </div>
     </div>
@@ -159,7 +166,7 @@
                 <div class="header">
                     <h2 class="over-title">About this group</h2>
                 </div>
-                <form class="form" id = "form2">
+                <form action="#" method="POST" id = "form2">
                     <?php
                         echo "<div class='lab'>
                             <p><h3>Group name:</h3></p>
@@ -173,8 +180,8 @@
                         echo "<p><h3>Contacts:</h3></p>";
                         foreach ($contactList as $contact){
                             echo "<div class='lab'>
-                                <ul> <li>Name: ". $contact->fName . " " .$contact->lName . "</li>
-                                <li>Email: ". $contact->email . "</li>
+                                <ul> <li><span style='color: black;'>Name</span>: ". $contact->fName . " " .$contact->lName . "</li>
+                                <li><span style='color: black;'>Email</span>: ". $contact->email . "</li>
                                 </ul>
                             </div>";
                         }
@@ -183,7 +190,6 @@
             </div>
         </div>
     </div>
-
 </body>
 
 </html>

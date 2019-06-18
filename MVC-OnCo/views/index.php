@@ -1,7 +1,6 @@
 <?php
     $controllerIndex = new Index();
 ?>
-
 <!DOCTYPE html>
 <html lang="en">
 
@@ -78,23 +77,37 @@
         <!-- add contact to group -->
         <div id="addToGroupModal" class="modalDialog">
             <div class="right">
-                <a href="#close" title="Close" class="close">X</a>
+                <a href="index" title="Close" class="close">X</a>
                 <div class="viewDetail">
                     <div class="header">
                         <h2 class="over-title">Add To Groups</h2>
                     </div>
-                    <form action="#" method="POST">
+                    <form action="index" method="POST" id = "addToGroup">
+                    <!-- <button type="submit" name="addToGroupBtn" id="addToGroupBtn"> Add to this group </button> -->
                         <?php
-                        // echo '<div class="groupsList">';
-                        // $groupList = $controllerIndex->getGroups($_SESSION['emailLogin']);
-                        // foreach ($groupList as $group) {
-                        //     echo '<ul>
-                        //             <li><span class="spanGroup" id="nameGroup">' . $group->nameGroup . ' </span>
-                        //                 <button type="submit" name="submit" id="addToGroupBtn"> Add to this group </button>
-                        //             </li>
-                        //           </ul>';
-                        // }
-                        // echo '</div>';
+                            echo '<div class="groupsList">';
+                            $groupList = $controllerIndex->getGroups($_SESSION['emailLogin']);
+                            // <button id="addToGroupBtn' . $group->idGroup . '" value="addToGroupBtn" type="submit" name="addToGroupBtn" class = "addToGroupBtn">Add to ' . $group->nameGroup . '</button>
+                            // <button id="addToGroupBtn" value="addToGroupBtn" type="submit" name="submit" class = "addToGroupBtn">Add to this group</button>
+                            //<a href="#addToGroupModal" onclick="document.getElementById(\'addToGroup\').submit();" style="text-decoration:none; color: black; border:1px solid; background:#C0C0C0;" id = "addToGroupBtn" class = "addToGroupBtn">Add to this group</a>
+                            foreach ($groupList as $group) {
+                                echo '<ul>
+                                        <li> 
+                                        <span class="spanGroup" name="' . $group->nameGroup . '"> '. $group->nameGroup .'</span>
+                                        <button id="addToGroupBtn' . $group->idGroup . '" value="addToGroupBtn" type="submit" name="addToGroupBtn" class = "addToGroupBtn">Add to ' . $group->nameGroup . '</button>
+                                        <form action = "index.php" method ="POST"> <input type="hidden" name="idGroupp" value="'. $group->idGroup .'"></form>
+                                        </li>
+                                    </ul>';
+                                    // $element = $group->idGroup;
+                                    // $result= array();
+                                    // array_push($result, 'addToGroupBtn'. $group->idGroup .'');
+                            }
+                            echo '</div>';
+                            
+                            if(isset($_POST['addToGroupBtn'])){
+                                $result=$controllerIndex->addToGroup($_GET['contactEmail'], $_POST['idGroupp']);
+                                // $result=$controllerIndex->addToGroup($_GET['contactEmail'], $_GET['groupId']);
+                            }    
                         ?>
                     </form>
                 </div>
@@ -125,6 +138,40 @@
                                  </ul>
                             </div>';
                         ?>
+                    </form>
+                </div>
+            </div>
+        </div>
+
+        <!-- edit contact modal -->
+        <div id="editContactModal" class="modalContactDialog">
+            <div class="right">
+                <a href="index#" title="Close" class="close">X</a>
+                <div class="editContact">
+                    <div class="header">
+                        <h2 class="over-title">Edit contact</h2>
+                    </div>
+                    <form id = "formEditContact" class="form" method="POST" enctype="multipart/form-data">
+                        <div class="photoContact">
+                            <label for="photoContact">Change your photo</label>
+                            <input type="file" id = "photoContact" name="photoContact" accept="image/*">
+                        </div>
+                        <div class="form-element">
+                            <input class="inputContact" type="nameContact" id="nameContact" name="nameContact" placeholder="Enter the new name" />
+                        </div>
+                        <div class="form-element">
+                            <input class="inputContact" type="adressContact" id="adressContact" name="adressContact" placeholder="Enter the new adress" />
+                        </div>
+                        <div class="form-element">
+                            <input class="inputContact" type="interestsContact" id="interestsContact" name="interestsContact" placeholder="Enter the new interests" />
+                        </div>
+                        <div class="form-element">
+                            <input class="inputContact" type="descriptionContact" id="descriptionContact" name="descriptionContact" placeholder="Enter the new description" />
+                        </div>
+
+                        <div class="container-btn">
+                            <button id="editContactBtn" value="editContactBtn" type="submit" name="editContactBtn">Edit Contact</button>
+                        </div>
                     </form>
                 </div>
             </div>
@@ -316,7 +363,7 @@
                                 <a href="?contactEmail=' . $contactss->email . '#addToGroupModal"> <img src="../public/images/group.png" alt="add To Group" title="Add To Group" /></a>
                             </div>
                             <div class="button2">
-                                <a href="?contactEmail=' . $contactss->email . '#editContact"> <img src="../public/images/edit-contact.png" alt="Edit Contact" title="Edit Contact" /> </a>
+                                <a href="?contactEmail=' . $contactss->email . '#editContactModal"> <img src="../public/images/edit-contact.png" alt="Edit Contact" title="Edit Contact" /> </a>
                             </div>
                             <div class="button3">
                                 <a href="?contactEmail=' . $contactss->email . '#viewDetailsModal"><img src="../public/images/arrow-right.png" alt="View Details" title="View Details" /></a>

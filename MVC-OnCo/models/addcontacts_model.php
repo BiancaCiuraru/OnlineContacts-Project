@@ -23,17 +23,28 @@ class AddContacts_Model extends Model{
 
     public function addContact($fname, $lname, $bday, $phone, $email, $adress, $interests, $description){
 
-        $target = "./public/images/" .basename($_FILES['pic']['name']); //folderul in care imi mut imaginea 
-        $image = $_FILES['pic']['name'];
-
-        move_uploaded_file($_FILES['pic']['tmp_name'], $target); //iau imaginea si o pun in folderul images pt ca mai apoi e nevoie de ea pt listarea contactelor
-
         $selectStatement = $this->db -> prepare("select id_user from utilizatori where email = ?");
         $selectStatement -> bindParam(1, $_SESSION['emailLogin'], PDO::PARAM_STR);
         $selectStatement -> execute();
         $rez = $selectStatement->fetch();
         
         $id_user = $rez['id_user']; 
+        // $target = "./public/images/" .basename($_FILES['pic']['name']); //folderul in care imi mut imaginea 
+
+        // $image = $_FILES['pic']['name'];
+        $selectIdContact = $this->db -> prepare("select max(id_contact) from contact where id_user = ?");
+        $selectIdContact -> bindParam(1, $id_user, PDO::PARAM_STR);
+        $selectIdContact -> execute();
+        $r = $selectIdContact->fetch();
+        
+        $id_contact = $r['max(id_contact)']+1; 
+
+        $temp = explode(".", $_FILES["pic"]["name"]);
+        $name = $temp[0] . $id_contact;
+        $image = $name . "." . $temp[1];
+        $target = "./public/images/" .$image; //folderul in care imi mut imaginea 
+
+        move_uploaded_file($_FILES['pic']['tmp_name'], $target); //iau imaginea si o pun in folderul images pt ca mai apoi e nevoie de ea pt listarea contactelor
 
         $insertStatementContact = $this->db -> prepare("INSERT INTO contact (fName, lName, birth_date, phone_number, photo, email, adress, descr, interests,id_user) VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
         $insertStatementContact -> bindParam(1, $fname, PDO::PARAM_STR);

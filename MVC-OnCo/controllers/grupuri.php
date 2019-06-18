@@ -27,17 +27,20 @@ if (!isset($_SESSION)) {
             $this->username = $this->groupsModel -> username($_SESSION['emailLogin']);
 
             //adaugare grup
-            if(isset($_POST['groupN'])){
+            if(isset($_POST['submit']))
+            if($_POST['submit']==='addGroupBtn'){
                 if(!$this->groupsModel -> nameGroupValidity($_POST['groupN'])){
                     $this->groupName = false;
                 }else{
+                    // $this->groupsModel->addGroup($_POST['groupN'], $_POST['description']);
                     if(!$this->groupsModel->addGroup($_POST['groupN'], $_POST['description'])){
                         $this->groupNameStatus = false;
                     }else{
                         $this->addGroupStatus = true;
                     }
-                }
+                // }
             }
+        }
 
             //listarea grupurilor
             $this->groupList = $this->groupsModel -> listGroup($_SESSION['emailLogin']);
