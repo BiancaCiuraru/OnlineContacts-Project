@@ -46,10 +46,8 @@ class Index extends Controller
 
         if (isset($_POST['submit'])) {
             if ($_POST['submit'] === 'editProfileBtn') {
-                if ($_POST['photoU']!='') {
-                    $this->contactModel->editProfilePhoto($_SESSION['emailLogin'],$_POST['photoU']);
+                    $this->contactModel->editProfilePhoto($_SESSION['emailLogin']);
                     $this->editStatus = true;
-                }
                 if ($_POST['emailE']!='') {
                     if ($this->modelLoginRegister->emailValidity($_POST['emailE']) > 0) {
                         $this->editEmail = false;

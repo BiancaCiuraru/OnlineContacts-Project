@@ -371,18 +371,18 @@ class Index_Model extends Model
     }
 
 
-    public function editProfilePhoto($session_email, $photo)
+    public function editProfilePhoto($session_email)
     {
         $id_user = $this->getUserID($session_email);
-        // $temp = explode(".", $_FILES["photoU"]["name"]);
-        // $name = $temp[0] . $id_user;
-        // $image = $name . "." . $temp[1];
-        // $target = "./public/images/" . $image;
+        $temp = explode(".", $_FILES["photoU"]["name"]);
+        $name = $temp[0] . $id_user;
+        $image = $name . "." . $temp[1];
+        $target = "./public/images/" . $image;
 
-        // move_uploaded_file($_FILES['photoU']['tmp_name'], $target);
+        move_uploaded_file($_FILES['photoU']['tmp_name'], $target);
 
         $insertStatement = $this->db->prepare("UPDATE utilizatori set photo=? WHERE id_user = ? ");
-        $insertStatement->bindParam(1, $photo, PDO::PARAM_STR);
+        $insertStatement->bindParam(1, $image, PDO::PARAM_STR);
         $insertStatement->bindParam(2, $id_user, PDO::PARAM_INT);
         $insertStatement->execute();
     }

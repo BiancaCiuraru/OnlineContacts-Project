@@ -31,10 +31,10 @@ $controllerGroups = new Grupuri();
             if ($controllerGroups->userPhoto == null)
                 echo '<img src="https://www.w3schools.com/howto/img_avatar.png" alt="Avatar" class="avatar">';
             else
-            if (file_exists('../public/images/' . $controllerGroups->userPhoto))
+            // if (file_exists('../public/images/' . $controllerGroups->userPhoto))
                 echo '<img src="../public/images/' . $controllerGroups->userPhoto . '" alt="Avatar" class="avatar">';
-            else
-                echo '<img src="https://www.w3schools.com/howto/img_avatar.png" alt="Avatar" class="avatar">';
+            // else
+                // echo '<img src="https://www.w3schools.com/howto/img_avatar.png" alt="Avatar" class="avatar">';
             ?>
             <div class="username">
                 <a href="#" id="username">
