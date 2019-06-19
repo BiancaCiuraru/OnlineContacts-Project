@@ -6,7 +6,7 @@ class AddContacts_Model extends Model{
     }
 
     public function nameValidity($fname, $lname){
-        if(!preg_match("/\A[A-Z][a-z]*\z/", $fname) || !preg_match("/\A[A-Z][a-z]*\z/", $lname)){
+        if(!preg_match("/[A-Za-z ]{1,32}/", $fname) || !preg_match("/[A-Za-z ]{1,32}/", $lname)){
             return false;
         }else {
             return true;
@@ -27,11 +27,8 @@ class AddContacts_Model extends Model{
         $selectStatement -> bindParam(1, $_SESSION['emailLogin'], PDO::PARAM_STR);
         $selectStatement -> execute();
         $rez = $selectStatement->fetch();
-        
         $id_user = $rez['id_user']; 
-        // $target = "./public/images/" .basename($_FILES['pic']['name']); //folderul in care imi mut imaginea 
-
-        // $image = $_FILES['pic']['name'];
+        
         $selectIdContact = $this->db -> prepare("select max(id_contact) from contact where id_user = ?");
         $selectIdContact -> bindParam(1, $id_user, PDO::PARAM_STR);
         $selectIdContact -> execute();
@@ -72,6 +69,14 @@ class AddContacts_Model extends Model{
             $firstRow = $selectStatement->fetch();
             return $firstRow['firstName'] . ' ' . $firstRow['lName'];
         }
+    }
+
+    public function getPhotoUser($email){
+        $statement = $this->db->prepare("SELECT photo from utilizatori where email=?");
+        $statement->bindParam(1, $email, PDO::PARAM_STR);
+        $statement->execute();
+        $rezultat = $statement->fetch();
+        return $rezultat['photo'];
     }
 }
 

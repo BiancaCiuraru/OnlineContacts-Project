@@ -126,6 +126,14 @@ class Grupuri_Model extends Model{
             return $firstRow['firstName'] . ' ' . $firstRow['lName'];
         }
     }
+
+    public function getPhotoUser($email){
+        $statement = $this->db->prepare("SELECT photo from utilizatori where email=?");
+        $statement->bindParam(1, $email, PDO::PARAM_STR);
+        $statement->execute();
+        $rezultat = $statement->fetch();
+        return $rezultat['photo'];
+    }
 }
 
 class Group {

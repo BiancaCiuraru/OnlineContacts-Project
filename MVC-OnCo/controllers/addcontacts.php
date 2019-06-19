@@ -14,14 +14,17 @@
         public $nameValidity;
         public $emailValidity;
         public $username;
+        public $userPhoto;
         public function __construct(){
             parent::__construct();
             $this->contactName = true;
             $this->contactEmail = true;
             $this->contactStatus = false;
+            $this->userPhoto = null;
             $this->addContactsModel = new AddContacts_Model();
             $this->view->render('pages/add-contacts');
             $this->username = $this->addContactsModel->username($_SESSION['emailLogin']);
+            $this->userPhoto = $this->addContactsModel->getPhotoUser($_SESSION['emailLogin']);
 
             if(isset($_POST['submit'])) {
                 if($_POST['submit']==='addButton'){
