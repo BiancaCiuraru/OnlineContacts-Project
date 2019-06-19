@@ -15,6 +15,7 @@ if (!isset($_SESSION)) {
         public $detailsList;
         public $check;
         public $username;
+        public $userPhoto;
         public function __construct(){
             parent::__construct();
             $this->groupName = true;
@@ -22,9 +23,11 @@ if (!isset($_SESSION)) {
             $this->groupNameStatus = true;
             $this->check = true;
             $this->groupList = null;
+            $this->userPhoto = null;
             $this->groupsModel = new Grupuri_Model();
             $this->view->render('pages/grupuri');
             $this->username = $this->groupsModel -> username($_SESSION['emailLogin']);
+            $this->userPhoto = $this->groupsModel->getPhotoUser($_SESSION['emailLogin']);
 
             //adaugare grup
             if(isset($_POST['submit']))

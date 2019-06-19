@@ -7,6 +7,7 @@ class Index_Model extends Model
         parent::__construct();
     }
 
+    //listare contacte
     public function show_contacts($email)
     {
         $selectStatement = $this->db->prepare("select id_user from utilizatori where email = ?");
@@ -29,30 +30,7 @@ class Index_Model extends Model
         return $contactIndex;
     }
 
-    // public function alphabet_filter($email, $character){
-    //     $selectStatement = $this->conn->prepare("select id_user from utilizatori where email = ?");
-    //     $selectStatement->bind_param("s", $email);
-    //     $selectStatement->execute();
-    //     $result = $selectStatement->get_result();
-    //     $rez = $result->fetch_assoc();
-    //     $id_user = $rez['id_user'];
-
-    //     $selectContact = $this->conn->prepare("select * from contact where id_user = ? and fName like ?% or lName like ?%;");
-    //     $selectContact->bind_param("i", $id_user, $character, $character);
-    //     $selectContact->execute();
-    //     $contactIndex = array();
-
-    //     $contacts = $selectContact->get_result();
-    //     $index = 0;
-
-    //     for ($i = 1; $i <= $contacts->num_rows; $i++) {
-    //         $rezultat = $contacts->fetch_assoc();
-    //         $contacts[index]= new Contacts($rezultat['fName'], $rezultat['lName'], $rezultat['email'], $rezultat['photo'], $rezultat['phone_number'], $rezultat['birth_date'], $rezultat['adress'], $rezultat['descr'], $rezultat['interests']);
-    //         $index++;
-    //     }
-    //     return $contactIndex;
-    // }
-
+    //get username
     public function username($email)
     {
         $selectStatement = $this->db->prepare("select firstName, lName from utilizatori where email = ?");
@@ -65,25 +43,27 @@ class Index_Model extends Model
     }
 
     //vizualizarea detaliilor unui contact
-    public function getUserID($email){
-        $selectStatement = $this->db -> prepare("SELECT id_user from utilizatori where email = ?");
-        $selectStatement -> bindParam(1, $email, PDO::PARAM_STR);
-        $selectStatement -> execute();
-        $result = $selectStatement -> fetch();
+    public function getUserID($email)
+    {
+        $selectStatement = $this->db->prepare("SELECT id_user from utilizatori where email = ?");
+        $selectStatement->bindParam(1, $email, PDO::PARAM_STR);
+        $selectStatement->execute();
+        $result = $selectStatement->fetch();
         return $result['id_user'];
     }
 
+    //get all the contacts of the logged user
     public function getContacts($email, $contactEmail)
     {
         $id_user = $this->getUserID($email);
         $selectContact = $this->db->prepare("select * from contact c where email = ? and id_user=?");
         $selectContact->bindParam(1, $contactEmail, PDO::PARAM_STR);
-        $selectContact -> bindParam(2, $id_user, PDO::PARAM_INT);
+        $selectContact->bindParam(2, $id_user, PDO::PARAM_INT);
         $selectContact->execute();
         if ($selectContact->rowCount()  === 1) { {
-            $listContact = $selectContact->fetch();
-            $contact = new Contacts($listContact['fName'], $listContact['lName'], $listContact['email'], $listContact['photo'], $listContact['phone_number'], $listContact['birth_date'], $listContact['adress'], $listContact['descr'], $listContact['interests']);
-            return $contact;
+                $listContact = $selectContact->fetch();
+                $contact = new Contacts($listContact['fName'], $listContact['lName'], $listContact['email'], $listContact['photo'], $listContact['phone_number'], $listContact['birth_date'], $listContact['adress'], $listContact['descr'], $listContact['interests']);
+                return $contact;
             }
         }
     }
@@ -98,8 +78,8 @@ class Index_Model extends Model
         $selectContact->bindParam(1, $id_user, PDO::PARAM_INT);
         $selectContact->execute();
         while ($row = $selectContact->fetch(PDO::FETCH_ASSOC)) {
-                fputcsv($output, $row);
-            }
+            fputcsv($output, $row);
+        }
         header('Content-Type: text/csv; charset=utf-8');
         header('Content-Disposition: attachment; filename=data.csv');
         fclose($output);
@@ -183,6 +163,8 @@ class Index_Model extends Model
         fclose($output);
         exit();
     }
+
+    //get group details of the logged user
     public function getGroups($email)
     {
         $id_user = $this->getUserID($email);
@@ -194,25 +176,27 @@ class Index_Model extends Model
 
         for ($i = 1; $i <= $selectGroups->rowCount(); $i++) {
             $rezultat = $selectGroups->fetch();
-            $groupsIndex[$index] = new Group($rezultat['groupName'], $rezultat['id_group']);
+            $groupsIndex[$index] = new Groups($rezultat['groupName'], $rezultat['id_group']);
             $index++;
         }
         return $groupsIndex;
     }
 
-    public function updatePhoto($email, $emailModal){
+    //edit contact photo
+    public function updatePhoto($email, $emailModal)
+    {
         $id_user = $this->getUserID($email);
         $selectContact = $this->db->prepare("select id_contact from contact where email = ? and id_user=?");
         $selectContact->bindParam(1, $emailModal, PDO::PARAM_STR);
         $selectContact->bindParam(2, $id_user, PDO::PARAM_INT);
         $selectContact->execute();
-        $result = $selectContact -> fetch();
+        $result = $selectContact->fetch();
         $idContact = $result['id_contact'];
 
         $temp = explode(".", $_FILES["photoContact"]["name"]);
         $name = $temp[0] . $idContact;
         $image = $name . "." . $temp[1];
-        $target = "./public/images/" .$image;
+        $target = "./public/images/" . $image;
 
         move_uploaded_file($_FILES['photoContact']['tmp_name'], $target);
 
@@ -223,13 +207,15 @@ class Index_Model extends Model
         $updateContacts->execute();
     }
 
-    public function updateFirstName($email, $emailModal, $fName){
+    //edit contact first name
+    public function updateFirstName($email, $emailModal, $fName)
+    {
         $id_user = $this->getUserID($email);
         $selectContact = $this->db->prepare("select id_contact from contact where email = ? and id_user=?");
         $selectContact->bindParam(1, $emailModal, PDO::PARAM_STR);
         $selectContact->bindParam(2, $id_user, PDO::PARAM_INT);
         $selectContact->execute();
-        $result = $selectContact -> fetch();
+        $result = $selectContact->fetch();
         $idContact = $result['id_contact'];
 
         $updateContacts = $this->db->prepare("UPDATE contact set fName=? where id_user=? and id_contact = ?");
@@ -239,13 +225,15 @@ class Index_Model extends Model
         $updateContacts->execute();
     }
 
-    public function updateDescription($email, $emailModal, $description){
+    //edit contact description
+    public function updateDescription($email, $emailModal, $description)
+    {
         $id_user = $this->getUserID($email);
         $selectContact = $this->db->prepare("select id_contact from contact where email = ? and id_user=?");
         $selectContact->bindParam(1, $emailModal, PDO::PARAM_STR);
         $selectContact->bindParam(2, $id_user, PDO::PARAM_INT);
         $selectContact->execute();
-        $result = $selectContact -> fetch();
+        $result = $selectContact->fetch();
         $idContact = $result['id_contact'];
 
         $updateContacts = $this->db->prepare("UPDATE contact set descr=? where id_user=? and id_contact = ?");
@@ -255,13 +243,15 @@ class Index_Model extends Model
         $updateContacts->execute();
     }
 
-    public function updateInterests($email, $emailModal, $interests){
+    //edit contact interests
+    public function updateInterests($email, $emailModal, $interests)
+    {
         $id_user = $this->getUserID($email);
         $selectContact = $this->db->prepare("select id_contact from contact where email = ? and id_user=?");
         $selectContact->bindParam(1, $emailModal, PDO::PARAM_STR);
         $selectContact->bindParam(2, $id_user, PDO::PARAM_INT);
         $selectContact->execute();
-        $result = $selectContact -> fetch();
+        $result = $selectContact->fetch();
         $idContact = $result['id_contact'];
 
         $updateContacts = $this->db->prepare("UPDATE contact set interests=? where id_user=? and id_contact = ?");
@@ -270,14 +260,15 @@ class Index_Model extends Model
         $updateContacts->bindParam(3, $idContact, PDO::PARAM_INT);
         $updateContacts->execute();
     }
-
-    public function updateAdress($email, $emailModal, $adress){
+    //edit contact adress
+    public function updateAdress($email, $emailModal, $adress)
+    {
         $id_user = $this->getUserID($email);
         $selectContact = $this->db->prepare("select id_contact from contact where email = ? and id_user=?");
         $selectContact->bindParam(1, $emailModal, PDO::PARAM_STR);
         $selectContact->bindParam(2, $id_user, PDO::PARAM_INT);
         $selectContact->execute();
-        $result = $selectContact -> fetch();
+        $result = $selectContact->fetch();
         $idContact = $result['id_contact'];
 
         $updateContacts = $this->db->prepare("UPDATE contact set adress=? where id_user=? and id_contact = ?");
@@ -287,34 +278,34 @@ class Index_Model extends Model
         $updateContacts->execute();
     }
 
-    public function addToGroup($email,$emailModal, $idGroup)
-    { 
+    //add a given contact to a chosen group
+    public function addToGroup($email, $emailModal, $idGroup)
+    {
         $id_user = $this->getUserID($email);
         $selectContact = $this->db->prepare("select id_contact from contact where email = ? and id_user=?");
         $selectContact->bindParam(1, $emailModal, PDO::PARAM_STR);
-        $selectContact ->bindParam(2, $id_user, PDO::PARAM_INT);
+        $selectContact->bindParam(2, $id_user, PDO::PARAM_INT);
         $selectContact->execute();
-        $result = $selectContact -> fetch();
+        $result = $selectContact->fetch();
         $idContact = $result['id_contact'];
 
-        $selectGroup = $this->db->prepare("select count(*) from member where id_contact = ? and id_group=?");
+        $selectGroup = $this->db->prepare("select * from member where id_contact = ? and id_group=?");
         $selectGroup->bindParam(1, $idContact, PDO::PARAM_INT);
         $selectGroup->bindParam(2, $idGroup, PDO::PARAM_INT);
         $selectGroup->execute();
-        $resultGroup = $selectGroup -> fetchColumn();
 
-        if($resultGroup>0)
-        {
+        if ($selectGroup->rowCount()> 0) {
             return false;
-        }else{
-            $addContact = $this->db -> prepare("INSERT INTO member (id_contact, id_group) VALUES(?, ?)");
-            $addContact ->bindParam(1, $idContact, PDO::PARAM_INT);
-            $addContact ->bindParam(2, $idGroup, PDO::PARAM_INT);
+        } else {
+            $addContact = $this->db->prepare("INSERT INTO member (id_contact, id_group) VALUES(?, ?)");
+            $addContact->bindParam(1, $idContact, PDO::PARAM_INT);
+            $addContact->bindParam(2, $idGroup, PDO::PARAM_INT);
             $addContact->execute();
             return true;
         }
     }
 
+    //create xml file with all the contacts for each user 
     public function getContact($email)
     {
         $id_user = $this->getUserID($email);
@@ -330,9 +321,9 @@ class Index_Model extends Model
         return $contactIndex;
     }
 
-    public function xmlContact($contactIndex, $email)
+    public function xmlContact($contactIndex, $iduser)
     {
-        $filePath = './xmlDocs/contacts-' . $email . '.xml';
+        $filePath = './xmlDocs/contacts-' . $iduser . '.xml';
         $dom = new DOMDocument('1.0', 'utf-8');
         $root = $dom->createElement('contacts');
 
@@ -379,21 +370,57 @@ class Index_Model extends Model
         $dom->save($filePath);
     }
 
-    public function editProfile($session_email, $email, $password1, $photo)
+
+    public function editProfilePhoto($session_email, $photo)
+    {
+        $id_user = $this->getUserID($session_email);
+        // $temp = explode(".", $_FILES["photoU"]["name"]);
+        // $name = $temp[0] . $id_user;
+        // $image = $name . "." . $temp[1];
+        // $target = "./public/images/" . $image;
+
+        // move_uploaded_file($_FILES['photoU']['tmp_name'], $target);
+
+        $insertStatement = $this->db->prepare("UPDATE utilizatori set photo=? WHERE id_user = ? ");
+        $insertStatement->bindParam(1, $photo, PDO::PARAM_STR);
+        $insertStatement->bindParam(2, $id_user, PDO::PARAM_INT);
+        $insertStatement->execute();
+    }
+
+    public function editProfileEmail($session_email, $email)
+    {
+        $id_user = $this->getUserID($session_email);
+
+        $insertStatement = $this->db->prepare("UPDATE utilizatori set email=? WHERE id_user = ? ");
+        $insertStatement->bindParam(1, $email, PDO::PARAM_STR);
+        $insertStatement->bindParam(2, $id_user, PDO::PARAM_INT);
+        $insertStatement->execute();
+        return true;
+    }
+
+    public function editProfilePass($session_email, $password1)
     {
         $id_user = $this->getUserID($session_email);
         $hashedPassword1 = md5($password1);
 
-        $insertStatement = $this->db->prepare("UPDATE table utilizatori (email, pass, photo) VALUES( ?, ?, ?) WHERE id_user = ? ");
-        $insertStatement->bindParam(1, $email, PDO::PARAM_STR);
-        $insertStatement->bindParam(2, $hashedPassword1, PDO::PARAM_STR);
-        $insertStatement->bindParam(3, $photo, PDO::PARAM_STR);
-        $insertStatement->bindParam(4, $id_user, PDO::PARAM_INT);
+        $insertStatement = $this->db->prepare("UPDATE utilizatori set pass=? WHERE id_user = ? ");
+        $insertStatement->bindParam(1, $hashedPassword1, PDO::PARAM_STR);
+        $insertStatement->bindParam(2, $id_user, PDO::PARAM_INT);
         $insertStatement->execute();
         return true;
     }
+
+    public function getPhotoUser($email){
+        $statement = $this->db->prepare("SELECT photo from utilizatori where email=?");
+        $statement->bindParam(1, $email, PDO::PARAM_STR);
+        $statement->execute();
+        $rezultat = $statement->fetch();
+        return $rezultat['photo'];
+    }
+
 }
-class Group
+
+class Groups
 {
     public $nameGroup;
     public $idGroup;
@@ -403,6 +430,7 @@ class Group
         $this->idGroup = $idGroup;
     }
 }
+
 class Contacts
 {
     public $firstName;

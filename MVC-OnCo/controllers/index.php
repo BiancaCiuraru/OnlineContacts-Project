@@ -15,9 +15,9 @@ class Index extends Controller
     public $editPassword;
     public $passwordRules;
     public $editEmail;
-    public $fieldsStatus;
-    public $edit;
     public $editStatus;
+    public $iduser;
+    public $userPhoto;
     function __construct()
     {
         parent::__construct();
@@ -25,37 +25,46 @@ class Index extends Controller
             require_once 'register.php';
             return false;
         }
-        $this->edit = NULL;
         $this->editPassword = true;
-        $this->fieldsStatus = true;
         $this->passwordRules = true;
         $this->editEmail = true;
         $this->editStatus = false;
+        $this->userPhoto = null;
         $this->contactModel = new Index_Model();
         $this->modelLoginRegister = new Register_Model();
         $this->view->render('index');
         if (isset($_SESSION['emailLogin'])) {
             $this->username = $this->contactModel->username($_SESSION['emailLogin']);
             $this->contactList = $this->contactModel->show_contacts($_SESSION['emailLogin']);
+            $this->iduser = $this->contactModel->getUserID($_SESSION['emailLogin']);
+            $this->userPhoto = $this->contactModel->getPhotoUser($_SESSION['emailLogin']);
             $file = $this->contactModel->getContact($_SESSION['emailLogin']);
             if (count($file)) {
-                $this->contactModel->xmlContact($file, $_SESSION['emailLogin']);
+                $this->contactModel->xmlContact($file, $this->iduser);
             }
         }
 
         if (isset($_POST['submit'])) {
             if ($_POST['submit'] === 'editProfileBtn') {
-                if ($_POST['photo'] && !$_POST['emailE'] && !$_POST['passwordE'] && !$_POST['password2E']) {
-                    $this->edit = $this->contactModel->editPhoto($_SESSION['emailLogin']);
-                } else if (!$this->modelLoginRegister->passwordValidity($_POST['passwordE'], $_POST['password2E'])) {
-                    $this->editPassword = false;
-                } else if (!$this->modelLoginRegister->passwordRules($_POST['passwordE'], $_POST['password2E'])) {
-                    $this->passwordRules = false;
-                } else {
+                if ($_POST['photoU']!='') {
+                    $this->contactModel->editProfilePhoto($_SESSION['emailLogin'],$_POST['photoU']);
+                    $this->editStatus = true;
+                }
+                if ($_POST['emailE']!='') {
                     if ($this->modelLoginRegister->emailValidity($_POST['emailE']) > 0) {
                         $this->editEmail = false;
                     } else {
-                        $this->edit = $this->contactModel->editProfile($_SESSION['emailLogin'], $_POST['emailE'], $_POST['passwordE'], $_POST['photo']);
+                        $this->contactModel->editProfileEmail($_SESSION['emailLogin'], $_POST['emailE']);
+                        $this->editStatus = true;
+                    }
+                }
+                if ($_POST['passwordE']!='' && $_POST['password2E']!='') {
+                    if (!$this->modelLoginRegister->passwordValidity($_POST['passwordE'], $_POST['password2E'])) {
+                        $this->editPassword = false;
+                    } else if (!$this->modelLoginRegister->passwordRules($_POST['passwordE'], $_POST['password2E'])) {
+                        $this->passwordRules = false;
+                    } else {
+                        $this->contactModel->editProfilePass($_SESSION['emailLogin'], $_POST['passwordE']);
                         $this->editStatus = true;
                     }
                 }
@@ -80,40 +89,36 @@ class Index extends Controller
         }
 
         //edit contact
-        if(isset($_POST['editContactBtn'])){
-            if(!($_POST['nameContact']=="")){
-                $this->contactModel->updateFirstName($_SESSION['emailLogin'], $_GET['contactEmail'], $_POST['nameContact']); 
-            } 
-            if(!($_POST['adressContact']=="")){
+        if (isset($_POST['editContactBtn'])) {
+            if (!($_POST['nameContact'] == "")) {
+                $this->contactModel->updateFirstName($_SESSION['emailLogin'], $_GET['contactEmail'], $_POST['nameContact']);
+            }
+            if (!($_POST['adressContact'] == "")) {
                 $this->contactModel->updateAdress($_SESSION['emailLogin'], $_GET['contactEmail'], $_POST['adressContact']);
-            } 
-            if(!($_POST['interestsContact']=="")){
+            }
+            if (!($_POST['interestsContact'] == "")) {
                 $this->contactModel->updateInterests($_SESSION['emailLogin'], $_GET['contactEmail'], $_POST['interestsContact']);
             }
-            if(!($_POST['descriptionContact']=="")){
+            if (!($_POST['descriptionContact'] == "")) {
                 $this->contactModel->updateDescription($_SESSION['emailLogin'], $_GET['contactEmail'], $_POST['descriptionContact']);
             }
-            if(!($_FILES["photoContact"]["name"]=="")){
+            if (!($_FILES["photoContact"]["name"] == "")) {
                 $this->contactModel->updatePhoto($_SESSION['emailLogin'], $_GET['contactEmail']);
             }
-            
         }
-        // if(isset($_POST['idGroupp'])){
-        //     echo "ceva";
-        //     // $result=$controllerIndex->addToGroup($_GET['contactEmail'], $_POST['idGroupp']);
-        //     $this->contactModel->addToGroup($_SESSION['emailLogin'],$_GET['contactEmail'], $_POST['idGroupp']);
-        //     // header("Location: index.php");
-        //     // $result=$controllerIndex->addToGroup($_GET['contactEmail'], $_GET['groupId']);
-        // }
-        // if(isset($_POST['addToGroupBtn'])){
-        //     $this->contactModel->addToGroup($_SESSION['emailLogin'],$_GET['contactEmail'], $_GET['groupId']);
-        // }
-       
+
+        if(isset($_POST['submit'])){
+            if ($_POST['submit'] === 'addToGroupBtn') {
+                if (isset($_POST['idGroupp'])) {
+                    $this->contactModel->addToGroup($_SESSION['emailLogin'],$_GET['contactEmail'], $_POST['idGroupp']);
+                }
+            }
+        }
     }
 
     public function addToGroup($contactEmail, $idGroup)
     {
-        return $this->contactModel->addToGroup($_SESSION['emailLogin'],$contactEmail, $idGroup);
+        return $this->contactModel->addToGroup($_SESSION['emailLogin'], $contactEmail, $idGroup);
     }
 
     public function getContacts($contactEmail)
