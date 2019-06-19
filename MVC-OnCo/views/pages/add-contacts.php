@@ -45,10 +45,10 @@ $controllerAddContacts = new AddContacts();
             if ($controllerAddContacts->userPhoto == null)
                 echo '<img src="https://www.w3schools.com/howto/img_avatar.png" alt="Avatar" class="avatar">';
             else
-            if (file_exists('../public/images/' . $controllerAddContacts->userPhoto))
+            //if (file_exists('../public/images/' . $controllerAddContacts->userPhoto))
                 echo '<img src="../public/images/' . $controllerAddContacts->userPhoto . '" alt="Avatar" class="avatar">';
-            else
-                echo '<img src="https://www.w3schools.com/howto/img_avatar.png" alt="Avatar" class="avatar">';
+            //else
+                // echo '<img src="https://www.w3schools.com/howto/img_avatar.png" alt="Avatar" class="avatar">';
             ?>
             <div class="username">
                 <a href="#" id="username">

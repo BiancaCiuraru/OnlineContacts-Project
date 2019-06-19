@@ -31,10 +31,10 @@ $controllerIndex = new Index();
             if ($controllerIndex->userPhoto == null)
                 echo '<img src="https://www.w3schools.com/howto/img_avatar.png" alt="Avatar" class="avatar">';
             else 
-                if (file_exists('../public/images/' . $controllerIndex->userPhoto))
+                // if (file_exists('../public/images/' . $controllerIndex->userPhoto))
                 echo '<img src="../public/images/' . $controllerIndex->userPhoto . '" alt="Avatar" class="avatar">';
-            else
-                echo '<img src="https://www.w3schools.com/howto/img_avatar.png" alt="Avatar" class="avatar">';
+            // else
+                // echo '<img src="https://www.w3schools.com/howto/img_avatar.png" alt="Avatar" class="avatar">';
             ?>
             <div class="username">
                 <a href="#" id="username">

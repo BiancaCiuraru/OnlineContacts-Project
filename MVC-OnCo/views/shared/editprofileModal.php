@@ -5,7 +5,7 @@
             <div class="header">
                 <h2 class="over-title">Edit your profile</h2>
             </div>
-            <form action="#" class="form" method="POST">
+            <form action="#" class="form" method="POST" enctype="multipart/form-data">
                 <div class="Photo">
                     <label for="photo">Change your photo</label>
                     <input type="file" id="photoU" name="photoU" accept="image/*">

@@ -14,8 +14,8 @@
                 echo '<li> 
                         <form method ="POST" action="#" id="addToGroup' . $group->idGroup . '">
                             <span class="spanGroup" name="' . $group->nameGroup . '"> ' . $group->nameGroup . '</span>
-                            <button type="submit" name="submit" value="addToGroupBtn" id="addToGroupBtn" class = "buttonAddToGroup">Add to this group</button>
-                            <input type="hidden" name="idGroupp" id="idGroupp" value="' . $group->idGroup . '">
+                            <button type="submit" name="submit" value="addToGroupBtn" id="addToGroupBtn' . $group->idGroup . '" class = "buttonAddToGroup">Add to this group</button>
+                            <input type="hidden" name="idGroupp" id="idGroupp' . $group->idGroup . '" value="' . $group->idGroup . '">
                        </form>
                             
                             </li>';
