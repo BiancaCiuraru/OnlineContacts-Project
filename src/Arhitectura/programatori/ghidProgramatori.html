@@ -31,17 +31,17 @@
     <section id="C2">
         <h4>2. Logare</h4>
         <p>
-            Logarea utilizatorului se realizeaza prin intermediul sesiunilor. 
+            Logarea utilizatorului se realizeaza prin intermediul sesiunilor. Fiecare utilizator primeste un token unic la logare, iar pe baza acestuia va ramane conectat pana la delogarea manuala. 
         </p>
     </section>
     <section id="C3">
         <h4>3. Functionalitati:</h4>
         
         <b>3.1 Autentificare:</b>
-        <p>Pentru a avea acces la functionalitatile aplicatiei este necesar ca utilizatorul sa-si creeze un cont, fiind stocate in baza de date anumite informatii despre utilizator, cum ar fi: id, nume, prenume, parola.</p>
+        <p>Pentru a avea acces la functionalitatile aplicatiei este necesar ca utilizatorul sa-si creeze un cont, fiind stocate in baza de date anumite informatii despre utilizator, cum ar fi: id, nume, prenume, email, parola.</p>
         
         <b>3.2 Logare:</b>
-        <p>Pentru a avea acces la functionalitatile aplicatiei este necesar ca utilizatorul sa se logheze. Dupa introducerea email-ului si al parolei se verifica daca contul se afla in baza de date, iar in caz afirmativ, utilizatorului ii este permis accesul la site.</p>
+        <p>Pentru a avea acces la functionalitatile aplicatiei este necesar ca utilizatorul sa se logheze. Dupa introducerea email-ului si al parolei se verifica daca contul se afla in baza de date. In caz afirmativ, se genereaza un token unic care va fi salvat in baza de date, urmand ca utilizatorului sa ii fie permis accesul la site.</p>
 
         <b>3.3 Crearea unui contact:</b>
         <p>
